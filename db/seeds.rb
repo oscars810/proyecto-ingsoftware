@@ -8,3 +8,12 @@
 
 user = User.new(email: 'hackerman@uc.cl', password: 'hackerman', password_confirmation: 'hackerman', admin: true, nombre: 'Admin')
 user.save!
+
+comuna = Comuna.new(nombre: 'Santiago Centro')
+comuna.save!
+
+comuna = Comuna.new(nombre: 'San Joaquin')
+comuna.save!
+
+comuna = Comuna.new(nombre: 'Macul')
+comuna.save!

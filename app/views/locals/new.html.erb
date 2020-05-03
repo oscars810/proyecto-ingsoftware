@@ -2,6 +2,12 @@
 <p>Ingrese los datos de su local:</p>
 
 <%= form_with(model: @local, method: :post) do |form| %>
+
+    <% lista_comunas = [] %>
+    <% Comuna.all.each do |comuna| %>
+        <% lista_comunas.append(comuna.nombre) %>
+    <% end %>
+
     <div class='field'>
         <%= form.label :nombre %>
         <%= form.text_field :nombre %>
@@ -9,7 +15,7 @@
     
     <div class='field'>
         <%= form.label :comuna %>
-        <%= form.select :desired_atribute, ['comuna1', 'comuna2'] %>
+        <%= form.select :desired_atribute, lista_comunas %>
     </div>
 
     <div class='field'>
