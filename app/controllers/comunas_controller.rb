@@ -14,7 +14,7 @@ class ComunasController < ApplicationController
     if @comuna.save
       redirect_to comunas_path, notice: 'Comuna creada con éxito'
     else
-      redirect_to comunas_new_path, notice: 'Ocurrió un error al crear la película'
+      redirect_to comunas_new_path, notice: 'Ocurrió un error al crear la comuna'
     end
   end
 
@@ -41,7 +41,7 @@ class ComunasController < ApplicationController
     if @comuna.update(comuna_params)
       redirect_to comuna_path(@comuna.id), notice: 'Comuna editada con éxito'
     else
-      redirect_to comunas_new_path, notice: 'Ocurrió un error al editar la película'
+      redirect_to comunas_new_path, notice: 'Ocurrió un error al editar la comuna'
     end
   end
 
