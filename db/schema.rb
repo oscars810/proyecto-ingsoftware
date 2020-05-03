@@ -21,6 +21,17 @@ ActiveRecord::Schema.define(version: 2020_05_03_041434) do
     t.boolean "aceptado"
     t.integer "idusuario"
     t.integer "idcomuna"
+  end
+  
+  create_table "comunas", force: :cascade do |t|
+    t.string "nombre"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "gustos", force: :cascade do |t|
+    t.string "nombre"
+    t.text "descripcion"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
