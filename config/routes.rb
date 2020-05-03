@@ -20,5 +20,21 @@ Rails.application.routes.draw do
   # Destroy
   delete 'comunas/:id', to: 'comunas#destroy'
 
+  # CRUD de Gustos
+  # Create
+  get 'gustos/new', to: 'gustos#new'
+  post 'gustos', to: 'gustos#create'
+
+  # Read
+  get 'gustos', to: 'gustos#index'
+  get 'gustos/:id', to: 'gustos#show', as: :gusto
+
+  # Update
+  get 'gustos/:id/edit', to: 'gustos#edit', as: :gustos_edit
+  patch 'gustos/:id/', to: 'gustos#update'
+  put 'gustos/:id/', to: 'gustos#update'
+
+  # Destroy
+  delete 'gustos/:id', to: 'gustos#destroy'
 
 end
