@@ -10,6 +10,27 @@
   </head>
 
   <body>
+  <h1 style="text-align:center"> Match & Meat </h1>
+
+    <hr>
+    <table style="table-layout: fixed; width: 100%">
+        <th>
+            <td> <%= link_to 'Inicio', root_path%> </td>
+            <td> Locales </td>
+            <td> Match </td>
+            <td> Mi Perfil </td>
+            <% unless user_signed_in? %>
+                <td> <%= link_to 'Iniciar Sesion', new_user_session_path %></td>
+            <% end %>
+            <% unless user_signed_in? %>
+                <td> <%= link_to 'Registrarse', new_user_registration_path %></td>
+            <%end%>
+            <% if user_signed_in? # and current_user.admin%>
+                <td> Administrar </td>
+            <%end%>
+        </th>
+    </table>
+    <hr>
     <%= yield %>
   </body>
 </html>
