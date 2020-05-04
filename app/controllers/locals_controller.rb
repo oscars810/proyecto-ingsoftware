@@ -13,13 +13,15 @@ class LocalsController < ApplicationController
   end
 
   def create
-    l_params = params.require(:local).permit(:nombre, :comuna, :descripcion)
-    @local = Local.create(l_params)
+    @local = Local.new(nombre: params[:local][:nombre],
+                      descripcion: params[:local][:descripcion],
+                      idcomuna: $lista_comunas.index(params[:local][:nombre_comuna]) + 1,
+                      idusuario: current_user.id)
 
     if @local.save
-      redirect_to new_path, notice: 'Local agregado de pana'
+      redirect_to locales_new_path, notice: 'Local agregado de pana'
     else
-      redirect_to new_path, notice: 'Falla en la agregacion del local'
+      redirect_to locales_new_path, notice: 'Falla en la agregacion del local'
     end
   end
 end
