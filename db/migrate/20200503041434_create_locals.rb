@@ -3,7 +3,7 @@ class CreateLocals < ActiveRecord::Migration[5.2]
     create_table :locals do |t|
       t.string :nombre
       t.string :descripcion
-      t.boolean :aceptado
+      t.boolean :aceptado, default: false
       t.integer :idusuario
       t.integer :idcomuna
 
