@@ -21,5 +21,6 @@ class LocalsController < ApplicationController
     else
       redirect_to new_path, notice: 'Falla en la agregacion del local'
     end
+    
   end
 end
