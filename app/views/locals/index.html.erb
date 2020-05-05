@@ -1,2 +1,32 @@
-<h1>Locals#index</h1>
-<p>Find me in app/views/locals/index.html.erb</p>
+<h1>Aqui podras ver todos los locales que tenemos para tus citas:</h1>
+<p>No olvides preguntar por descuentas al hacer citas a traves de nuestra aplicación.</p>
+
+<p id="notice"><%= notice %></p>
+
+<h1>Locales</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Comuna</th>
+      <th>Descripcion</th>
+      <th colspan="3"> Acciones </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @locales.each do |local| %>
+      <tr>
+        <td><%= local.nombre %></td>
+        <td><%= Comuna.find_by("id = ?", local.idcomuna).nombre %></td>
+        <td><%= local.descripcion %></td>
+        <td><%= link_to 'Ver detalles', local_path(local.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<!-- <%= link_to 'Crear Pelicula', peliculas_new_path %> -->

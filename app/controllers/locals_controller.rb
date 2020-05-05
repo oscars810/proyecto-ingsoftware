@@ -7,6 +7,7 @@ class LocalsController < ApplicationController
   end
 
   def index
+    @locales = Local.all
   end
 
   def edit

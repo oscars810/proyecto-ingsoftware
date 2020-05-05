@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   #Create
   get 'locales/new', to: 'locals#new' 
   post 'locals', to: 'locals#create'
+
+  #Index pagina locales
+  get 'locales', to: 'locals#index'
+  get 'locales/:id', to: 'locals#show', as: 'local'
   
   # CRUD de Comunas
   # Create
