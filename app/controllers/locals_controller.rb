@@ -16,7 +16,7 @@ class LocalsController < ApplicationController
     @local = Local.new(nombre: params[:local][:nombre],
                       descripcion: params[:local][:descripcion],
                       idcomuna: $lista_comunas.index(params[:local][:nombre_comuna]) + 1,
-                      idusuario: current_user.id)
+                      idusuario: current_user.id) 
 
     if @local.save
       redirect_to locales_new_path, notice: 'Local agregado de pana'
