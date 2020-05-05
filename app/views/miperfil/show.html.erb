@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Mi Perfil</h1>
+
+<p>
+    <strong>Nombre:</strong>
+    <%= @user.nombre %>
+</p>
+
+<p>
+    <strong>Email:</strong>
+    <%= @user.email %>
+</p>
+
+<p>
+    <strong>Descripcion:</strong>
+    <%= @user.descripcion %>
+</p>
+
+<p>
+    <strong>Edad:</strong>
+    <%= @user.edad %>
+</p>
+
+<p>
+    <strong>Telefono:</strong>
+    <%= @user.telefono %>
+</p>
+
+<%= link_to 'Editar perfil', mi_perfil_edit_path(@user.id) %>
+

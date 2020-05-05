@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'miperfil/show'
   devise_for :users, controllers: {sessions: 'users/sessions', registrations: 'users/registrations'}
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'welcome#index'
@@ -41,5 +42,13 @@ Rails.application.routes.draw do
 
   # Destroy
   delete 'gustos/:id', to: 'gustos#destroy'
+
+  #Mi Perfil
+  get 'miperfil/:id', to: 'miperfil#show', as: :mi_perfil
+
+  #Update perfil
+  get 'miperfil/:id/edit', to: 'miperfil#edit', as: :mi_perfil_edit
+  patch 'miperfil/:id', to: 'miperfil#update'
+
 
 end
