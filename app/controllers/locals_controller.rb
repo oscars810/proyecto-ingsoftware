@@ -19,9 +19,9 @@ class LocalsController < ApplicationController
                       idusuario: current_user.id) 
 
     if @local.save
-      redirect_to locales_new_path, notice: 'Local agregado de pana'
+      redirect_to locales_new_path, notice: 'Local agregado de pana' 
     else
-      redirect_to locales_new_path, notice: 'Falla en la agregacion del local'
+      redirect_to locales_new_path, notice: 'Falla en la agregacion del local' 
     end
     
   end
