@@ -20,4 +20,14 @@ class MiperfilController < ApplicationController
       redirect_to mi_perfil_path(@user.id), notice: 'Ocurrio un error al actualizar los datos'
     end
   end
+
+  #Delete
+  def destroy
+
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to root_path, notice: 'Usuario eliminado con exito' 
+
+  end
+
 end
