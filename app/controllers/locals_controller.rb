@@ -15,7 +15,7 @@ class LocalsController < ApplicationController
   def create
     @local = Local.new(nombre: params[:local][:nombre],
                       descripcion: params[:local][:descripcion],
-                      idcomuna: $lista_comunas.index(params[:local][:nombre_comuna]) + 1,
+                      idcomuna: Comuna.find_by("nombre = ?", params[:local][:nombre_comuna]).id,
                       idusuario: current_user.id) 
 
     if @local.save
