@@ -1,15 +1,12 @@
-<<<<<<< HEAD
-=======
 <p id="notice"><%= notice %></p> 
->>>>>>> registro_local
 <h1>Form registro nuevo local</h1>
 <p>Ingrese los datos de su local:</p>
 
 <%= form_with(model: @local, method: :post) do |form| %>
 
-    <% lista_comunas = [] %>
+    <% $lista_comunas = [] %> 
     <% Comuna.all.each do |comuna| %>
-        <% lista_comunas.append(comuna.nombre) %>
+        <% $lista_comunas.append(comuna.nombre) %> 
     <% end %>
 
     <div class='field'>
@@ -19,12 +16,12 @@
     
     <div class='field'>
         <%= form.label :comuna %>
-        <%= form.select :desired_atribute, lista_comunas %>
+        <%= form.select :nombre_comuna, $lista_comunas %> 
     </div>
 
     <div class='field'>
         <%= form.label :descripcion %>
-        <%= form.text_area :descripcion %>
+        <%= form.text_area :descripcion %> 
     </div>
         <%form. :aceptado = false%>
     <p></p>
