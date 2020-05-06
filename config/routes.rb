@@ -57,6 +57,10 @@ Rails.application.routes.draw do
   #Update perfil
   get 'miperfil/:id/edit', to: 'miperfil#edit', as: :mi_perfil_edit
   patch 'miperfil/:id', to: 'miperfil#update'
+  put 'miperfil/:id', to: 'miperfil#update'
+
+  #Delete perfil
+  delete 'miperfil/:id', to: 'miperfil#destroy'
 
 
 end
