@@ -1,6 +1,6 @@
 <h1>Editar Perfil</h1>
 
-<%= form_with(model: @user, url: mi_perfil_path(@user.id), method: :patch) do |form| %>
+<%= form_with(model: @user, url: perfil_path(@user.id), method: :patch) do |form| %>
   <div class="field">
     <%= form.label :nombre %>
     <%= form.text_field :nombre %>
@@ -31,4 +31,4 @@
   </div>
 <% end %>
 
-<%= link_to 'Volver', mi_perfil_path(@user.id) %>
+<%= link_to 'Volver', perfil_path(@user.id) %>

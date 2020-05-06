@@ -1,4 +1,4 @@
-class MiperfilController < ApplicationController
+class PerfilController < ApplicationController
 
   # Read
   def index
@@ -20,9 +20,9 @@ class MiperfilController < ApplicationController
     @user = User.find(params[:id])
 
     if @user.update(user_params)
-      redirect_to mi_perfil_path(@user.id), notice: 'Datos de usuario actualizados con éxito'
+      redirect_to perfil_path(@user.id), notice: 'Datos de usuario actualizados con éxito'
     else
-      redirect_to mi_perfil_path(@user.id), notice: 'Ocurrio un error al actualizar los datos'
+      redirect_to perfil_path(@user.id), notice: 'Ocurrio un error al actualizar los datos'
     end
   end
 

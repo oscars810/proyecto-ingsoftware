@@ -27,6 +27,6 @@
     <%= @user.telefono %>
 </p>
 
-<%= link_to 'Editar perfil', mi_perfil_edit_path(@user.id) %>
-<%= link_to 'Eliminar cuenta', mi_perfil_path(@user.id),  method: :delete, alert: '¿Estas seguro?' %>
+<%= link_to 'Editar perfil', perfil_edit_path(@user.id) %>
+<%= link_to 'Eliminar cuenta', perfil_path(@user.id),  method: :delete, alert: '¿Estas seguro?' %>
 

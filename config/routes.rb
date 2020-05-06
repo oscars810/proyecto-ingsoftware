@@ -57,20 +57,20 @@ Rails.application.routes.draw do
   # Destroy
   delete 'gustos/:id', to: 'gustos#destroy'
 
-  # Mi Perfil
+  # Perfil
 
   # Create
   devise_for :users, controllers: {sessions: 'users/sessions', registrations: 'users/registrations'}
 
   # Read Usuarios
-  get 'usuarios', to: 'miperfil#index'
-  get 'miperfil/:id', to: 'miperfil#show', as: :mi_perfil
+  get 'perfiles', to: 'perfil#index'
+  get 'perfil/:id', to: 'perfil#show', as: :perfil
 
   # Update perfil
-  get 'miperfil/:id/edit', to: 'miperfil#edit', as: :mi_perfil_edit
-  patch 'miperfil/:id', to: 'miperfil#update'
-  put 'miperfil/:id', to: 'miperfil#update'
+  get 'perfil/:id/edit', to: 'perfil#edit', as: :perfil_edit
+  patch 'perfil/:id', to: 'perfil#update'
+  put 'perfil/:id', to: 'perfil#update'
 
   # Delete perfil
-  delete 'miperfil/:id', to: 'miperfil#destroy'
+  delete 'perfil/:id', to: 'perfil#destroy'
 end

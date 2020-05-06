@@ -19,7 +19,7 @@
             <td><%= usuario.email %></td>
             <td><%= usuario.nombre %></td>
             <td><%= usuario.edad %></td>
-            <td><%= link_to 'Eliminar cuenta', mi_perfil_path(usuario.id),  method: :delete, alert: '¿Estas seguro?' %></td>
+            <td><%= link_to 'Eliminar cuenta', perfil_path(usuario.id),  method: :delete, alert: '¿Estas seguro?' %></td>
         </tr>
         <% end %>
     </tbody>
