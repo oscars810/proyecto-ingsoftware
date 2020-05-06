@@ -12,6 +12,10 @@ Rails.application.routes.draw do
   #Index pagina locales
   get 'locales', to: 'locals#index'
   get 'locales/:id', to: 'locals#show', as: 'local'
+
+  #Edit
+  get 'locales/:id/edit', to: 'locals#edit', as: 'local_edit'
+  patch 'locales/:id', to: 'locals#update'
   
   # CRUD de Comunas
   # Create

@@ -11,6 +11,7 @@ class LocalsController < ApplicationController
   end
 
   def edit
+    @local = Local.find(params[:id])
   end
 
   def create
@@ -24,6 +25,15 @@ class LocalsController < ApplicationController
     else
       redirect_to locales_new_path, notice: 'Falla en la agregacion del local' 
     end
-    
+  end
+
+  def update
+    @local = Local.find_by(id: params[:id])
+
+    if @local.update(descripcion: params[:local][:descripcion])
+      redirect_to local_path(@local.id)
+    else @local.update(descripcion: params[:local][:descripcion])
+      redirect_to local_path(@local.id)
+    end
   end
 end

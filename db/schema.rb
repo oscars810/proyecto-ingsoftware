@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_03_042617) do
+ActiveRecord::Schema.define(version: 2020_05_06_014515) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 2020_05_03_042617) do
   create_table "locals", force: :cascade do |t|
     t.string "nombre"
     t.string "descripcion"
-    t.boolean "aceptado"
+    t.boolean "aceptado", default: false
     t.integer "idusuario"
     t.integer "idcomuna"
     t.datetime "created_at", null: false

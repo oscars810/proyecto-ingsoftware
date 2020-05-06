@@ -17,16 +17,17 @@
 
   <tbody>
     <% @locales.each do |local| %>
+    <% puts local.idcomuna %>
       <tr>
-        <td><%= local.nombre %></td>
-        <td><%= Comuna.find_by("id = ?", local.idcomuna).nombre %></td>
-        <td><%= local.descripcion %></td>
-        <td><%= link_to 'Ver detalles', local_path(local.id) %></td>
+        <% if local.aceptado %>
+            <td><%= local.nombre %></td>
+            <td><%= Comuna.find_by("id = ?", local.idcomuna).nombre %></td>
+            <td><%= local.descripcion %></td>
+            <td><%= link_to 'Ver detalles', local_path(local.id) %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<!-- <%= link_to 'Crear Pelicula', peliculas_new_path %> -->
