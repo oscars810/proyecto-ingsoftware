@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {sessions: 'users/sessions', registrations: 'users/registrations'}
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'welcome#index'
+
   get 'administrar', to: 'admin#index'
+  get 'aceptar_locales', to: 'admin#aceptar_locales'
 
   
   #Locales
@@ -47,6 +49,9 @@ Rails.application.routes.draw do
 
   #Mi Perfil
   get 'miperfil/:id', to: 'miperfil#show', as: :mi_perfil
+
+  # Index Usuarios
+  get 'usuarios', to: 'miperfil#index'
 
   #Update perfil
   get 'miperfil/:id/edit', to: 'miperfil#edit', as: :mi_perfil_edit
