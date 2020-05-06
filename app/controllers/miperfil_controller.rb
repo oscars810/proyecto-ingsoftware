@@ -1,5 +1,10 @@
 class MiperfilController < ApplicationController
 
+  # Read
+  def index
+    @users = User.all
+  end
+
   #Show
   def show
     @user = User.find(params[:id])
