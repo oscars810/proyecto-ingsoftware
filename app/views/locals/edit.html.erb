@@ -1,2 +1,13 @@
-<h1>Locals#edit</h1>
-<p>Find me in app/views/locals/edit.html.erb</p>
+<h1>Por ahora solo se puede editar la descripcion</h1>
+<%= form_with(model: @local, url: local_path(@local.id), method: :patch) do |form| %>
+    <div class='field'>
+        <%= form.label :descripcion %>
+        <%= form.text_area :descripcion %>
+    </div>
+
+    <div class='actions'>
+        <%= form.submit %>
+    </div>
+<%end%>
+<p></p>
+<%= link_to 'Back', local_path %>

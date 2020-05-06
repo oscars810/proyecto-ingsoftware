@@ -4,9 +4,9 @@
 
 <%= form_with(model: @local, method: :post) do |form| %>
 
-    <% $lista_comunas = [] %> 
+    <% lista_comunas = [] %> 
     <% Comuna.all.each do |comuna| %>
-        <% $lista_comunas.append(comuna.nombre) %> 
+        <% lista_comunas.append(comuna.nombre) %> 
     <% end %>
 
     <div class='field'>
@@ -16,7 +16,7 @@
     
     <div class='field'>
         <%= form.label :comuna %>
-        <%= form.select :nombre_comuna, $lista_comunas %> 
+        <%= form.select :nombre_comuna, lista_comunas %> 
     </div>
 
     <div class='field'>

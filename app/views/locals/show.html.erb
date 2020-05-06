@@ -1,2 +1,5 @@
-<h1>Locals#show</h1>
-<p>Find me in app/views/locals/show.html.erb</p>
+<h1>Perfil de <%=  Local.find_by('id = ?', params[:id]).nombre %></h1>
+<p align='right'><%= link_to 'Editar', local_edit_path(params[:id]) %> </p>
+<p> Mis datos. </p>
+<p> Local de: <%= User.find_by('id = ?', Local.find_by('id = ?', params[:id]).idusuario).nombre %> </p>
+<p> Mi descripcion: <%= Local.find_by('id = ?', params[:id]).descripcion %> </p>
