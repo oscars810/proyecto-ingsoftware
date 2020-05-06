@@ -18,7 +18,7 @@
     <table style="table-layout: fixed; width: 100%">
         <th>
             <td> <%= link_to 'Inicio', root_path%> </td>
-            <td> Locales </td>
+            <td> <%= link_to 'Locales', locales_path%> </td>
             <td> Match </td>
             <% if user_signed_in? %>
               <td> <%= link_to 'Mi Perfil', mi_perfil_path(current_user.id)%> </td>
