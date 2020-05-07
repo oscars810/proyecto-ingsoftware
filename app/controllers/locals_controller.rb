@@ -49,4 +49,10 @@ class LocalsController < ApplicationController
       redirect_to local_path(@local.id)
     end
   end
+
+  def destroy
+    @local = Local.find(params[:id])
+    @local.destroy
+    redirect_to locales_path
+  end
 end
