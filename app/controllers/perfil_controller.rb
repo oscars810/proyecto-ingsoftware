@@ -1,5 +1,6 @@
 class PerfilController < ApplicationController
 
+  
   # Read
   def index
     @users = User.all
@@ -7,12 +8,20 @@ class PerfilController < ApplicationController
 
   #Show
   def show
-    @user = User.find(params[:id])
+    unless user_signed_in?
+      redirect_to root_path, notice: 'Usted debe ingresar sesión para poder ver el perfil de otro usuario'
+    else
+      @user = User.find(params[:id])
+    end
   end
 
   #Update
   def edit
-    @user = User.find(params[:id])
+    unless user_signed_in?
+      redirect_to root_path, notice: 'Usted debe ingresar sesión para poder ver el perfil de otro usuario'
+    else
+      @user = User.find(params[:id])
+    end
   end
 
   def update

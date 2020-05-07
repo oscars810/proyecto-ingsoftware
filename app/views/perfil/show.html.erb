@@ -1,6 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Mi Perfil</h1>
+<% if current_user.id == @user.id %>
+  <h1>Mi Perfil</h1>
+<% else %>
+  <h1>Perfil de <%= @user.nombre %></h1> 
+<% end %>
 
 <p>
     <strong>Nombre:</strong>
@@ -27,6 +31,9 @@
     <%= @user.telefono %>
 </p>
 
-<%= link_to 'Editar perfil', perfil_edit_path(@user.id) %>
-<%= link_to 'Eliminar cuenta', perfil_path(@user.id),  method: :delete, alert: '¿Estas seguro?' %>
+<% if current_user.id == @user.id %>
+  <%= link_to 'Editar perfil', perfil_edit_path(@user.id) %>
+  <%= link_to 'Eliminar cuenta', perfil_path(@user.id),  method: :delete, alert: '¿Estas seguro?' %>
+
+<% end %>
 
