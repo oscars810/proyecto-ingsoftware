@@ -5,9 +5,7 @@ Rails.application.routes.draw do
   # Administrador
   get 'administrar', to: 'admin#index'
   get 'aceptar_locales', to: 'admin#aceptar_locales'
-  get 'admin_locales', to: 'admin#ver_locales'
-  patch 'aceptar_local/:id', to: 'admin#aceptar_local'
-  delete 'eliminar_local/:id', to: 'admin#eliminar_local'
+  get 'administrar_locales', to: 'admin#ver_locales'
 
   # Locales
   # Create
@@ -60,7 +58,6 @@ Rails.application.routes.draw do
   delete 'gustos/:id', to: 'gustos#destroy'
 
   # Perfil
-
   # Create
   devise_for :users, controllers: {sessions: 'users/sessions', registrations: 'users/registrations'}
 
