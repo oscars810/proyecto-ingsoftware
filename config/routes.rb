@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   patch 'locales/:id', to: 'locals#update'
   
   # Destroy
-
+  delete 'locales/:id', to: 'locals#destroy'
 
   # Comunas
   # Create
