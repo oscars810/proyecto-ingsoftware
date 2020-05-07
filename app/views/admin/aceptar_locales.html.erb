@@ -10,11 +10,11 @@
 </thead>
 
 <tbody>
-    <% @locales_pendientes.each do |local| %>
+    <% @locales_pendientes.each do |local_| %>
     <tr>
-        <td><%= local.nombre %></td>
-        <td><%= local.descripcion %></td>
-        <td><%= link_to 'Aceptar Local', administrar_locales_path(local.id), method: :patch %></td>
+        <td><%= local_.nombre %></td>
+        <td><%= local_.descripcion %></td>
+        <td><%= link_to 'Aceptar Local', "aceptar_locales/#{local_.id}", method: :patch%></td>
     </tr>
     <% end %>
 </tbody>

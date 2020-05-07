@@ -14,7 +14,7 @@
       <tr>
         <td><%= local.nombre %></td>
         <td><%= local.descripcion %></td>
-        <td><%= link_to 'Eliminar Local', administrar_locales_path(local.id), method: :delete, alert: '¿Estas seguro?' %>
+        <td><%= link_to 'Eliminar Local', "administrar_locales/#{local.id}",  method: :delete, alert: '¿Estas seguro?' %>
       </tr>
     <% end %>
   </tbody>
