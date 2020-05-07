@@ -1,5 +1,7 @@
 <h1>Perfil de <%=  Local.find_by('id = ?', params[:id]).nombre %></h1>
-<p align='right'><%= link_to 'Editar', local_edit_path(params[:id]) %> </p>
+<% if current_user and current_user.id ==  Local.find_by('id = ?', params[:id]).idusuario%>
+    <p align='right'><%= link_to 'Editar', local_edit_path(params[:id]) %> </p>
+<% end%>
 <p> Mis datos. </p>
 <p> Local de: <%= User.find_by('id = ?', Local.find_by('id = ?', params[:id]).idusuario).nombre %> </p>
 <p> Mi descripcion: <%= Local.find_by('id = ?', params[:id]).descripcion %> </p>

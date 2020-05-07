@@ -1,6 +1,15 @@
 class LocalsController < ApplicationController
   def new
-    @local = Local.new
+    if not current_user
+      redirect_to locales_path
+    else
+      if Local.find_by('idusuario = ?', current_user.id)
+        redirect_to locales_path
+      else
+        @local = Local.new
+
+      end
+    end
   end
 
   def show
@@ -11,7 +20,11 @@ class LocalsController < ApplicationController
   end
 
   def edit
-    @local = Local.find(params[:id])
+    unless current_user and current_user.id ==  Local.find_by('id = ?', params[:id]).idusuario
+      redirect_to local_path
+    else
+      @local = Local.find(params[:id])
+    end
   end
 
   def create
