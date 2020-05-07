@@ -6,6 +6,9 @@ class AdminController < ApplicationController
   end
 
   def aceptar_local
+    @local = Local.find(params[:id])
+    @local.update(:aceptado => true)
+    redirect_to action:'aceptar_locales'
   end
 
   def ver_locales

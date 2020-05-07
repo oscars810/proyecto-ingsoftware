@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # Administrador
   get 'administrar', to: 'admin#index'
   get 'aceptar_locales', to: 'admin#aceptar_locales'
+  patch 'aceptar_locales/:id', to: 'admin#aceptar_local'
   get 'administrar_locales', to: 'admin#ver_locales'
 
   # Locales
