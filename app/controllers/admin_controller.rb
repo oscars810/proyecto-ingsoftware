@@ -15,4 +15,10 @@ class AdminController < ApplicationController
     @locales = Local.where("aceptado = ?", true)
     render 'locales'
   end
+
+  def eliminar_local
+    @local = Local.find(params[:id])
+    @local.destroy
+    redirect_to administrar_locales_path, notice: 'Local eliminado con éxito'
+  end
 end

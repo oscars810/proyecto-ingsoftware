@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'aceptar_locales', to: 'admin#aceptar_locales'
   patch 'aceptar_locales/:id', to: 'admin#aceptar_local'
   get 'administrar_locales', to: 'admin#ver_locales'
+  delete 'administrar_locales/:id', to: 'admin#eliminar_local'
 
   # Locales
   # Create
