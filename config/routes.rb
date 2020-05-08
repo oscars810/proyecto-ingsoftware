@@ -94,10 +94,15 @@ Rails.application.routes.draw do
 
   #MENUS
   #Create
-
-  #Index
-  
+  get 'locales/new_menu', to: 'menus#new'
+  post 'menus', to: 'menus#create'
 
   #Edit
-  #Destroy
+  get 'menus/:id/edit', to: 'menus#edit'
+  patch 'menus/:id', to: 'menus#update'
+
+  #Update
+  get 'menus/:id/edit', to: 'menus#edit', as: :menus_edit
+  patch 'menus/:id/', to: 'menus#update'
+  put 'menus/:id/', to: 'menus#update'
 end
