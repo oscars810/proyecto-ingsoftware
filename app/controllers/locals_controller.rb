@@ -13,6 +13,7 @@ class LocalsController < ApplicationController
   end
 
   def show
+    @comentarios = Comentario.where("idlocal=?", params[:id])
   end
 
   def index

@@ -62,14 +62,11 @@ Rails.application.routes.draw do
 
   # Comentarios
   # Create
-  get 'comentarios/new/:id', to: 'comentarios#new'
+  get 'locales/comentarios/new/:id', to: 'comentarios#new'
   post 'comentarios', to: 'comentarios#create'
 
-  # Read
-  get 'comentarios/index'
-  get 'comentarios/show'
-  get 'comentarios/edit'
-
+  # Delete
+  delete 'comentarios', to: 'comentarios#destroy'
 
   # Perfil
   # Create
