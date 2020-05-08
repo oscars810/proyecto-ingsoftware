@@ -33,6 +33,15 @@ Perfil de <%=  @local.nombre %>
   </tbody>
 </table>
 
-<%if current_user and current_user.id != @local.idusuario%>
-    <%= link_to 'Dejar Comentario'%>
+<hr>
+<h2> Comentarios </h2>
+<%if current_user and current_user.id != local.idusuario%>
+    <p align = 'right'> <%= link_to 'Dejar Comentario', "comentarios/new/#{local.id}"%> </p>
+<%end%>
+
+<% @comentarios.each do |comentario|%>
+    <p><strong>><%= User.find_by("id=?", comentario.idusuario).nombre %> </strong>: <%= comentario.contenido %></p>
+    <% if user_signed_in? and current_user.id == comentario.idusuario%>
+        <%= link_to 'Eliminar Comentario', comentarios_path(:id_comentario => comentario.id), method: :delete, alert: 'Estás seguro?'%>
+    <%end%>
 <%end%>

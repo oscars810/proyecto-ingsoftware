@@ -13,8 +13,12 @@ class LocalsController < ApplicationController
   end
 
   def show
+<<<<<<< HEAD
     @local = Local.find(params[:id])
     @menus = Menu.where("idlocal = ?", params[:id])
+=======
+    @comentarios = Comentario.where("idlocal=?", params[:id])
+>>>>>>> develop
   end
 
   def index

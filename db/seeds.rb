@@ -56,3 +56,15 @@ menu.save!
 
 menu = Menu.new(idlocal: 2, nombre: 'Mega Submarino', descripcion: 'Sandwuich que posee jamón, tomate, queso, lechuga, pepino, pepinillo y aceitunas', precio: 1000)
 menu.save!
+
+comentario = Comentario.new(contenido: 'Un local bastante variado y con muy buena atención', idusuario: 2, idlocal: 1, valoracion: 5)
+comentario.save!
+
+comentario = Comentario.new(contenido: 'Posee una comida muy sabrosa, la atencion es 10/10', idusuario: 5, idlocal: 2, valoracion: 5)
+comentario.save!
+
+comentario = Comentario.new(contenido: 'La atencion es muy buena, pero debería existir mas variedad de sandwiches', idusuario: 2, idlocal: 2, valoracion: 4)
+comentario.save!
+
+comentario = Comentario.new(contenido: 'El tiempo de atencion es bastante bueno y los precios estan acorde al nivel de los platos', idusuario: 3, idlocal: 1, valoracion: 5)
+comentario.save!
