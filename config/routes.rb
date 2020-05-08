@@ -64,6 +64,9 @@ Rails.application.routes.draw do
   get 'locales/comentarios/new/:id', to: 'comentarios#new'
   post 'comentarios', to: 'comentarios#create'
 
+  # Read
+  get 'comentarios', to: 'comentarios#index'
+
   # Delete
   delete 'comentarios', to: 'comentarios#destroy'
 
