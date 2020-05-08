@@ -102,4 +102,7 @@ Rails.application.routes.draw do
   get 'menus/:id/edit', to: 'menus#edit', as: :menus_edit
   patch 'menus/:id/', to: 'menus#update'
   put 'menus/:id/', to: 'menus#update'
+
+  #Destroy
+  delete 'menus', to: 'menus#destroy'
 end

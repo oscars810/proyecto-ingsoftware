@@ -32,7 +32,8 @@ class MenusController < ApplicationController
   end
 
   def destroy
-    @menu = Menu.find(params[:id])
+    @menu = Menu.find(params[:id_menu])
     @menu.destroy
+    redirect_back(fallback_location: root_path, notice: 'Comentario eliminado con éxito')
   end
 end
