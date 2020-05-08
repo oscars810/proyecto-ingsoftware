@@ -1,7 +1,7 @@
 <% if current_user and current_user.id == params[:id].to_i and Local.find_by('idusuario = ?', current_user.id) %>
   <%idlocal = Local.find_by('idusuario = ?', current_user.id).id%>
   <p align='right'><%= link_to 'Ver mi local', local_path(idlocal) %></p>
-<% else %>
+<% elsif current_user.id == params[:id].to_i %>
   <p align='right'><%= link_to 'Inscribir mi local', locales_new_path %></p>
 <%end%>
 
