@@ -1,25 +1,43 @@
 <p id="notice"><%= notice %></p>
-
-<% local = Local.find_by('id = ?', params[:id]) %>
 <h1>
-Perfil de <%=  local.nombre %>
-<% unless local.aceptado %>
+Perfil de <%=  @local.nombre %>
+<% unless @local.aceptado %>
     (Pendiente)
 <% end %>
 </h1>
-<% if current_user and current_user.id ==  local.idusuario%>
+<% if current_user and current_user.id ==  @local.idusuario%>
     <p align='right'><%= link_to 'Editar', local_edit_path(params[:id]) %> </p>
 <% end%>
 <strong>Mis datos. </strong>
 <p><strong> Local de:</strong> 
-<%= User.find_by('id = ?', local.idusuario).nombre %> </p>
+<%= User.find_by('id = ?', @local.idusuario).nombre %> </p>
 <p><strong> Mi descripcion: </strong>
-<%= local.descripcion %> </p>
+<%= @local.descripcion %> </p>
+<p>    </p>
+<p><strong> Especialidad de la casa: </strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Plato</th>
+      <th>Descripcion</th>
+      <th>Precio</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @menus.each do |menu| %>
+      <tr>
+        <td><%= menu.nombre %></td>
+        <td><%= menu.descripcion %></td>
+        <td><%= menu.precio %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 <hr>
 <h2> Comentarios </h2>
-<%if current_user and current_user.id != local.idusuario%>
-    <p align = 'right'> <%= link_to 'Dejar Comentario', "comentarios/new/#{local.id}"%> </p>
+<%if current_user and current_user.id != @local.idusuario %>
+    <p align = 'right'> <%= link_to 'Dejar Comentario', "comentarios/new/#{@local.id}"%> </p>
 <%end%>
 
 <% @comentarios.each do |comentario|%>

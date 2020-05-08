@@ -9,5 +9,26 @@
         <%= form.submit %>
     </div>
 <%end%>
+<p>Editar Menus</p>
+<table>
+  <thead>
+    <tr>
+      <th>Plato</th>
+      <th>Descripcion</th>
+      <th>Precio</th>
+      <th>Accion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @menus.each do |menu| %>
+      <tr>
+        <td><%= menu.nombre %></td>
+        <td><%= menu.descripcion %></td>
+        <td><%= menu.precio %></td>
+        <td><%= link_to 'Editar', "/menus/#{menu.id}/edit/#{@local.id}" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 <p></p>
 <%= link_to 'Back', local_path %>

@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'match/show'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'welcome#index'
 
@@ -90,4 +89,17 @@ Rails.application.routes.draw do
 
   #Create match
 
+  #MENUS
+  #Create
+  get 'locales/new_menu', to: 'menus#new'
+  post 'menus', to: 'menus#create'
+
+  #Edit
+  get 'menus/:id/edit/:idlocal', to: 'menus#edit'
+  patch 'menus/:id', to: 'menus#update', as: :menu
+
+  #Update
+  get 'menus/:id/edit', to: 'menus#edit', as: :menus_edit
+  patch 'menus/:id/', to: 'menus#update'
+  put 'menus/:id/', to: 'menus#update'
 end
