@@ -1,3 +1,4 @@
+<p id="notice"><%= notice %></p> 
 <h1>Por ahora solo se puede editar la descripcion</h1>
 <%= form_with(model: @local, url: local_path(@local.id), method: :patch) do |form| %>
     <div class='field'>
@@ -32,5 +33,5 @@
   </tbody>
 </table>
 <p></p>
-<%= link_to 'Agregar Menu', "menus/new/#{@local.id}"%>
+<%= link_to 'Agregar Menu', menus_new_path(@local.id)%>
 <%= link_to 'Back', local_path %>

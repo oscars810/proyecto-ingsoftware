@@ -94,7 +94,7 @@ Rails.application.routes.draw do
 
   #MENUS
   #Create
-  get 'menus/new/:idlocal', to: 'menus#new'
+  get 'menus/new/:idlocal', to: 'menus#new', as: :menus_new
   post 'menus', to: 'menus#create'
 
   #Edit

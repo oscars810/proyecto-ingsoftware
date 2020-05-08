@@ -7,13 +7,15 @@ class MenusController < ApplicationController
   def create
     @menu = Menu.new(nombre: params[:menu][:nombre],
       descripcion: params[:menu][:descripcion],
-      idlocal: params[:id],
+      idlocal: params[:menu][:idlocal],
       precio: params[:menu][:precio])
+    @idlocal = params[:menu][:idlocal]
     
     if @menu.save
-      redirect_back(fallback_location: root_path)
+      redirect_to local_edit_path(@idlocal), notice: 'Menu agregado con éxito'
+
     else
-      redirect_back(fallback_location: root_path)
+      redirect_to local_edit_path(@idlocal), notice: 'Menu no pudo ser agregado'
     end
   end
 
