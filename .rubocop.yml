@@ -17,5 +17,8 @@ AllCops:
 Metrics/LineLength:
   Max: 100
 
+Layout/IndentationWidth:
+  Width: 2
+
 Style/FrozenStringLiteralComment:
   Enabled: false

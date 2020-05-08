@@ -1,0 +1,30 @@
+<%if not current_user or not current_user.admin?%>
+    <h1 style="text-align:center"> ACCESO DENEGADO </h1>
+<%else%>
+    <h1>Usuarios</h1>
+
+    <table>
+    <thead>
+        <tr>
+        <th>Email</th>
+        <th>Nombre</th>
+        <th>Edad</th>
+        <th colspan="3"> Acciones </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% @users.each do |usuario| %>
+        <tr>
+            <td><%= usuario.email %></td>
+            <td><%= usuario.nombre %></td>
+            <td><%= usuario.edad %></td>
+            <td><%= link_to 'Eliminar cuenta', perfil_path(usuario.id),  method: :delete, alert: '¿Estas seguro?' %></td>
+        </tr>
+        <% end %>
+    </tbody>
+    </table>
+
+    <br>
+    <%= link_to 'Volver al Panel', administrar_path%>
+<%end%>

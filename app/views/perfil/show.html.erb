@@ -1,0 +1,46 @@
+<% if current_user and current_user.id == params[:id].to_i and Local.find_by('idusuario = ?', current_user.id) %>
+  <%idlocal = Local.find_by('idusuario = ?', current_user.id).id%>
+  <p align='right'><%= link_to 'Ver mi local', local_path(idlocal) %></p>
+<% elsif current_user.id == params[:id].to_i %>
+  <p align='right'><%= link_to 'Inscribir mi local', locales_new_path %></p>
+<%end%>
+
+<p id="notice"><%= notice %></p>
+
+<% if current_user.id == @user.id %>
+  <h1>Mi Perfil</h1>
+<% else %>
+  <h1>Perfil de <%= @user.nombre %></h1> 
+<% end %>
+
+<p>
+    <strong>Nombre:</strong>
+    <%= @user.nombre %>
+</p>
+
+<p>
+    <strong>Email:</strong>
+    <%= @user.email %>
+</p>
+
+<p>
+    <strong>Descripcion:</strong>
+    <%= @user.descripcion %>
+</p>
+
+<p>
+    <strong>Edad:</strong>
+    <%= @user.edad %>
+</p>
+
+<p>
+    <strong>Telefono:</strong>
+    <%= @user.telefono %>
+</p>
+
+<% if current_user.id == @user.id %>
+  <%= link_to 'Editar perfil', perfil_edit_path(@user.id) %>
+  <%= link_to 'Eliminar cuenta', perfil_path(@user.id),  method: :delete, alert: '¿Estas seguro?' %>
+
+<% end %>
+

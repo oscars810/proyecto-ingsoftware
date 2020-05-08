@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p> 
+<h1>Editar datos de : <%= @local.nombre %></h1>
+<%= form_with(model: @local, url: local_path(@local.id), method: :patch) do |form| %>
+    <div class='field'>
+        <%= form.label :descripcion %>
+        <%= form.text_area :descripcion %>
+    </div>
+
+    <div class='actions'>
+        <%= form.submit %>
+    </div>
+<%end%>
+<hr>
+<h2>Editar Menus</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Plato</th>
+      <th>Descripcion</th>
+      <th>Precio</th>
+      <th>Accion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @menus.each do |menu| %>
+      <tr>
+        <td><%= menu.nombre %></td>
+        <td><%= menu.descripcion %></td>
+        <td><%= menu.precio %></td>
+        <td><%= link_to 'Editar', menus_edit_path(menu.id, :idlocal => @local.id) %></td>
+        <td><%= link_to 'Eliminar', menus_path(:id_menu => menu.id), method: :delete, alert: '¿Estas seguro de esta accion?' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<p></p>
+<%= link_to 'Agregar Menu', menus_new_path(@local.id)%>
+<%= link_to 'Back', local_path %>

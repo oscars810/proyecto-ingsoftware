@@ -1,0 +1,26 @@
+<h1>Locales Pendientes</h1>
+
+<p id="notice"><%= notice %></p>
+<hr>
+<table>
+<thead>
+    <tr>
+    <th>Nombre</th>
+    <th>Descripción</th>
+    <th colspan="3"> Acciones </th>
+    </tr>
+</thead>
+
+<tbody>
+    <% @locales_pendientes.each do |local_| %>
+    <tr>
+        <td><%= local_.nombre %></td>
+        <td><%= local_.descripcion %></td>
+        <td><%= link_to 'Aceptar Local', "aceptar_locales/#{local_.id}", method: :patch%></td>
+    </tr>
+    <% end %>
+</tbody>
+</table>
+
+<br>
+<%= link_to 'Volver al Panel', administrar_path%>
