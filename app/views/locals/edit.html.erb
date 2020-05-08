@@ -1,4 +1,4 @@
-<h1>Por ahora solo se puede editar la descripcion</h1>
+<h1>Editar datos de : <%= @local.nombre %></h1>
 <%= form_with(model: @local, url: local_path(@local.id), method: :patch) do |form| %>
     <div class='field'>
         <%= form.label :descripcion %>
@@ -9,7 +9,8 @@
         <%= form.submit %>
     </div>
 <%end%>
-<p>Editar Menus</p>
+<hr>
+<h2>Editar Menus</h2>
 <table>
   <thead>
     <tr>

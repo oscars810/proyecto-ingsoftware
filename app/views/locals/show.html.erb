@@ -41,7 +41,8 @@ Perfil de <%=  @local.nombre %>
 <%end%>
 
 <% @comentarios.each do |comentario|%>
-    <p><strong>><%= User.find_by("id=?", comentario.idusuario).nombre %> </strong>: <%= comentario.contenido %></p>
+    <p><strong>><%= User.find_by("id=?", comentario.idusuario).nombre %> </strong> (<i><%= comentario.created_at.strftime("%d-%m-%Y")%></i> a las 
+    <i><%= comentario.created_at.strftime("%H:%M")%></i>): <%= comentario.contenido %></p>
     <% if user_signed_in? and current_user.id == comentario.idusuario%>
         <%= link_to 'Eliminar Comentario', comentarios_path(:id_comentario => comentario.id), method: :delete, alert: '¿Estás seguro?'%>
     <%end%>
