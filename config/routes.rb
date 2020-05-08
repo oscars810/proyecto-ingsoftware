@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   # Locales
   # Create
-  get 'locales/new', to: 'locals#new' 
+  get 'locales/new', to: 'locals#new'
   post 'locals', to: 'locals#create'
 
   # Read
@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   # Edit
   get 'locales/:id/edit', to: 'locals#edit', as: 'local_edit'
   patch 'locales/:id', to: 'locals#update'
-  
+
   # Destroy
   delete 'locales/:id', to: 'locals#destroy'
 
@@ -64,12 +64,16 @@ Rails.application.routes.draw do
   get 'locales/comentarios/new/:id', to: 'comentarios#new'
   post 'comentarios', to: 'comentarios#create'
 
+  # Read
+  get 'comentarios', to: 'comentarios#index'
+
   # Delete
   delete 'comentarios', to: 'comentarios#destroy'
 
   # Perfil
   # Create
-  devise_for :users, controllers: {sessions: 'users/sessions', registrations: 'users/registrations'}
+  devise_for :users, controllers: { sessions: 'users/sessions',
+                                    registrations: 'users/registrations' }
 
   # Read Usuarios
   get 'perfiles', to: 'perfil#index'
@@ -83,23 +87,26 @@ Rails.application.routes.draw do
   # Delete perfil
   delete 'perfil/:id', to: 'perfil#destroy'
 
-  #Match
-  #Mostrar perfiles
+  # Match
+  # Mostrar perfiles
   get 'match/:id', to: 'match#index', as: :match
 
-  #Create match
+  # Create match
 
-  #MENUS
-  #Create
-  get 'locales/new_menu', to: 'menus#new'
+  # MENUS
+  # Create
+  get 'menus/new/:idlocal', to: 'menus#new', as: :menus_new
   post 'menus', to: 'menus#create'
 
-  #Edit
+  # Edit
   get 'menus/:id/edit/:idlocal', to: 'menus#edit'
   patch 'menus/:id', to: 'menus#update', as: :menu
 
-  #Update
+  # Update
   get 'menus/:id/edit', to: 'menus#edit', as: :menus_edit
   patch 'menus/:id/', to: 'menus#update'
   put 'menus/:id/', to: 'menus#update'
+
+  # Destroy
+  delete 'menus', to: 'menus#destroy'
 end

@@ -29,6 +29,11 @@ class ComentariosController < ApplicationController
 
   end
 
+  # Read
+  def index
+    @comentarios = Comentario.all
+  end
+
   def destroy
     @comentario = Comentario.find(params[:id_comentario])
     @comentario.destroy
