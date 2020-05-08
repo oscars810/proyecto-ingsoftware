@@ -18,15 +18,16 @@ class MenusController < ApplicationController
 
   def edit
     @menu = Menu.find_by(id: params[:id])
+    @idlocal = params[:idlocal]
   end
 
   def update
-    @menu = Menu.find_by(id: params[:menu][:id])
-    menu_params = params.require(:menu)
-    if @menu.update(menu_params)
-      redirect_back(fallback_location: root_path)
+    @menu = Menu.find_by(id: params[:id])
+    puts(@idlocal)
+    if @menu.update(nombre: params[:menu][:nombre], descripcion: params[:menu][:descripcion], precio: params[:menu][:precio])
+      redirect_to local_edit_path(@idlocal)
     else
-      redirect_back(fallback_location: root_path)
+      redirect_to local_edit_path(@idlocal)
     end
   end
 

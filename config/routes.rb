@@ -95,8 +95,8 @@ Rails.application.routes.draw do
   post 'menus', to: 'menus#create'
 
   #Edit
-  get 'menus/:id/edit', to: 'menus#edit'
-  patch 'menus/:id', to: 'menus#update'
+  get 'menus/:id/edit/:idlocal', to: 'menus#edit'
+  patch 'menus/:id', to: 'menus#update', as: :menu
 
   #Update
   get 'menus/:id/edit', to: 'menus#edit', as: :menus_edit

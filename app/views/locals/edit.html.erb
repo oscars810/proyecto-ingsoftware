@@ -25,7 +25,7 @@
         <td><%= menu.nombre %></td>
         <td><%= menu.descripcion %></td>
         <td><%= menu.precio %></td>
-        <td><%= link_to 'Editar', menus_edit_path(menu.id) %></td>
+        <td><%= link_to 'Editar', "/menus/#{menu.id}/edit/#{@local.id}" %></td>
       </tr>
     <% end %>
   </tbody>

@@ -1,3 +1,4 @@
+<p id="notice"><%= notice %></p>
 <h1>
 Perfil de <%=  @local.nombre %>
 <% unless @local.aceptado %>
@@ -35,8 +36,8 @@ Perfil de <%=  @local.nombre %>
 
 <hr>
 <h2> Comentarios </h2>
-<%if current_user and current_user.id != local.idusuario%>
-    <p align = 'right'> <%= link_to 'Dejar Comentario', "comentarios/new/#{local.id}"%> </p>
+<%if current_user and current_user.id != @local.idusuario %>
+    <p align = 'right'> <%= link_to 'Dejar Comentario', "comentarios/new/#{@local.id}"%> </p>
 <%end%>
 
 <% @comentarios.each do |comentario|%>
