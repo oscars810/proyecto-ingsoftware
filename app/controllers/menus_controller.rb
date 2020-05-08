@@ -1,6 +1,7 @@
 class MenusController < ApplicationController
   def new
     @menu = Menu.new
+    @idlocal = params[:idlocal]
   end
 
   def create

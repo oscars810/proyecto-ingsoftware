@@ -91,7 +91,7 @@ Rails.application.routes.draw do
 
   #MENUS
   #Create
-  get 'locales/new_menu', to: 'menus#new'
+  get 'menus/new/:idlocal', to: 'menus#new'
   post 'menus', to: 'menus#create'
 
   #Edit
