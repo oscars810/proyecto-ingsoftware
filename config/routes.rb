@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'match/show'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'welcome#index'
 
@@ -72,4 +73,11 @@ Rails.application.routes.draw do
 
   # Delete perfil
   delete 'perfil/:id', to: 'perfil#destroy'
+
+  #Match
+  #Mostrar perfiles
+  get 'match/:id', to: 'match#index', as: :match
+
+  #Create match
+
 end
