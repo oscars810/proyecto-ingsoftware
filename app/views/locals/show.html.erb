@@ -1,19 +1,18 @@
-<% local = Local.find_by('id = ?', params[:id]) %>
 <h1>
-Perfil de <%=  local.nombre %>
-<% unless local.aceptado %>
+Perfil de <%=  @local.nombre %>
+<% unless @local.aceptado %>
     (Pendiente)
 <% end %>
 </h1>
-<% if current_user and current_user.id ==  local.idusuario%>
+<% if current_user and current_user.id ==  @local.idusuario%>
     <p align='right'><%= link_to 'Editar', local_edit_path(params[:id]) %> </p>
 <% end%>
 <strong>Mis datos. </strong>
 <p><strong> Local de:</strong> 
-<%= User.find_by('id = ?', local.idusuario).nombre %> </p>
+<%= User.find_by('id = ?', @local.idusuario).nombre %> </p>
 <p><strong> Mi descripcion: </strong>
-<%= local.descripcion %> </p>
-<p></p>
+<%= @local.descripcion %> </p>
+<p>    </p>
 <p><strong> Especialidad de la casa: </strong></p>
 <table>
   <thead>
@@ -21,7 +20,6 @@ Perfil de <%=  local.nombre %>
       <th>Plato</th>
       <th>Descripcion</th>
       <th>Precio</th>
-      <th colspan="3"> Acciones </th>
     </tr>
   </thead>
   <tbody>
@@ -35,6 +33,6 @@ Perfil de <%=  local.nombre %>
   </tbody>
 </table>
 
-<%if current_user and current_user.id != local.idusuario%>
+<%if current_user and current_user.id != @local.idusuario%>
     <%= link_to 'Dejar Comentario'%>
 <%end%>

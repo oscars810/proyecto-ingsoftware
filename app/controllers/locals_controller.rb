@@ -13,11 +13,12 @@ class LocalsController < ApplicationController
   end
 
   def show
+    @local = Local.find(params[:id])
+    @menus = Menu.where("idlocal = ?", params[:id])
   end
 
   def index
     @locales = Local.all
-    @menus = Menu.where("idlocal = ?", params[:id])
   end
 
   def edit
