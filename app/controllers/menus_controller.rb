@@ -23,7 +23,7 @@ class MenusController < ApplicationController
 
   def update
     @menu = Menu.find_by(id: params[:id])
-    puts(@idlocal)
+    @idlocal = params[:menu][:idlocal]
     if @menu.update(nombre: params[:menu][:nombre], descripcion: params[:menu][:descripcion], precio: params[:menu][:precio])
       redirect_to local_edit_path(@idlocal)
     else
