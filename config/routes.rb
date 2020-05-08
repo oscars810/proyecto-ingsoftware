@@ -43,7 +43,7 @@ Rails.application.routes.draw do
   # Destroy
   delete 'comunas/:id', to: 'comunas#destroy'
 
-  # CRUD de Gustos
+  # Gustos
   # Create
   get 'gustos/new', to: 'gustos#new'
   post 'gustos', to: 'gustos#create'
@@ -59,6 +59,17 @@ Rails.application.routes.draw do
 
   # Destroy
   delete 'gustos/:id', to: 'gustos#destroy'
+
+  # Comentarios
+  # Create
+  get 'comentarios/new/:id', to: 'comentarios#new'
+  post 'comentarios', to: 'comentarios#create'
+
+  # Read
+  get 'comentarios/index'
+  get 'comentarios/show'
+  get 'comentarios/edit'
+
 
   # Perfil
   # Create

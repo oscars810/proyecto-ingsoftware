@@ -13,3 +13,7 @@ Perfil de <%=  local.nombre %>
 <%= User.find_by('id = ?', local.idusuario).nombre %> </p>
 <p><strong> Mi descripcion: </strong>
 <%= local.descripcion %> </p>
+
+<%if current_user and current_user.id != local.idusuario%>
+    <%= link_to 'Dejar Comentario'%>
+<%end%>
