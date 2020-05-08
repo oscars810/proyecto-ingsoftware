@@ -1,3 +1,5 @@
+<p id="notice"><%= notice %></p>
+
 <% local = Local.find_by('id = ?', params[:id]) %>
 <h1>
 Perfil de <%=  local.nombre %>
@@ -14,6 +16,15 @@ Perfil de <%=  local.nombre %>
 <p><strong> Mi descripcion: </strong>
 <%= local.descripcion %> </p>
 
+<hr>
+<h2> Comentarios </h2>
 <%if current_user and current_user.id != local.idusuario%>
-    <%= link_to 'Dejar Comentario'%>
+    <p align = 'right'> <%= link_to 'Dejar Comentario', "comentarios/new/#{local.id}"%> </p>
+<%end%>
+
+<% @comentarios.each do |comentario|%>
+    <p><strong>><%= User.find_by("id=?", comentario.idusuario).nombre %> </strong>: <%= comentario.contenido %></p>
+    <% if user_signed_in? and current_user.id == comentario.idusuario%>
+        <%= link_to 'Eliminar Comentario', comentarios_path(:id_comentario => comentario.id), method: :delete, alert: 'Estás seguro?'%>
+    <%end%>
 <%end%>
