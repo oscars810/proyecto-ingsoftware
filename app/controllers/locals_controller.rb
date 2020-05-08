@@ -17,6 +17,7 @@ class LocalsController < ApplicationController
 
   def index
     @locales = Local.all
+    @menus = Menu.where("idlocal = ?", params[:id])
   end
 
   def edit

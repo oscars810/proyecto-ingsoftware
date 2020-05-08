@@ -13,6 +13,27 @@ Perfil de <%=  local.nombre %>
 <%= User.find_by('id = ?', local.idusuario).nombre %> </p>
 <p><strong> Mi descripcion: </strong>
 <%= local.descripcion %> </p>
+<p></p>
+<p><strong> Especialidad de la casa: </strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Plato</th>
+      <th>Descripcion</th>
+      <th>Precio</th>
+      <th colspan="3"> Acciones </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @menus.each do |menu| %>
+      <tr>
+        <td><%= menu.nombre %></td>
+        <td><%= menu.descripcion %></td>
+        <td><%= menu.precio %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 <%if current_user and current_user.id != local.idusuario%>
     <%= link_to 'Dejar Comentario'%>
