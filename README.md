@@ -25,6 +25,9 @@ Things you may want to cover:
 
 La dirección de la aplicación es: https://matchmeat.herokuapp.com/
 
+Usuario admin: hackerman@uc.cl 
+Pass: hackerman
+
 ### ¿Que se puede hacer actualmente?
 - Registrarte / Iniciar Sesion
 - Revisar los locales que tienen convenio con al app
