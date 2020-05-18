@@ -24,25 +24,8 @@ Rails.application.routes.draw do
 
   scope '/admin' do
     resources :comunas, controller: 'communes'
-    # resources :gustos, controller: 'interests'
+    resources :gustos, controller: 'interests'
   end
-
-  # Gustos
-  # Create
-  get 'gustos/new', to: 'gustos#new'
-  post 'gustos', to: 'gustos#create'
-
-  # Read
-  get 'gustos', to: 'gustos#index'
-  get 'gustos/:id', to: 'gustos#show', as: :gusto
-
-  # Update
-  get 'gustos/:id/edit', to: 'gustos#edit', as: :gustos_edit
-  patch 'gustos/:id/', to: 'gustos#update'
-  put 'gustos/:id/', to: 'gustos#update'
-
-  # Destroy
-  delete 'gustos/:id', to: 'gustos#destroy'
 
   # Comentarios
   # Create

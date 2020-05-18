@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ComunasControllerTest < ActionDispatch::IntegrationTest
+class CommunesControllerTest < ActionDispatch::IntegrationTest
   test "should get new" do
     get comunas_new_url
     assert_response :success

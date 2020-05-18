@@ -1,4 +1,4 @@
-class GustosController < ApplicationController
+class InterestsController < ApplicationController
   layout "admin"
 
   # Create

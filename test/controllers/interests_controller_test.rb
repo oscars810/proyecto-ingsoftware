@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class GustosControllerTest < ActionDispatch::IntegrationTest
+class InterestsControllerTest < ActionDispatch::IntegrationTest
   test "should get new" do
     get gustos_new_url
     assert_response :success
