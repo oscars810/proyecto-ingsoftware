@@ -19,8 +19,8 @@
         <th>
             <td> <%= link_to 'Inicio', root_path%> </td>
             <td> <%= link_to 'Locales', locales_path%> </td>
-            <td> <%= link_to 'Match', match_path(current_user.id)%> </td>
             <% if user_signed_in? %>
+              <td> <%= link_to 'Match', match_path(current_user.id)%> </td>
               <td> <%= link_to 'Mi Perfil', perfil_path(current_user.id)%> </td>
             <% end %>
             <% unless user_signed_in? %>
