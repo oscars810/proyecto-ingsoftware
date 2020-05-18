@@ -41,7 +41,7 @@ class CommunesController < ApplicationController
     if @comuna.update(commune_params)
       redirect_to comuna_path(@comuna.id), notice: 'Comuna editada con éxito'
     else
-      redirect_to new_comuna_path, notice: 'Ocurrió un error al editar la commune'
+      redirect_to comuna_path(@comuna.id), notice: 'Ocurrió un error al editar la commune'
     end
   end
 

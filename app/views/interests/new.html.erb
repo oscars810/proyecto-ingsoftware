@@ -1,6 +1,6 @@
 <h1>Nuevo Gusto</h1>
 
-<%= form_with(model: @gusto, method: :post) do |form| %>
+<%= form_with(model: @gusto, url: gustos_path(@gusto.id), method: :post) do |form| %>
   <div class="field">
     <%= form.label :nombre %>
     <%= form.text_field :nombre %>

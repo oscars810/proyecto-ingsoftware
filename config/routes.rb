@@ -9,6 +9,11 @@ Rails.application.routes.draw do
   get 'administrar_locales', to: 'admin#ver_locales'
   delete 'administrar_locales/:id', to: 'admin#eliminar_local'
 
+  scope '/admin' do
+    resources :comunas, controller: 'communes'
+    resources :gustos, controller: 'interests'
+  end
+
   # Locales
   # Create
   get 'locales/new', to: 'locals#new'
@@ -21,11 +26,6 @@ Rails.application.routes.draw do
   # Edit
   get 'locales/:id/edit', to: 'locals#edit', as: 'local_edit'
   patch 'locales/:id', to: 'locals#update'
-
-  scope '/admin' do
-    resources :comunas, controller: 'communes'
-    resources :gustos, controller: 'interests'
-  end
 
   # Comentarios
   # Create
