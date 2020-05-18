@@ -2,22 +2,22 @@ require 'test_helper'
 
 class CommunesControllerTest < ActionDispatch::IntegrationTest
   test "should get new" do
-    get comunas_new_url
+    get communes_new_url
     assert_response :success
   end
 
   test "should get index" do
-    get comunas_index_url
+    get communes_index_url
     assert_response :success
   end
 
   test "should get show" do
-    get comunas_show_url
+    get communes_show_url
     assert_response :success
   end
 
   test "should get edit" do
-    get comunas_edit_url
+    get communes_edit_url
     assert_response :success
   end
 

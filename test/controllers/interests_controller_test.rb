@@ -2,22 +2,22 @@ require 'test_helper'
 
 class InterestsControllerTest < ActionDispatch::IntegrationTest
   test "should get new" do
-    get gustos_new_url
+    get interests_new_url
     assert_response :success
   end
 
   test "should get index" do
-    get gustos_index_url
+    get interests_index_url
     assert_response :success
   end
 
   test "should get show" do
-    get gustos_show_url
+    get interests_show_url
     assert_response :success
   end
 
   test "should get edit" do
-    get gustos_edit_url
+    get interests_edit_url
     assert_response :success
   end
 
