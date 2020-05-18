@@ -3,6 +3,6 @@
   <%= @comuna.nombre %>
 </p>
 
-<%= link_to 'Editar Comuna', comunas_edit_path(@comuna.id) %>
+<%= link_to 'Editar Comuna', edit_comuna_path(@comuna.id) %>
 <%= link_to 'Eliminar Comuna', comuna_path(@comuna.id), method: :delete, alert: 'Estás seguro?' %>
 <%= link_to 'Lista Comunas', comunas_path %>

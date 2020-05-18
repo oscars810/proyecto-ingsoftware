@@ -1,6 +1,6 @@
 <h1>Nueva Comuna</h1>
 
-<%= form_with(model: @comuna, method: :post) do |form| %>
+<%= form_with(model: @comuna, url: comunas_path(@comuna.id), method: :post) do |form| %>
   <div class="field">
     <%= form.label :nombre %>
     <%= form.text_field :nombre %>

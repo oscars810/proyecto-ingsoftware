@@ -32,7 +32,7 @@
                 <td> <%= link_to 'Registrarse', new_user_registration_path %></td>
             <%end%>
             <% if user_signed_in? and current_user.admin%>
-                <td><%= link_to 'Administrar', administrar_path %></td>
+                <td><%= link_to 'Administrar', admin_path %></td>
             <%end%>
         </th>
     </table>

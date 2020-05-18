@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   # Administrador
-  get 'administrar', to: 'admin#index'
+  get 'admin', to: 'admin#index'
   get 'aceptar_locales', to: 'admin#aceptar_locales'
   patch 'aceptar_locales/:id', to: 'admin#aceptar_local'
   get 'administrar_locales', to: 'admin#ver_locales'
@@ -22,25 +22,10 @@ Rails.application.routes.draw do
   get 'locales/:id/edit', to: 'locals#edit', as: 'local_edit'
   patch 'locales/:id', to: 'locals#update'
 
-  # Destroy
-  delete 'locales/:id', to: 'locals#destroy'
-
-  # Comunas
-  # Create
-  get 'comunas/new', to: 'comunas#new'
-  post 'comunas', to: 'comunas#create'
-
-  # Read
-  get 'comunas', to: 'comunas#index'
-  get 'comunas/:id', to: 'comunas#show', as: :comuna
-
-  # Update
-  get 'comunas/:id/edit', to: 'comunas#edit', as: :comunas_edit
-  patch 'comunas/:id/', to: 'comunas#update'
-  put 'comunas/:id/', to: 'comunas#update'
-
-  # Destroy
-  delete 'comunas/:id', to: 'comunas#destroy'
+  scope '/admin' do
+    resources :comunas, controller: 'communes'
+    # resources :gustos, controller: 'interests'
+  end
 
   # Gustos
   # Create
