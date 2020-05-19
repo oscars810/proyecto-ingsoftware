@@ -57,7 +57,7 @@ Rails.application.routes.draw do
 
   # Match
   # Mostrar perfiles
-  get 'match/:id', to: 'match#index', as: :match
+  get 'match/:id', to: 'matches#index', as: :match
 
   # Create match
 
