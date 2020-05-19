@@ -39,23 +39,23 @@
 #local = Local.new(nombre: 'Taiko', descripcion: 'Tenedor libre de sushi', aceptado: false, idcomuna: 3, idusuario: 4)
 #local.save!
 
-menu = Menu.new(idlocal: 1, nombre: 'Cazuela', descripcion: 'Sopa de verduras con carne de vacuno o de ave', precio: 3000)
-menu.save!
+# menu = Menu.new(idlocal: 1, nombre: 'Cazuela', descripcion: 'Sopa de verduras con carne de vacuno o de ave', precio: 3000)
+# menu.save!
 
-menu = Menu.new(idlocal: 1, nombre: 'Empanada de pino', descripcion: 'Carne molida con cebolla, aceitunas y huevo cocido, envuelto en masa', precio: 1500)
-menu.save!    
+# menu = Menu.new(idlocal: 1, nombre: 'Empanada de pino', descripcion: 'Carne molida con cebolla, aceitunas y huevo cocido, envuelto en masa', precio: 1500)
+# menu.save!    
 
-menu = Menu.new(idlocal: 1, nombre: 'Porotos', descripcion: 'Porotos con tallarines cocidos', precio: 3000)
-menu.save!
+# menu = Menu.new(idlocal: 1, nombre: 'Porotos', descripcion: 'Porotos con tallarines cocidos', precio: 3000)
+# menu.save!
 
-menu = Menu.new(idlocal: 2, nombre: 'Italiano', descripcion: 'Sandwich que posee carne de churrasco/ lomo, palta, tomate y mayonesa', precio: 2000)
-menu.save!
+# menu = Menu.new(idlocal: 2, nombre: 'Italiano', descripcion: 'Sandwich que posee carne de churrasco/ lomo, palta, tomate y mayonesa', precio: 2000)
+# menu.save!
 
-menu = Menu.new(idlocal: 2, nombre: 'Barros Luco', descripcion: 'Sandwuich que posee carne de churrasco/ lomo y queso', precio: 1500)
-menu.save!
+# menu = Menu.new(idlocal: 2, nombre: 'Barros Luco', descripcion: 'Sandwuich que posee carne de churrasco/ lomo y queso', precio: 1500)
+# menu.save!
 
-menu = Menu.new(idlocal: 2, nombre: 'Mega Submarino', descripcion: 'Sandwuich que posee jamón, tomate, queso, lechuga, pepino, pepinillo y aceitunas', precio: 1000)
-menu.save!
+# menu = Menu.new(idlocal: 2, nombre: 'Mega Submarino', descripcion: 'Sandwuich que posee jamón, tomate, queso, lechuga, pepino, pepinillo y aceitunas', precio: 1000)
+# menu.save!
 
 #comentario = Comentario.new(contenido: 'Un local bastante variado y con muy buena atención', idusuario: 2, idlocal: 1, valoracion: 5)
 #comentario.save!
