@@ -1,4 +1,4 @@
-class ComentariosController < ApplicationController
+class CommentsController < ApplicationController
   # Create
   def new
     if current_user

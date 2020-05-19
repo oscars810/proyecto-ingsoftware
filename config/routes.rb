@@ -29,14 +29,14 @@ Rails.application.routes.draw do
 
   # Comentarios
   # Create
-  get 'locales/comentarios/new/:id', to: 'comentarios#new'
-  post 'comentarios', to: 'comentarios#create'
+  get 'locales/comentarios/new/:id', to: 'comments#new'
+  post 'comentarios', to: 'comments#create'
 
   # Read
-  get 'comentarios', to: 'comentarios#index'
+  get 'comentarios', to: 'comments#index'
 
   # Delete
-  delete 'comentarios', to: 'comentarios#destroy'
+  delete 'comentarios', to: 'comments#destroy'
 
   # Perfil
   # Create
