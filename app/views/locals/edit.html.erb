@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p> 
 <h1>Editar datos de : <%= @local.nombre %></h1>
 <%= form_with(model: @local, url: local_path(@local.id), method: :patch) do |form| %>
     <div class='field'>

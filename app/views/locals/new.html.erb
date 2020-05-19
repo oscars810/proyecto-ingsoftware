@@ -1,11 +1,10 @@
-<p id="notice"><%= notice %></p> 
 <h1>Form registro nuevo local</h1>
 <p>Ingrese los datos de su local:</p>
 
 <%= form_with(model: @local, method: :post) do |form| %>
 
     <% lista_comunas = [] %> 
-    <% Comuna.all.each do |comuna| %>
+    <% Commune.all.each do |comuna| %>
         <% lista_comunas.append(comuna.nombre) %> 
     <% end %>
 

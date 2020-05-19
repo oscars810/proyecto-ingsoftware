@@ -1,6 +1,6 @@
-<h1>Nuevo Gusto</h1>
+<h1>Editar Gusto</h1>
 
-<%= form_with(model: @gusto, method: :post) do |form| %>
+<%= form_with(model: @gusto, url: gusto_path(@gusto.id), method: :patch) do |form| %>
   <div class="field">
     <%= form.label :nombre %>
     <%= form.text_field :nombre %>
@@ -12,8 +12,8 @@
   </div>
 
   <div class="actions">
-    <%= form.submit 'Crear gusto'%>
+    <%= form.submit 'Guardar'%>
   </div>
 <% end %>
 
-<%= link_to 'Volver', gustos_path %> 
+<%= link_to 'Volver', gusto_path(@gusto.id) %> 

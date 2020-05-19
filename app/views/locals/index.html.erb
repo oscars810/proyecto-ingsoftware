@@ -1,8 +1,6 @@
 <h1>Aqui podras ver todos los locales que tenemos para tus citas:</h1>
 <p>No olvides preguntar por descuentos al hacer citas a traves de nuestra aplicación.</p>
 
-<p id="notice"><%= notice %></p>
-
 <h1>Locales</h1>
 
 <table>
@@ -20,7 +18,7 @@
       <tr>
         <% if local.aceptado %>
             <td><%= local.nombre %></td>
-            <td><%= Comuna.find_by("id = ?", local.idcomuna).nombre %></td>
+            <td><%= Commune.find_by("id = ?", local.idcomuna).nombre %></td>
             <td><%= local.descripcion %></td>
             <td><%= link_to 'Ver detalles', local_path(local.id) %></td>
         <% end %>

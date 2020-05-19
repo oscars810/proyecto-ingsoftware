@@ -5,8 +5,6 @@
   <p align='right'><%= link_to 'Inscribir mi local', locales_new_path %></p>
 <%end%>
 
-<p id="notice"><%= notice %></p>
-
 <% if current_user.id == @user.id %>
   <h1>Mi Perfil</h1>
 <% else %>

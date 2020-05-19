@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ComunaTest < ActiveSupport::TestCase
+class CommuneTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

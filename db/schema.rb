@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_08_144845) do
+ActiveRecord::Schema.define(version: 2020_05_19_021543) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "comentarios", force: :cascade do |t|
+  create_table "comments", force: :cascade do |t|
     t.text "contenido"
     t.integer "idusuario"
     t.integer "idlocal"
@@ -24,13 +24,13 @@ ActiveRecord::Schema.define(version: 2020_05_08_144845) do
     t.integer "valoracion"
   end
 
-  create_table "comunas", force: :cascade do |t|
+  create_table "communes", force: :cascade do |t|
     t.string "nombre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "gustos", force: :cascade do |t|
+  create_table "interests", force: :cascade do |t|
     t.string "nombre"
     t.text "descripcion"
     t.datetime "created_at", null: false

@@ -1,8 +1,8 @@
-class ComentariosController < ApplicationController
+class CommentsController < ApplicationController
   # Create
   def new
     if current_user
-      @comentario = Comentario.new
+      @comentario = Comment.new
       @id_local = params[:id]
     else
       redirect_to root_path, notice: 'Debes Iniciar Sesión para comentar'
@@ -10,14 +10,14 @@ class ComentariosController < ApplicationController
   end
 
   def create
-    comentario_params = params.require(:comentario).permit(:idlocal, :contenido)
+    comentario_params = params.require(:comment).permit(:idlocal, :contenido)
     id_usuario = current_user.id
     comentario_params[:idusuario] = id_usuario
 
     contenido = comentario_params[:contenido]
     id_local = comentario_params[:idlocal]
     unless contenido.empty?
-      @comentario = Comentario.create(comentario_params)
+      @comentario = Comment.create(comentario_params)
       if @comentario.save
         redirect_to local_path(id_local), notice: 'Comentario agregado con éxito'
       else
@@ -31,11 +31,11 @@ class ComentariosController < ApplicationController
 
   # Read
   def index
-    @comentarios = Comentario.all
+    @comentarios = Comment.all
   end
 
   def destroy
-    @comentario = Comentario.find(params[:id_comentario])
+    @comentario = Comment.find(params[:id_comentario])
     @comentario.destroy
     redirect_back(fallback_location: root_path, notice: 'Comentario eliminado con éxito')
   end

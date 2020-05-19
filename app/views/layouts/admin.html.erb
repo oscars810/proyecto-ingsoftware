@@ -19,8 +19,8 @@
         <th>
             <td> <%= link_to 'Inicio', root_path%> </td>
             <td> <%= link_to 'Locales', locales_path%> </td>
-            <td> <%= link_to 'Match', match_path(current_user.id)%> </td>
             <% if user_signed_in? %>
+              <td> <%= link_to 'Match', match_path(current_user.id)%> </td>
               <td> <%= link_to 'Mi Perfil', perfil_path(current_user.id)%> </td>
             <% end %>
             <% unless user_signed_in? %>
@@ -30,12 +30,12 @@
                 <td> <%= link_to 'Registrarse', new_user_registration_path %></td>
             <%end%>
             <% if user_signed_in? and current_user.admin%>
-                <td> <%= link_to 'Administrar', administrar_path %></td>
+                <td> <%= link_to 'Administrar', admin_path %></td>
             <%end%>
         </th>
     </table>
     <hr>
-
+  <p id="notice"><%= notice %></p>
     <%if not current_user or not current_user.admin?%>
         <h1 style="text-align:center"> ACCESO DENEGADO </h1>
     <%else%>
