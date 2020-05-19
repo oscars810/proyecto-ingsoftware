@@ -20,7 +20,7 @@
       <tr>
         <% if local.aceptado %>
             <td><%= local.nombre %></td>
-            <td><%= Comuna.find_by("id = ?", local.idcomuna).nombre %></td>
+            <td><%= Commune.find_by("id = ?", local.idcomuna).nombre %></td>
             <td><%= local.descripcion %></td>
             <td><%= link_to 'Ver detalles', local_path(local.id) %></td>
         <% end %>

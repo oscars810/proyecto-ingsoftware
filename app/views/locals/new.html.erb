@@ -5,7 +5,7 @@
 <%= form_with(model: @local, method: :post) do |form| %>
 
     <% lista_comunas = [] %> 
-    <% Comuna.all.each do |comuna| %>
+    <% Commune.all.each do |comuna| %>
         <% lista_comunas.append(comuna.nombre) %> 
     <% end %>
 

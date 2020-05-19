@@ -15,7 +15,7 @@ class LocalsController < ApplicationController
   def show
     @local = Local.find(params[:id])
     @menus = Menu.where("idlocal = ?", params[:id])
-    @comentarios = Comentario.where("idlocal=?", params[:id])
+    @comentarios = Comment.where("idlocal=?", params[:id])
   end
 
   def index
@@ -34,7 +34,7 @@ class LocalsController < ApplicationController
   def create
     @local = Local.new(nombre: params[:local][:nombre],
                       descripcion: params[:local][:descripcion],
-                      idcomuna: Comuna.find_by("nombre = ?", params[:local][:nombre_comuna]).id,
+                      idcomuna: Commune.find_by("nombre = ?", params[:local][:nombre_comuna]).id,
                       idusuario: current_user.id) 
 
     if @local.save
