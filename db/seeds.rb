@@ -113,20 +113,38 @@ comentario = Comment.new(contenido: 'El tiempo de atencion es bastante bueno y l
                         valoracion: 5)
 comentario.save!
 
-# menu = Menu.new(idlocal: 1, nombre: 'Cazuela', descripcion: 'Sopa de verduras con carne de vacuno o de ave', precio: 3000)
-# menu.save!
+menu = Menu.new(local_id: 1,
+                nombre: 'Cazuela',
+                descripcion: 'Sopa de verduras con carne de vacuno o de ave',
+                precio: 3000)
+menu.save!
 
-# menu = Menu.new(idlocal: 1, nombre: 'Empanada de pino', descripcion: 'Carne molida con cebolla, aceitunas y huevo cocido, envuelto en masa', precio: 1500)
-# menu.save!    
+menu = Menu.new(local_id: 1,
+                nombre: 'Empanada de pino',
+                descripcion: 'Carne molida con cebolla, aceitunas y huevo cocido, envuelto en masa',
+                precio: 1500)
+menu.save!    
 
-# menu = Menu.new(idlocal: 1, nombre: 'Porotos', descripcion: 'Porotos con tallarines cocidos', precio: 3000)
-# menu.save!
+menu = Menu.new(local_id: 1,
+                nombre: 'Porotos',
+                descripcion: 'Porotos con tallarines cocidos',
+                precio: 3000)
+menu.save!
 
-# menu = Menu.new(idlocal: 2, nombre: 'Italiano', descripcion: 'Sandwich que posee carne de churrasco/ lomo, palta, tomate y mayonesa', precio: 2000)
-# menu.save!
+menu = Menu.new(local_id: 2,
+                nombre: 'Italiano',
+                descripcion: 'Sandwich que posee carne de churrasco/ lomo, palta, tomate y mayonesa',
+                precio: 2000)
+menu.save!
 
-# menu = Menu.new(idlocal: 2, nombre: 'Barros Luco', descripcion: 'Sandwuich que posee carne de churrasco/ lomo y queso', precio: 1500)
-# menu.save!
+menu = Menu.new(local_id: 2,
+                nombre: 'Barros Luco',
+                descripcion: 'Sandwich que posee carne de churrasco/ lomo y queso',
+                precio: 1500)
+menu.save!
 
-# menu = Menu.new(idlocal: 2, nombre: 'Mega Submarino', descripcion: 'Sandwuich que posee jamón, tomate, queso, lechuga, pepino, pepinillo y aceitunas', precio: 1000)
-# menu.save!
+menu = Menu.new(local_id: 2,
+                nombre: 'Mega Submarino',
+                descripcion: 'Sandwich que posee jamón, tomate, queso, lechuga, pepino, pepinillo y aceitunas',
+                precio: 1000)
+menu.save!

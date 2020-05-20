@@ -14,7 +14,7 @@ class LocalsController < ApplicationController
 
   def show
     @local = Local.find(params[:id])
-    @menus = Menu.where("idlocal = ?", params[:id])
+    @menus = @local.menus
     @comentarios = @local.comments
   end
 
@@ -23,7 +23,8 @@ class LocalsController < ApplicationController
   end
 
   def edit
-    @menus = Menu.where("idlocal = ?", params[:id])
+    @local = Local.find(params[:id])
+    @menus = @local.menus
     unless current_user and current_user.id ==  Local.find_by('id = ?', params[:id]).user_id
       redirect_to local_path
     else
