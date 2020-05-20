@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   # Locales y Menus
   resources :locales, controller: 'locals', as: 'local' do
-    resources :menus
+    resources :menus, only: [:new, :create, :edit, :update, :destroy]
   end
 
   # Comentarios

@@ -44,8 +44,8 @@ class LocalsController < ApplicationController
   def edit
     @local = Local.find(params[:id])
     @menus = @local.menus
-    unless user_signed_in? and current_user.id == Local.find_by('id = ?', params[:id]).user_id
-      redirect_to local_path
+    unless user_signed_in? and current_user.id == Local.find(params[:id]).user_id
+      redirect_to local_path, notice: 'No puedes acceder a esta página'
     else
       @local = Local.find(params[:id])
     end

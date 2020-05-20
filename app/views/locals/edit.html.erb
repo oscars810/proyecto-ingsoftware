@@ -27,8 +27,8 @@
         <td><%= menu.nombre %></td>
         <td><%= menu.descripcion %></td>
         <td><%= menu.precio %></td>
-        <td><%= link_to 'Editar', edit_local_menu_path(menu.id, :local_id => @local.id) %></td>
-        <td><%= link_to 'Eliminar', local_menu_path(menu.id), method: :delete, alert: '¿Estas seguro de esta accion?' %></td>
+        <td><%= link_to 'Editar', edit_local_menu_path(@local.id, menu.id) %></td>
+        <td><%= link_to 'Eliminar', local_menu_path(@local.id, menu.id), method: :delete, alert: '¿Estas seguro de esta accion?' %></td>
       </tr>
     <% end %>
   </tbody>
