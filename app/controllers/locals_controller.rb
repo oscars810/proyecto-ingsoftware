@@ -3,7 +3,7 @@ class LocalsController < ApplicationController
     if not current_user
       redirect_to locales_path
     else
-      if Local.find_by('idusuario = ?', current_user.id)
+      if Local.find_by('user_id = ?', current_user.id)
         redirect_to locales_path
       else
         @local = Local.new
@@ -15,7 +15,7 @@ class LocalsController < ApplicationController
   def show
     @local = Local.find(params[:id])
     @menus = Menu.where("idlocal = ?", params[:id])
-    @comentarios = Comment.where("idlocal=?", params[:id])
+    @comentarios = @local.comments
   end
 
   def index

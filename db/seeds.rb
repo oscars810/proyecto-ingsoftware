@@ -13,6 +13,21 @@ comuna.save!
 comuna = Commune.new(nombre: 'Providencia')
 comuna.save!
 
+interest = Interest.new(nombre: 'Escalada', descripcion: 'Para los amantes de la escalada')
+interest.save!
+
+interest = Interest.new(nombre: 'Música', descripcion: 'Para los amantes de la música')
+interest.save!
+
+interest = Interest.new(nombre: 'Guitarra', descripcion: 'Para los amantes de la guitarra')
+interest.save!
+
+interest = Interest.new(nombre: 'Comida', descripcion: 'Para los amantes de la comida')
+interest.save!
+
+interest = Interest.new(nombre: 'Viajar', descripcion: 'Para los amantes de viajar')
+interest.save!
+
 user = User.new(email: 'hackerman@uc.cl',
                 password: 'hackerman',
                 password_confirmation: 'hackerman',
@@ -74,6 +89,30 @@ local = Local.new(nombre: 'Taiko',
                   user_id: 4)
 local.save!
 
+comentario = Comment.new(contenido: 'Un local bastante variado y con muy buena atención', 
+                        user_id: 2,
+                        local_id: 1,
+                        valoracion: 5)
+comentario.save!
+
+comentario = Comment.new(contenido: 'Posee una comida muy sabrosa, la atencion es 10/10',
+                        user_id: 5,
+                        local_id: 2,
+                        valoracion: 5)
+comentario.save!
+
+comentario = Comment.new(contenido: 'La atencion es muy buena, pero debería existir mas variedad de sandwiches',
+                        user_id: 2,
+                        local_id: 2,
+                        valoracion: 4)
+comentario.save!
+
+comentario = Comment.new(contenido: 'El tiempo de atencion es bastante bueno y los precios estan acorde al nivel de los platos',
+                        user_id: 3,
+                        local_id: 1,
+                        valoracion: 5)
+comentario.save!
+
 # menu = Menu.new(idlocal: 1, nombre: 'Cazuela', descripcion: 'Sopa de verduras con carne de vacuno o de ave', precio: 3000)
 # menu.save!
 
@@ -91,15 +130,3 @@ local.save!
 
 # menu = Menu.new(idlocal: 2, nombre: 'Mega Submarino', descripcion: 'Sandwuich que posee jamón, tomate, queso, lechuga, pepino, pepinillo y aceitunas', precio: 1000)
 # menu.save!
-
-#comentario = Comentario.new(contenido: 'Un local bastante variado y con muy buena atención', idusuario: 2, idlocal: 1, valoracion: 5)
-#comentario.save!
-
-#comentario = Comentario.new(contenido: 'Posee una comida muy sabrosa, la atencion es 10/10', idusuario: 5, idlocal: 2, valoracion: 5)
-#comentario.save!
-
-#comentario = Comentario.new(contenido: 'La atencion es muy buena, pero debería existir mas variedad de sandwiches', idusuario: 2, idlocal: 2, valoracion: 4)
-#comentario.save!
-
-#comentario = Comentario.new(contenido: 'El tiempo de atencion es bastante bueno y los precios estan acorde al nivel de los platos', idusuario: 3, idlocal: 1, valoracion: 5)
-#comentario.save!
