@@ -4,12 +4,12 @@ Perfil de <%=  @local.nombre %>
     (Pendiente)
 <% end %>
 </h1>
-<% if current_user and current_user.id ==  @local.idusuario%>
+<% if current_user and current_user.id ==  @local.user_id%>
     <p align='right'><%= link_to 'Editar', local_edit_path(params[:id]) %> </p>
 <% end%>
 <strong>Mis datos. </strong>
 <p><strong> Local de:</strong> 
-<%= User.find_by('id = ?', @local.idusuario).nombre %> </p>
+<%= @local.user.nombre %> </p>
 <p><strong> Mi descripcion: </strong>
 <%= @local.descripcion %> </p>
 <p>    </p>
@@ -35,7 +35,7 @@ Perfil de <%=  @local.nombre %>
 
 <hr>
 <h2> Comentarios </h2>
-<%if current_user and current_user.id != @local.idusuario %>
+<%if current_user and current_user.id != @local.user_id %>
     <p align = 'right'> <%= link_to 'Dejar Comentario', "comentarios/new/#{@local.id}"%> </p>
 <%end%>
 

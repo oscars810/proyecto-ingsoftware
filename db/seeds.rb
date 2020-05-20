@@ -1,11 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
 comuna = Commune.new(nombre: 'Santiago Centro')
 comuna.save!
 
@@ -61,14 +53,26 @@ user = User.new(email: 'felipe1234@uc.cl',
                 commune_id: 5)
 user.save!
 
-#local = Local.new(nombre: 'Juan y Medio', descripcion: 'Restaurante de comida tipica chilena', aceptado: true, idcomuna: 1, idusuario: 2)
-#local.save!
+local = Local.new(nombre: 'Juan y Medio',
+                  descripcion: 'Restaurante de comida tipica chilena', 
+                  aceptado: true, 
+                  commune_id: 1, 
+                  user_id: 2)
+local.save!
 
-#local = Local.new(nombre: 'Pamplona', descripcion: 'Sandwicheria española', aceptado: true, idcomuna: 3, idusuario: 1)
-#local.save!
+local = Local.new(nombre: 'Pamplona',
+                  descripcion: 'Sandwicheria española',
+                  aceptado: true,
+                  commune_id: 3, 
+                  user_id: 3)
+local.save!
 
-#local = Local.new(nombre: 'Taiko', descripcion: 'Tenedor libre de sushi', aceptado: false, idcomuna: 3, idusuario: 4)
-#local.save!
+local = Local.new(nombre: 'Taiko',
+                  descripcion: 'Tenedor libre de sushi',
+                  aceptado: false,
+                  commune_id: 4, 
+                  user_id: 4)
+local.save!
 
 # menu = Menu.new(idlocal: 1, nombre: 'Cazuela', descripcion: 'Sopa de verduras con carne de vacuno o de ave', precio: 3000)
 # menu.save!
