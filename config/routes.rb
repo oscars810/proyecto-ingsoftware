@@ -14,18 +14,10 @@ Rails.application.routes.draw do
     resources :gustos, controller: 'interests'
   end
 
-  # Locales
-  # Create
-  get 'locales/new', to: 'locals#new'
-  post 'locals', to: 'locals#create'
-
-  # Read
-  get 'locales', to: 'locals#index'
-  get 'locales/:id', to: 'locals#show', as: 'local'
-
-  # Edit
-  get 'locales/:id/edit', to: 'locals#edit', as: 'local_edit'
-  patch 'locales/:id', to: 'locals#update'
+  # Locales y Menus
+  resources :locales, controller: 'locals', as: 'local' do
+    resources :menus
+  end
 
   # Comentarios
   # Create
@@ -60,21 +52,4 @@ Rails.application.routes.draw do
   get 'match/:id', to: 'matches#index', as: :match
 
   # Create match
-
-  # MENUS
-  # Create
-  get 'menus/new/:idlocal', to: 'menus#new', as: :menus_new
-  post 'menus', to: 'menus#create'
-
-  # Edit
-  get 'menus/:id/edit/:idlocal', to: 'menus#edit'
-  patch 'menus/:id', to: 'menus#update', as: :menu
-
-  # Update
-  get 'menus/:id/edit', to: 'menus#edit', as: :menus_edit
-  patch 'menus/:id/', to: 'menus#update'
-  put 'menus/:id/', to: 'menus#update'
-
-  # Destroy
-  delete 'menus', to: 'menus#destroy'
 end

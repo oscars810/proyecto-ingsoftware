@@ -1,17 +1,17 @@
 <h1>
-Perfil de <%=  @local.nombre %>
+Perfil de <%=@local.nombre %>
 <% unless @local.aceptado %>
     (Pendiente)
 <% end %>
 </h1>
-<% if current_user and current_user.id ==  @local.user_id%>
-    <p align='right'><%= link_to 'Editar', local_edit_path(params[:id]) %> </p>
+
+<% if user_signed_in? and current_user.id == @local.user_id%>
+    <p align='right'><%= link_to 'Editar', edit_local_path(@local.id) %> </p>
 <% end%>
-<strong>Mis datos. </strong>
-<p><strong> Local de:</strong> 
-<%= @local.user.nombre %> </p>
-<p><strong> Mi descripcion: </strong>
-<%= @local.descripcion %> </p>
+
+<h2>Mis datos </h2>
+<p><strong> Local de: </strong> <%= @local.user.nombre %> </p>
+<p><strong> Mi descripcion: </strong><%= @local.descripcion %></p>
 <p>    </p>
 <p><strong> Especialidad de la casa: </strong></p>
 <table>
@@ -35,7 +35,7 @@ Perfil de <%=  @local.nombre %>
 
 <hr>
 <h2> Comentarios </h2>
-<%if current_user and current_user.id != @local.user_id %>
+<%if user_signed_in? and current_user.id != @local.user_id %>
     <p align = 'right'> <%= link_to 'Dejar Comentario', "comentarios/new/#{@local.id}"%> </p>
 <%end%>
 
