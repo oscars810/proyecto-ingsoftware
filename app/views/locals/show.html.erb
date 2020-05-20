@@ -4,12 +4,12 @@ Perfil de <%=  @local.nombre %>
     (Pendiente)
 <% end %>
 </h1>
-<% if current_user and current_user.id ==  @local.idusuario%>
+<% if current_user and current_user.id ==  @local.user_id%>
     <p align='right'><%= link_to 'Editar', local_edit_path(params[:id]) %> </p>
 <% end%>
 <strong>Mis datos. </strong>
 <p><strong> Local de:</strong> 
-<%= User.find_by('id = ?', @local.idusuario).nombre %> </p>
+<%= @local.user.nombre %> </p>
 <p><strong> Mi descripcion: </strong>
 <%= @local.descripcion %> </p>
 <p>    </p>
@@ -35,14 +35,14 @@ Perfil de <%=  @local.nombre %>
 
 <hr>
 <h2> Comentarios </h2>
-<%if current_user and current_user.id != @local.idusuario %>
+<%if current_user and current_user.id != @local.user_id %>
     <p align = 'right'> <%= link_to 'Dejar Comentario', "comentarios/new/#{@local.id}"%> </p>
 <%end%>
 
 <% @comentarios.each do |comentario|%>
-    <p><strong>><%= User.find_by("id=?", comentario.idusuario).nombre %> </strong> (<i><%= comentario.created_at.strftime("%d-%m-%Y")%></i> a las 
+    <p><strong>><%= comentario.user.nombre %> </strong> (<i><%= comentario.created_at.strftime("%d-%m-%Y")%></i> a las 
     <i><%= comentario.created_at.strftime("%H:%M")%></i>): <%= comentario.contenido %></p>
-    <% if user_signed_in? and current_user.id == comentario.idusuario%>
+    <% if user_signed_in? and current_user.id == comentario.user_id%>
         <%= link_to 'Eliminar Comentario', comentarios_path(:id_comentario => comentario.id), method: :delete, alert: '¿Estás seguro?'%>
     <%end%>
 <%end%>

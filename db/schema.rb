@@ -10,15 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_19_021543) do
+ActiveRecord::Schema.define(version: 2020_05_20_010458) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "comments", force: :cascade do |t|
     t.text "contenido"
-    t.integer "idusuario"
-    t.integer "idlocal"
+    t.integer "user_id"
+    t.integer "local_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "valoracion"
@@ -37,19 +37,24 @@ ActiveRecord::Schema.define(version: 2020_05_19_021543) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "interests_users", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "interest_id", null: false
+  end
+
   create_table "locals", force: :cascade do |t|
     t.string "nombre"
     t.string "descripcion"
     t.boolean "aceptado", default: false
-    t.integer "idusuario"
-    t.integer "idcomuna"
+    t.integer "user_id"
+    t.integer "commune_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "menus", force: :cascade do |t|
     t.string "nombre"
-    t.integer "idlocal"
+    t.integer "local_id"
     t.string "descripcion"
     t.integer "precio"
     t.datetime "created_at", null: false
@@ -69,6 +74,7 @@ ActiveRecord::Schema.define(version: 2020_05_19_021543) do
     t.text "descripcion"
     t.integer "edad"
     t.string "telefono"
+    t.integer "commune_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
