@@ -20,7 +20,7 @@
         <%= render "devise/shared/error_messages", resource: resource %>
         <% lista_comunas = [] %> 
         <% Commune.all.each do |comuna| %>
-            <% lista_comunas.append(comuna.nombre) %> 
+            <% lista_comunas.append(comuna.id, comuna.nombre) %> 
         <% end %>
 
           <div class="field">
@@ -46,11 +46,31 @@
           <div class="field">
             <div class="control">
               <span class="icon is-small is-left">
+                <i class="fas fa-mobile-alt"></i>
+              </span>
+              Numero celular:
+              <%= f.text_field :telefono, autofocus: true, autocomplete: "telefono", placeholder: "Incluya +569 (ejemplo: +56958333161)", class: "input" %>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="control">
+              <span class="icon is-small is-left">
+                <i class="far fa-id-card"></i>
+              </span>
+              Edad:
+              <%= f.number_field :edad, autofocus: true, autocomplete: "edad", placeholder: "Edad", class: "input" %>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="control">
+              <span class="icon is-small is-left">
                 <i class="fas fa-home"></i>
               </span>
               Comuna:
               <div class="select is-fullwidth">
-                <%= f.select :commune, lista_comunas, class: "select" %>
+                <%= f.select(:commune_id, Commune.all.collect {|c| [c.nombre, c.id]}) %>
               </div>
             </div>
           </div>
