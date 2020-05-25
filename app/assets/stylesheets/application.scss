@@ -13,3 +13,11 @@
  *= require_tree .
  *= require_self
  */
+.has-bg-img{
+	background-image: url("./fondo.jpg"); 
+	background-size: cover;
+	color: white; 
+}
+.very-blue {
+	color: blue;
+  }

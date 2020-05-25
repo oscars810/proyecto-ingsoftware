@@ -1,3 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MatchMeat</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+</head>
+<body>
+
 <h1>Editar Perfil</h1>
 
 <%= form_with(model: @user, url: perfil_path(@user.id), method: :patch) do |form| %>
@@ -32,3 +46,5 @@
 <% end %>
 
 <%= link_to 'Volver', perfil_path(@user.id) %>
+</body>
+</html>
