@@ -20,7 +20,7 @@
         <%= render "devise/shared/error_messages", resource: resource %>
         <% lista_comunas = [] %> 
         <% Commune.all.each do |comuna| %>
-            <% lista_comunas.append(comuna.nombre) %> 
+            <% lista_comunas.append(comuna.id, comuna.nombre) %> 
         <% end %>
 
           <div class="field">
@@ -50,7 +50,7 @@
               </span>
               Comuna:
               <div class="select is-fullwidth">
-                <%= f.select :commune, lista_comunas, class: "select" %>
+                <%= f.select(:commune_id, Commune.all.collect {|c| [c.nombre, c.id]}) %>
               </div>
             </div>
           </div>
