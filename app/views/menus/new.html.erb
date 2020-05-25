@@ -1,8 +1,7 @@
-<p id="notice"><%= notice %></p> 
 <h1>Nuevo Menu</h1>
 <p>Ingrese los datos de su nuevo menu:</p>
 
-<%= form_with(model: @menu, method: :post) do |form| %>
+<%= form_with(model: @menu, url: local_menus_path(@local_id), method: :post) do |form| %>
 
   <div class='field'>
     <%= form.label :nombre%>
@@ -22,6 +21,6 @@
   <div class="actions">
     <%= form.submit%>
   </div>
-  <%= form.hidden_field :idlocal, :value => @idlocal %>
 <% end %>
 
+<%= link_to 'Volver', edit_local_path(@local_id)%>

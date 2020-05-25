@@ -9,6 +9,7 @@
         <%= form.submit %>
     </div>
 <%end%>
+<%= link_to 'Eliminar Local', local_path(@local.id), method: :delete, alert: 'Estás seguro?' %>
 <hr>
 <h2>Editar Menus</h2>
 <table>
@@ -26,12 +27,12 @@
         <td><%= menu.nombre %></td>
         <td><%= menu.descripcion %></td>
         <td><%= menu.precio %></td>
-        <td><%= link_to 'Editar', menus_edit_path(menu.id, :idlocal => @local.id) %></td>
-        <td><%= link_to 'Eliminar', menus_path(:id_menu => menu.id), method: :delete, alert: '¿Estas seguro de esta accion?' %></td>
+        <td><%= link_to 'Editar', edit_local_menu_path(@local.id, menu.id) %></td>
+        <td><%= link_to 'Eliminar', local_menu_path(@local.id, menu.id), method: :delete, alert: '¿Estas seguro de esta accion?' %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 <p></p>
-<%= link_to 'Agregar Menu', menus_new_path(@local.id)%>
-<%= link_to 'Back', local_path %>
+<%= link_to 'Agregar Menu', new_local_menu_path(@local.id)%>
+<%= link_to 'Volver', local_path(@local.id) %>

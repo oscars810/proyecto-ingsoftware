@@ -1,6 +1,8 @@
-<h1>Comunas</h1>
+<div class="container">
+<h1 class="title is-5 has-text-white is-spaced">Comunas</h1>
 
-<table>
+<hr>
+<table class="table">
   <thead>
     <tr>
       <th>Nombre</th>
@@ -12,7 +14,7 @@
     <% @comunas.each do |comuna| %>
       <tr>
         <td><%= comuna.nombre %></td>
-        <td><%= link_to 'Ver', comuna_path(comuna.id) %>
+        <td><%= link_to 'Ver', comuna_path(comuna.id)%></td>
       </tr>
     <% end %>
   </tbody>
@@ -20,6 +22,7 @@
 
 <br>
 
-<%= link_to 'Crear Comuna', new_comuna_path %>
+<%= link_to 'Crear Comuna', new_comuna_path, style: "color:white" %>
 <br>
-<%= link_to 'Volver al Panel', admin_path%>
+<%= link_to 'Volver al Panel', admin_path, style: "color:white" %>
+</div>

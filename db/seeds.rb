@@ -90,7 +90,7 @@ local = Local.new(nombre: 'Taiko',
 local.save!
 
 comentario = Comment.new(contenido: 'Un local bastante variado y con muy buena atención', 
-                        user_id: 2,
+                        user_id: 4,
                         local_id: 1,
                         valoracion: 5)
 comentario.save!

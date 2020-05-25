@@ -54,9 +54,6 @@ class PerfilController < ApplicationController
 
   #Delete
   def destroy
-    local = Local.find_by('idusuario = ?', params[:id])
-    local.destroy
-
     @user = User.find(params[:id])
     @user.destroy
     redirect_to root_path, notice: 'Usuario eliminado con exito' 
