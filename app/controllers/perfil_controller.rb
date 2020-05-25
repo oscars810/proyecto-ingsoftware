@@ -12,6 +12,9 @@ class PerfilController < ApplicationController
       redirect_to root_path, notice: 'Usted debe ingresar sesión para poder ver el perfil de otro usuario'
     else
       @user = User.find(params[:id])
+      @commune = @user.commune
+      @interests_user = @user.interests
+      @interests_all = Interest.all
     end
   end
 
@@ -37,6 +40,16 @@ class PerfilController < ApplicationController
     else
       redirect_to perfil_path(@user.id), notice: 'Tu nombre no puede ser vacío'
     end
+  end
+
+  #Update interests
+  def update_interest
+    user_interest_id = params.require(:interest).permit(:id_interest)
+    @interest = Interest.find('1')
+    print Interest.find('1').nombre
+    @user = User.find(params[:id])
+    @user.interests << @interest
+    redirect_to perfil_path(@user.id), notice: 'Revisar si se agregó el interes'
   end
 
   #Delete

@@ -52,6 +52,9 @@ Rails.application.routes.draw do
   patch 'perfil/:id', to: 'perfil#update'
   put 'perfil/:id', to: 'perfil#update'
 
+  #Update interes
+  patch 'perrfil/:id', to: 'perfil#update_interest', as: :perfil_edit_interest
+
   # Delete perfil
   delete 'perfil/:id', to: 'perfil#destroy'
 
