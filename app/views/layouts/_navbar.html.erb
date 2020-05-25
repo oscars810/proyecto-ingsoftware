@@ -7,7 +7,7 @@
             <i class="fas fa-fire is-size-3"></i>
           </span>
           <span><%= link_to 'Match & Meat', root_path, class: 'navbar-item has-text-white is-size-4', style: "font-weight:bold"%></span>
-          <span><%= link_to 'Locales', locales_path, class: 'navbar-item is-size-5'%></span>
+          <span><%= link_to 'Locales', local_index_path, class: 'navbar-item is-size-5'%></span>
           <% if user_signed_in? %>
             <%= link_to 'Match', match_path(current_user.id), class: 'navbar-item is-size-5'%>
             <%= link_to 'Mi Perfil', perfil_path(current_user.id), class: 'navbar-item is-size-5'%>
