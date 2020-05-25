@@ -1,10 +1,23 @@
-<h2>¿Qué deseas administrar?</h2>
+<head>
+	<title>Admin</title>
+	<%= csrf_meta_tags %>
+	<%= csp_meta_tag %>
+
+	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+	<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
+	<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+</head>
+
+<div class="container has-text-white">
+	<h1 class="title is-4 has-text-white">¿Qué deseas administrar?</h1>
 
 <ul>
-    <li> <%= link_to 'Comunas', comunas_path %></li>
-    <li> <%= link_to 'Gustos', gustos_path%>
-    <li> <%= link_to 'Locales', administrar_locales_path%> </li>
-    <li> <%= link_to 'Usuarios', perfiles_path %></li>
-    <li> <%= link_to 'Comentarios', comentarios_path%> </li>
-    <li> <%= link_to 'Aceptar Locales', aceptar_locales_path%> </li>
+    <li> <%= link_to 'Comunas', comunas_path, style: "color:white" %></li>
+    <li> <%= link_to 'Gustos', gustos_path, style: "color:white"%>
+    <li> <%= link_to 'Locales', administrar_locales_path, style: "color:white"%> </li>
+    <li> <%= link_to 'Usuarios', perfiles_path, style: "color:white" %></li>
+    <li> <%= link_to 'Comentarios', comentarios_path, style: "color:white"%> </li>
+    <li> <%= link_to 'Aceptar Locales', aceptar_locales_path, style: "color:white"%> </li>
 </ul>
+</div>
