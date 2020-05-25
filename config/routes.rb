@@ -4,12 +4,12 @@ Rails.application.routes.draw do
 
   # Administrador
   get 'admin', to: 'admin#index'
-  get 'aceptar_locales', to: 'admin#aceptar_locales'
-  patch 'aceptar_locales/:id', to: 'admin#aceptar_local'
-  get 'administrar_locales', to: 'admin#ver_locales'
-  delete 'administrar_locales/:id', to: 'admin#eliminar_local'
 
   scope '/admin' do
+    get 'locales', to: 'admin#ver_locales', as: 'admin_locales'
+    delete 'locales/:local_id', to: 'admin#eliminar_local', as: 'admin_delete_local'
+    get 'aceptar_locales', to: 'admin#aceptar_locales', as: 'admin_aceptar_locales'
+    patch 'aceptar_locales/:local_id', to: 'admin#aceptar_local', as: 'admin_aceptar_local'
     resources :comunas, controller: 'communes'
     resources :gustos, controller: 'interests'
     resources :comentarios, controller: 'comments', only: [:index, :destroy]
