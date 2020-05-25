@@ -1,6 +1,8 @@
-<h1>Locales Aceptados</h1>
+<div class="container">
+<h1 class="title is-5 has-text-white">Locales Aceptados</h1>
 
-<table>
+<hr>
+<table class="table">
   <thead>
     <tr>
       <th>Nombre</th>
@@ -14,7 +16,7 @@
       <tr>
         <td><%= local.nombre %></td>
         <td><%= local.descripcion %></td>
-        <td><%= link_to 'Eliminar Local', "administrar_locales/#{local.id}",  method: :delete, alert: '¿Estas seguro?' %>
+        <td><%= link_to 'Eliminar Local', "administrar_locales/#{local.id}",  method: :delete, alert: '¿Estas seguro?' %></td>
       </tr>
     <% end %>
   </tbody>
@@ -22,4 +24,5 @@
 
 <br>
 
-<%= link_to 'Volver al Panel', admin_path%>
+<%= link_to 'Volver al Panel', admin_path, style: "color:white"%>
+</div>
