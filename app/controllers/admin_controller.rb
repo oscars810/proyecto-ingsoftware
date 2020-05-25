@@ -6,9 +6,9 @@ class AdminController < ApplicationController
   end
 
   def aceptar_local
-    @local = Local.find(params[:id])
+    @local = Local.find(params[:local_id])
     @local.update(:aceptado => true)
-    redirect_to action:'aceptar_locales', notice: 'Local aceptado con éxito'
+    redirect_to admin_aceptar_locales_path, notice: 'El local ha sido aceptado con éxito'
   end
 
   def ver_locales
@@ -17,8 +17,8 @@ class AdminController < ApplicationController
   end
 
   def eliminar_local
-    @local = Local.find(params[:id])
+    @local = Local.find(params[:local_id])
     @local.destroy
-    redirect_to administrar_locales_path, notice: 'Local eliminado con éxito'
+    redirect_to admin_locales_path, notice: 'El local ha sido eliminado con éxito'
   end
 end
