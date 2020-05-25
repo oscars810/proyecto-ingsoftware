@@ -1,13 +1,7 @@
 <h1>Form registro nuevo local</h1>
 <p>Ingrese los datos de su local:</p>
 
-<%= form_with(model: @local, method: :post) do |form| %>
-
-    <% lista_comunas = [] %> 
-    <% Commune.all.each do |comuna| %>
-        <% lista_comunas.append(comuna.nombre) %> 
-    <% end %>
-
+<%= form_with(model: @local, url: local_index_path, method: :post) do |form| %>
     <div class='field'>
         <%= form.label :nombre %>
         <%= form.text_field :nombre %>
@@ -15,7 +9,7 @@
     
     <div class='field'>
         <%= form.label :comuna %>
-        <%= form.select :nombre_comuna, lista_comunas %> 
+        <%= form.select :nombre_comuna, @lista_comunas %> 
     </div>
 
     <div class='field'>
@@ -24,6 +18,6 @@
     </div>
     <p></p>
     <div class='actions'>
-        <%= form.submit %>
+        <%= form.submit "Crear Local"%>
     </div>
 <%end%>
