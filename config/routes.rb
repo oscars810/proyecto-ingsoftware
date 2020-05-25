@@ -12,23 +12,14 @@ Rails.application.routes.draw do
   scope '/admin' do
     resources :comunas, controller: 'communes'
     resources :gustos, controller: 'interests'
+    resources :comentarios, controller: 'comments', only: [:index, :destroy]
   end
 
-  # Locales y Menus
+  # Locales, Menus y Comentarios
   resources :locales, controller: 'locals', as: 'local' do
     resources :menus, only: [:new, :create, :edit, :update, :destroy]
+    resources :comentarios, controller: 'comments', only: [:new, :create, :destroy]
   end
-
-  # Comentarios
-  # Create
-  get 'locales/comentarios/new/:id', to: 'comments#new'
-  post 'comentarios', to: 'comments#create'
-
-  # Read
-  get 'comentarios', to: 'comments#index'
-
-  # Delete
-  delete 'comentarios', to: 'comments#destroy'
 
   # Perfil
   # Create
