@@ -1,9 +1,6 @@
 <%= link_to 'Volver', local_index_path%>
 <h1>
 Perfil de <%=@local.nombre %>
-<% unless @local.aceptado %>
-    (Pendiente)
-<% end %>
 </h1>
 
 <% if user_signed_in? and current_user.id == @local.user_id%>
@@ -37,13 +34,13 @@ Perfil de <%=@local.nombre %>
 <hr>
 <h2> Comentarios </h2>
 <%if user_signed_in? and current_user.id != @local.user_id %>
-    <p align = 'right'> <%= link_to 'Dejar Comentario', "comentarios/new/#{@local.id}"%> </p>
+    <p> <%= link_to 'Dejar Comentario', new_local_comentario_path(@local.id)%> </p>
 <%end%>
 
 <% @comentarios.each do |comentario|%>
     <p><strong>><%= comentario.user.nombre %> </strong> (<i><%= comentario.created_at.strftime("%d-%m-%Y")%></i> a las 
     <i><%= comentario.created_at.strftime("%H:%M")%></i>): <%= comentario.contenido %></p>
     <% if user_signed_in? and current_user.id == comentario.user_id%>
-        <%= link_to 'Eliminar Comentario', comentarios_path(:id_comentario => comentario.id), method: :delete, alert: '¿Estás seguro?'%>
+        <%= link_to 'Eliminar Comentario', local_comentario_path(@local.id, comentario.id), method: :delete, alert: '¿Estás seguro?'%>
     <%end%>
 <%end%>

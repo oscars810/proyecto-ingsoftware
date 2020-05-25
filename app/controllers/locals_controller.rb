@@ -33,8 +33,12 @@ class LocalsController < ApplicationController
 
   def show
     @local = Local.find(params[:id])
-    @menus = @local.menus
-    @comentarios = @local.comments
+    unless @local.aceptado
+      redirect_to local_index_path, notice: 'Este local aún no ha sido aceptado'
+    else 
+      @menus = @local.menus
+      @comentarios = @local.comments
+    end
   end
 
   def index
@@ -47,7 +51,11 @@ class LocalsController < ApplicationController
     unless user_signed_in? and current_user.id == Local.find(params[:id]).user_id
       redirect_to local_path, notice: 'No puedes acceder a esta página'
     else
-      @local = Local.find(params[:id])
+      unless @local.aceptado
+        redirect_to local_index_path, notice: 'No puedes editar tu local si no ha sido aceptado'
+      else
+        @local = Local.find(params[:id])
+      end
     end
   end
 
