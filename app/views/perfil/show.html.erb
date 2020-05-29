@@ -12,18 +12,18 @@
 </head>
 <body>
 
-<section class="hero is-primary">
+<section class="hero is-danger">
   <div class="hero-body">
     <div class="container">
 
-      <% if current_user and current_user.id == params[:id].to_i and Local.find_by('user_id = ?', current_user.id) %>
-        <%idlocal = Local.find_by('user_id = ?', current_user.id).id%>
-        <p align='right'><%= link_to 'Ver mi local', local_path(idlocal), class: 'button is-primary is-inverted'%></p>
-        
+        <% if current_user and current_user.id == params[:id].to_i and Local.find_by('user_id = ?', current_user.id) %>
+          <%idlocal = Local.find_by('user_id = ?', current_user.id).id%>
+          <p align='right'><%= link_to 'Ver mi local', local_path(idlocal), class: 'button is-danger is-light'%></p>
+          
 
-      <% elsif current_user.id == params[:id].to_i %>
-        <p align='right'><%= link_to 'Inscribir mi local', locales_new_path, class: 'button is-primary is-inverted' %></p>
-      <%end%>
+        <% elsif current_user.id == params[:id].to_i %>
+          <p align='right'><%= link_to 'Inscribir mi local', locales_new_path, class: 'button is-danger is-light' %></p>
+        <%end%>
 
       <% if current_user.id == @user.id %>
         <h1 class="title has-text-centered">Mi Perfil</h1>
@@ -37,7 +37,7 @@
 
 <div class="columns">
   <div class="column">
-    <div class="box">
+    <div class="box" style="color: is-danger;">
       <article class="media">
         <div class="media-content">
           <div class="content">
@@ -71,48 +71,63 @@
               <%= @commune.nombre%>
             </center></p>
 
-            <p><center>
-              <%= form_with(model: @interest_all, url: perfil_edit_interest_path(@user.id), method: :patch) do |form| %>
-                <div class="field">
-                  <div class="control">
-                    <div class="select is-fullwidth">
-                      <%= form.select(:id_interest, Interest.all.collect {|c| [c.nombre, c.id]}) %>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="actions">
-                  <%= form.submit %>
-                </div>
-              <% end %>
-
-              <br>
-              <br>
-              
-              <%if not @interests_user.nil?%>
-            
-                <div class="field is-grouped is-grouped-multiline">    
-                  <% @interests_user.each do |interest| %>
+            <% if current_user.id == @user.id %>
+              <p><center>
+                <strong>Todos los Gustos:</strong>
+                <br>
+                <br>
+                <%= form_with(model: @interest_all, url: perfil_edit_interest_path(@user.id), method: :patch) do |form| %>
+                  <div class="field">
                     <div class="control">
-                      <div class="tags has-addons">
-                        <a class="tag is-link"><%= interest.nombre %></a>
-                        <a class="tag is-delete"></a>
+                      <div class="select is-fullwidth is-danger">
+                        <%= form.select(:id_interest, Interest.all.collect {|c| [c.nombre, c.id]}) %>
                       </div>
                     </div>
-                  <% end %>
-                </div>
-              <% end %>
-            </center></p> 
-            
+                  </div>
+                  
+                  <div class="button is-danger" value="Guardar interes">
+                    <%= form.submit "Guardar gusto", class: "button is-danger"%>
+                  </div>
+                <% end %>
 
+                <br>
+                
+                <%if not @interests_user.nil?%>
+
+                  <strong>Mis Gustos:</strong>
+                  <br>
+                  <br>
+                  <div class="field is-grouped is-grouped-multiline">    
+                    <% @interests_user.each do |interest| %>
+                      <div class="control">
+                        <div class="tags has-addons">
+                          <a class="tag is-danger"><%= interest.nombre %></a>
+                          <a href="<%=perfil_delete_interest_path(@user.id, interest.id)%>" class="tag is-delete"></a>
+                        </div>
+                      </div>
+                    <% end %>
+                  </div>
+                <% end %>
+              </center></p> 
+            <%else%>
+            <div class="column"></div>
+              <p><center>
+                <strong> Gustos: <strong>
+                    <ul>
+                      <% @interests_user.each do |interest| %>
+                        <li><%= interest.nombre %></li>
+                      <% end %>
+                    </ul>
+              </center></p>
+            <% end %>        
           </div>
         </div>
       </article>
     </div>
 
     <% if current_user.id == @user.id %>
-      <%= link_to 'Editar perfil', perfil_edit_path(@user.id) %>
-      <%= link_to 'Eliminar cuenta', perfil_path(@user.id),  method: :delete, alert: '¿Estas seguro?' %>
+      <%= link_to 'Editar perfil', perfil_edit_path(@user.id), class: 'button is-link is-inverted' %>
+      <%= link_to 'Eliminar cuenta', perfil_path(@user.id), class: 'button is-danger is-inverted',  method: :delete, alert: '¿Estas seguro?' %>
 
     <% end %>
   </div>

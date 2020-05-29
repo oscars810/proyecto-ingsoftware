@@ -28,12 +28,16 @@ class PerfilController < ApplicationController
   end
 
   def update
-    user_params = params.require(:user).permit(:nombre, :email, :descripcion, :edad, :telefono)
+    user_params = params.require(:user).permit(:nombre, :email, :descripcion, :edad, :telefono, :commune_id)
+    print("ESTOY EN EL CONTROLADOR")
+
     @user = User.find(params[:id])
 
     unless user_params[:nombre].empty?
       if @user.update(user_params)
+        #@user.commune_id = @commune
         redirect_to perfil_path(@user.id), notice: 'Datos de usuario actualizados con éxito'
+
       else
         redirect_to perfil_path(@user.id), notice: 'Ocurrio un error al actualizar los datos'
       end
@@ -44,12 +48,17 @@ class PerfilController < ApplicationController
 
   #Update interests
   def update_interest
-    user_interest_id = params.require(:interest).permit(:id_interest)
-    @interest = Interest.find('1')
-    print Interest.find('1').nombre
+    @interest = Interest.find(params[:id_interest])
     @user = User.find(params[:id])
     @user.interests << @interest
-    redirect_to perfil_path(@user.id), notice: 'Revisar si se agregó el interes'
+    redirect_to perfil_path(@user.id), notice: 'Gusto agregado de forma exitosa'
+  end
+
+  def delete_interest
+    @interest = Interest.find(params[:idinterest])
+    @user = User.find(params[:id])
+    @user.interests.delete(@interest)
+    redirect_to perfil_path(@user.id), notice: 'Revisar si se eliminó el interes'
   end
 
   #Delete

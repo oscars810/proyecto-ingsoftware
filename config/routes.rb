@@ -37,6 +37,7 @@ Rails.application.routes.draw do
 
   #Update interes
   patch 'perrfil/:id', to: 'perfil#update_interest', as: :perfil_edit_interest
+  get 'perfil/:id/:idinterest', to: 'perfil#delete_interest', as: :perfil_delete_interest
 
   # Delete perfil
   delete 'perfil/:id', to: 'perfil#destroy'
