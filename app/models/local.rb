@@ -5,4 +5,5 @@ class Local < ApplicationRecord
     belongs_to :commune
     has_many :menus, dependent: :destroy
     has_many :comments, dependent: :destroy
+    has_many :valuations, dependent: :destroy
 end
