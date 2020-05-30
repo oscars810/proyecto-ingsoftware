@@ -38,6 +38,7 @@ class LocalsController < ApplicationController
     unless @promedio
       @promedio = "(El local aún no tiene puntuaciones)"
     else
+      @promedio = @promedio.round(1)
       @promedio = " #{@promedio} / 5"
     end
 
