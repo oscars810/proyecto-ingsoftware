@@ -9,6 +9,12 @@ Perfil de <%=@local.nombre %>
 
 <h2>Mis datos </h2>
 <p><strong> Local de: </strong> <%= @local.user.nombre %> </p>
+<p><strong> Puntuacion: </strong> <%= @promedio %> 
+<%if @cantidad_valoraciones == 1 %>
+  de <%= @cantidad_valoraciones %> valoracion
+<%elsif @cantidad_valoraciones != 0%>
+  de <%= @cantidad_valoraciones %> valoraciones
+<% end %></p>
 <p><strong> Mi descripcion: </strong><%= @local.descripcion %></p>
 <p>    </p>
 <p><strong> Especialidad de la casa: </strong></p>
