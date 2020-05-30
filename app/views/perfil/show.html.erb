@@ -140,14 +140,16 @@
           <thead>
             <tr>
               <td> Local  </td>
-              <td> Accion </td>
+              <td> Estado </td>
+              <td> Acción </td>
             </tr>
           </thead>
           <tbody>
             <% @pending_valuations.each do |valuation|%>
             <tr>
               <td> <%= valuation.local.nombre %> </td>
-              <td> <%= link_to 'Dejar valoración', new_local_comentario_path(valuation.local.id)%>
+              <td> Realizada </td>
+              <td> <%= link_to 'Dejar valoración', new_local_comentario_path(valuation.local.id, valuation_id: valuation.id)%>
             </tr>
             <% end %>
           </tbody>
