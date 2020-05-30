@@ -27,7 +27,6 @@ Rails.application.routes.draw do
                                     registrations: 'users/registrations' }
 
   # Read Usuarios
-  get 'perfiles', to: 'perfil#index'
   get 'perfil/:id', to: 'perfil#show', as: :perfil
 
   # Update perfil
@@ -36,7 +35,7 @@ Rails.application.routes.draw do
   put 'perfil/:id', to: 'perfil#update'
 
   #Update interes
-  patch 'perrfil/:id', to: 'perfil#update_interest', as: :perfil_edit_interest
+  patch 'perfil/:id', to: 'perfil#update_interest', as: :perfil_edit_interest
   get 'perfil/:id/:idinterest', to: 'perfil#delete_interest', as: :perfil_delete_interest
 
   # Delete perfil
