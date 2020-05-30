@@ -22,7 +22,7 @@
           
 
         <% elsif current_user.id == params[:id].to_i %>
-          <p align='right'><%= link_to 'Inscribir mi local', locales_new_path, class: 'button is-danger is-light' %></p>
+          <p align='right'><%= link_to 'Inscribir mi local', new_local_path, class: 'button is-danger is-light' %></p>
         <%end%>
 
       <% if current_user.id == @user.id %>
@@ -131,8 +131,31 @@
 
     <% end %>
   </div>
+  <% if current_user.id == params[:id].to_i%>
   <div class="column">
+    <div class="box" style="color: is-danger;">
+      <div class="content">
+        <h2><center> Mis match </center></h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <td> Local  </td>
+              <td> Accion </td>
+            </tr>
+          </thead>
+          <tbody>
+            <% @pending_valuations.each do |valuation|%>
+            <tr>
+              <td> <%= valuation.local.nombre %> </td>
+              <td> <%= link_to 'Dejar valoración', new_local_comentario_path(valuation.local.id)%>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
+  <% end %>
 </div>
 
 </body>

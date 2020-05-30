@@ -68,6 +68,24 @@ user = User.new(email: 'felipe1234@uc.cl',
                 commune_id: 5)
 user.save!
 
+user = User.new(email: 'alfonso@uc.cl',
+                password: 'alfonso1234',
+                password_confirmation: 'alfonso1234',
+                admin: false,
+                nombre: 'Alfonso',
+                commune_id: 4)
+
+user.save!
+
+user = User.new(email: 'mario@uc.cl',
+                password: 'mario1234',
+                password_confirmation: 'mario1234',
+                admin: false,
+                nombre: 'Mario',
+                commune_id: 4)
+
+user.save!
+
 local = Local.new(nombre: 'Juan y Medio',
                   descripcion: 'Restaurante de comida tipica chilena', 
                   aceptado: true, 
@@ -89,28 +107,31 @@ local = Local.new(nombre: 'Taiko',
                   user_id: 4)
 local.save!
 
+local = Local.new(nombre: 'Pollos Hermanos',
+                  descripcion: 'Totalmente un local de pollo',
+                  aceptado: true,
+                  commune_id: 5,
+                  user_id: 5)
+local.save!
+
 comentario = Comment.new(contenido: 'Un local bastante variado y con muy buena atención', 
                         user_id: 4,
-                        local_id: 1,
-                        valoracion: 5)
+                        local_id: 1)
 comentario.save!
 
 comentario = Comment.new(contenido: 'Posee una comida muy sabrosa, la atencion es 10/10',
                         user_id: 5,
-                        local_id: 2,
-                        valoracion: 5)
+                        local_id: 2)
 comentario.save!
 
 comentario = Comment.new(contenido: 'La atencion es muy buena, pero debería existir mas variedad de sandwiches',
                         user_id: 2,
-                        local_id: 2,
-                        valoracion: 4)
+                        local_id: 2)
 comentario.save!
 
 comentario = Comment.new(contenido: 'El tiempo de atencion es bastante bueno y los precios estan acorde al nivel de los platos',
                         user_id: 3,
-                        local_id: 1,
-                        valoracion: 5)
+                        local_id: 1)
 comentario.save!
 
 menu = Menu.new(local_id: 1,
@@ -148,3 +169,24 @@ menu = Menu.new(local_id: 2,
                 descripcion: 'Sandwich que posee jamón, tomate, queso, lechuga, pepino, pepinillo y aceitunas',
                 precio: 1000)
 menu.save!
+
+menu = Menu.new(local_id: 4,
+                nombre: 'Metanfetamina',
+                descripcion: 'No hay descripcion',
+                precio: 50000)
+menu.save!
+
+valuation = Valuation.new(user_id: 6,
+                          local_id: 4)
+
+valuation.save!
+
+valuation = Valuation.new(user_id: 6,
+                          local_id: 1)
+
+valuation.save!
+
+valuation = Valuation.new(user_id: 7,
+                          local_id: 4)
+
+valuation.save!

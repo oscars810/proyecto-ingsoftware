@@ -32,10 +32,8 @@ Perfil de <%=@local.nombre %>
 </table>
 
 <hr>
+
 <h2> Comentarios </h2>
-<%if user_signed_in? and current_user.id != @local.user_id %>
-    <p> <%= link_to 'Dejar Comentario', new_local_comentario_path(@local.id)%> </p>
-<%end%>
 
 <% @comentarios.each do |comentario|%>
     <p><strong>><%= comentario.user.nombre %> </strong> (<i><%= comentario.created_at.strftime("%d-%m-%Y")%></i> a las 
