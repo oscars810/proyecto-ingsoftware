@@ -148,3 +148,8 @@ menu = Menu.new(local_id: 2,
                 descripcion: 'Sandwich que posee jamón, tomate, queso, lechuga, pepino, pepinillo y aceitunas',
                 precio: 1000)
 menu.save!
+
+match = Match.new(user1_id: 2,
+                user2_id: ,
+                cita_realizada: false
+                appointment_id: null)

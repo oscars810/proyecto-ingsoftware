@@ -16,19 +16,19 @@
   <div class="hero-body">
     <div class="container">
 
-        <% if current_user and current_user.id == params[:id].to_i and Local.find_by('user_id = ?', current_user.id) %>
-          <%idlocal = Local.find_by('user_id = ?', current_user.id).id%>
-          <p align='right'><%= link_to 'Ver mi local', local_path(idlocal), class: 'button is-danger is-light'%></p>
-          
+      <% if current_user and current_user.id == params[:id].to_i and Local.find_by('user_id = ?', current_user.id) %>
+        <%idlocal = Local.find_by('user_id = ?', current_user.id).id%>
+        <p align='right'><%= link_to 'Ver mi local', local_path(idlocal), class: 'button is-danger is-light'%></p>
+        
 
-        <% elsif current_user.id == params[:id].to_i %>
-          <p align='right'><%= link_to 'Inscribir mi local', locales_new_path, class: 'button is-danger is-light' %></p>
-        <%end%>
+      <% elsif current_user.id == params[:id].to_i %>
+        <p align='right'><%= link_to 'Inscribir mi local', new_local_path, class: 'button is-danger is-light' %></p>
+      <%end%>
 
       <% if current_user.id == @user.id %>
         <h1 class="title has-text-centered">Mi Perfil</h1>
       <% else %>
-        <h1 class="title has-text-centered">Perfil de <%= @user.nombre %></h1> 
+        <h1 class="title has-text-centered">Mi perfil</h1> 
       <% end %>
 
     </div>
@@ -110,9 +110,8 @@
                 <% end %>
               </center></p> 
             <%else%>
-            <div class="column"></div>
               <p><center>
-                <strong> Gustos: <strong>
+                <strong> Gustos: </strong>
                     <ul>
                       <% @interests_user.each do |interest| %>
                         <li><%= interest.nombre %></li>
@@ -131,9 +130,25 @@
 
     <% end %>
   </div>
-  <div class="column">
+  <div class="column"></div>
+</div>
+<div class="columns">
+  <div class="column is-two-fifths">
+    <div class="box">
+      <h1 class="title is-5"> Matches realizados:</h1>
+      <table class="table">
+        <thead>
+          <th>Persona</th>
+          <th>Accion</th>
+        </thead>
+        <tbody>
+          <% @user.interests.each do |match| %>
+            <tr><td><%=match.nombre%></td><td>F</td></tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
-
 </body>
 </html>

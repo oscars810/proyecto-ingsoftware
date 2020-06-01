@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_20_010458) do
+ActiveRecord::Schema.define(version: 2020_05_30_041421) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "appointments", force: :cascade do |t|
+    t.integer "match_id"
+    t.integer "solicitante_id"
+    t.integer "local_id"
+    t.date "fecha"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "comments", force: :cascade do |t|
     t.text "contenido"
@@ -48,6 +57,15 @@ ActiveRecord::Schema.define(version: 2020_05_20_010458) do
     t.boolean "aceptado", default: false
     t.integer "user_id"
     t.integer "commune_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "matches", force: :cascade do |t|
+    t.integer "user1_id"
+    t.integer "user2_id"
+    t.boolean "cita_realizada"
+    t.integer "appointment_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
