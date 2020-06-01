@@ -33,6 +33,16 @@ class LocalsController < ApplicationController
 
   def show
     @local = Local.find(params[:id])
+    @cantidad_valoraciones = @local.valuations.where("realizada = true").count
+    @promedio = @local.valuations.where("realizada = true").average(:puntuacion)
+    unless @promedio
+      @promedio = "(El local aún no tiene puntuaciones)"
+    else
+      @promedio = @promedio.round(1)
+      @promedio = " #{@promedio} / 5"
+    end
+
+
     unless @local.aceptado
       redirect_to local_index_path, notice: 'Este local aún no ha sido aceptado'
     else 

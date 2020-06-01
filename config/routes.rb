@@ -27,6 +27,7 @@ Rails.application.routes.draw do
                                     registrations: 'users/registrations' }
 
   # Read Usuarios
+  get 'perfiles', to: 'perfil#index'
   get 'perfil/:id', to: 'perfil#show', as: :perfil
 
   # Update perfil

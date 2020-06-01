@@ -21,9 +21,15 @@
         <p align='right'><%= link_to 'Ver mi local', local_path(idlocal), class: 'button is-danger is-light'%></p>
         
 
+<<<<<<< HEAD
       <% elsif current_user.id == params[:id].to_i %>
         <p align='right'><%= link_to 'Inscribir mi local', new_local_path, class: 'button is-danger is-light' %></p>
       <%end%>
+=======
+        <% elsif current_user.id == params[:id].to_i %>
+          <p align='right'><%= link_to 'Inscribir mi local', new_local_path, class: 'button is-danger is-light' %></p>
+        <%end%>
+>>>>>>> develop
 
       <% if current_user.id == @user.id %>
         <h1 class="title has-text-centered">Mi Perfil</h1>
@@ -130,7 +136,33 @@
 
     <% end %>
   </div>
-  <div class="column"></div>
+  <% if current_user.id == params[:id].to_i%>
+  <div class="column">
+    <div class="box" style="color: is-danger;">
+      <div class="content">
+        <h2><center> Mis match </center></h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <td> Local  </td>
+              <td> Estado </td>
+              <td> Acción </td>
+            </tr>
+          </thead>
+          <tbody>
+            <% @pending_valuations.each do |valuation|%>
+            <tr>
+              <td> <%= valuation.local.nombre %> </td>
+              <td> Realizada </td>
+              <td> <%= link_to 'Dejar valoración', new_local_comentario_path(valuation.local.id, valuation_id: valuation.id)%>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <% end %>
 </div>
 <div class="columns">
   <div class="column is-two-fifths">

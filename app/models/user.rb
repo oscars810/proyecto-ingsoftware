@@ -9,4 +9,5 @@ class User < ApplicationRecord
   has_one :local, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :matches
+  has_many :valuations, dependent: :nullify
 end
