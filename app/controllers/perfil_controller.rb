@@ -70,4 +70,19 @@ class PerfilController < ApplicationController
 
   end
 
+  def verificar_matches(user_id)
+    @solicitudes = MatchRequest.all
+    @match_listo = []
+    @solicitudes.each do |match1|
+      @solicitudes.each do |match2|
+        if match1.solicitante == user_id and match1.solicitante == match2.solicitado and match1.solicitado == match2.solicitante
+          @match_listo.append((match1.solicitante, match2.solicitado))
+        end
+      end
+    end
+    @matches = Match.all
+    @mat
+    @match_listo
+  end
+
 end

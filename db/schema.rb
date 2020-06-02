@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2020_05_30_041421) do
+=======
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 2020_06_02_024535) do
+=======
+ActiveRecord::Schema.define(version: 2020_05_30_031753) do
+>>>>>>> aae8b308a08b819ba5de4cf1d531906c13a0fa95
+>>>>>>> develop
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,11 +68,18 @@ ActiveRecord::Schema.define(version: 2020_05_30_041421) do
     t.datetime "updated_at", null: false
   end
 
+<<<<<<< HEAD
   create_table "matches", force: :cascade do |t|
     t.integer "user1_id"
     t.integer "user2_id"
     t.boolean "cita_realizada"
     t.integer "appointment_id"
+=======
+  create_table "match_requests", force: :cascade do |t|
+    t.integer "idsolicitud"
+    t.integer "solicitado"
+    t.integer "solicitante"
+>>>>>>> develop
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
