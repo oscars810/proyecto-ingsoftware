@@ -29,7 +29,6 @@ class PerfilController < ApplicationController
 
   def update
     user_params = params.require(:user).permit(:nombre, :email, :descripcion, :edad, :telefono, :commune_id)
-    print("ESTOY EN EL CONTROLADOR")
 
     @user = User.find(params[:id])
 
@@ -48,6 +47,7 @@ class PerfilController < ApplicationController
 
   #Update interests
   def update_interest
+    print('Guardando gusto...')
     @interest = Interest.find(params[:id_interest])
     @user = User.find(params[:id])
     @user.interests << @interest

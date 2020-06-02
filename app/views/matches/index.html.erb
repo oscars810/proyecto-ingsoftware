@@ -11,9 +11,55 @@
   <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </head>
 <body>
-<h1>Perfiles</h1>
+<section class="hero is-danger">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title has-text-centered">Matchs</h1>
+    </div>
+  </div>
+</section>
 
-<table>
+<div class="columns">
+  <div class="column"></div>
+  <div class="column is-two-thirds">
+    <div class="box" style="color: is-danger;">
+      <div class="media-content">
+        <div class="content">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Edad</th>
+                <th>Descripcion</th>
+                <th>Gustos</th>
+              </tr>
+            </thead> 
+            <tbody>
+              <%@users.each do |usuario|%>
+                <%unless usuario.id == @user.id %>
+                  <tr>
+                    <td><strong><%= usuario.nombre %></strong></td>
+                    <td><%= usuario.edad %></td>
+                    <td><%= usuario.descripcion %></td>
+                    <td>
+                      <ul>
+                      </ul>
+                    </td>
+
+                  </tr>
+                <% end %>
+              <% end %>
+            </tbody> 
+          </table> 
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="column"></div>
+</div>
+
+<!--<table>
 <thead>
     <tr>
     <th>Nombre</th>
@@ -35,9 +81,7 @@
         <% end %>
     <% end %>
 </tbody>
-</table>
-
-<!Debo cambiar el link to de match para que si realice la accion correcta>
+</table>-->
 
 </body>
 </html>

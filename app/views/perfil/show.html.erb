@@ -110,15 +110,14 @@
                 <% end %>
               </center></p> 
             <%else%>
-            <div class="column"></div>
-              <p><center>
-                <strong> Gustos: <strong>
-                    <ul>
-                      <% @interests_user.each do |interest| %>
-                        <li><%= interest.nombre %></li>
-                      <% end %>
-                    </ul>
-              </center></p>
+                <p><center>
+                  <strong> Gustos: </strong>
+                      <ul>
+                        <% @interests_user.each do |interest| %>
+                          <li><%= interest.nombre %></li>
+                        <% end %>
+                      </ul>
+                </center></p>
             <% end %>        
           </div>
         </div>
