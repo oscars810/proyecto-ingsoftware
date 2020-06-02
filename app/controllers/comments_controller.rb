@@ -7,7 +7,13 @@ class CommentsController < ApplicationController
       if current_user.id == @local.user_id
         redirect_to local_path(@local.id), notice: 'No puedes comentar en tu propio local'
       else
-        render
+        valoraciones_pendientes = current_user.valuations.where("realizada = false AND local_id = #{params[:local_id]}")
+        @valuation_id = params[:valuation_id]
+        if not valoraciones_pendientes.empty? and @valuation_id
+          render
+        else
+          redirect_to root_path, notice: 'No puedes acceder a esta página'
+        end
       end
     else
       redirect_to root_path, notice: 'Debes iniciar sesión para comentar'
@@ -15,17 +21,29 @@ class CommentsController < ApplicationController
   end
 
   def create
+    puntuacion = params.require(:comment).permit(:valuation)[:valuation]
+    valuation_id = params[:valuation_id]
     comentario_params = params.require(:comment).permit(:contenido)
+    contenido = comentario_params[:contenido]
     id_usuario = current_user.id
-    comentario_params[:user_id] = id_usuario
-    comentario_params[:local_id] = params[:local_id]
-    @comentario = Comment.create(comentario_params)
-    if @comentario.save
-      redirect_to local_path(params[:local_id]), notice: 'Comentario agregado con éxito'
+    if not puntuacion
+      redirect_to perfil_path(id_usuario), notice: 'La puntuación del local es obligatoria'
     else
-      redirect_to local_path(params[:local_id]), notice: 'Ocurrió un error al crear el Comentario'
+      valuation = Valuation.find(valuation_id)
+      valuation.update(:realizada => true, :puntuacion => puntuacion)
+      if contenido.empty?
+        redirect_to local_path(params[:local_id]), notice: 'La puntuación ha sido agregada con éxito'
+      else
+        comentario_params[:user_id] = id_usuario
+        comentario_params[:local_id] = params[:local_id]
+        @comentario = Comment.create(comentario_params)
+        if @comentario.save
+          redirect_to local_path(params[:local_id]), notice: 'El comentario y la puntuación han sido agregados con éxito'
+        else
+          redirect_to local_path(params[:local_id]), notice: 'Ocurrió un error al crear el Comentario'
+        end
+      end
     end
-
   end
 
   # Read
