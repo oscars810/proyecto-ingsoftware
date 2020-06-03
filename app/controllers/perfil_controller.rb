@@ -16,8 +16,23 @@ class PerfilController < ApplicationController
       @interests_user = @user.interests
       @interests_all = Interest.all
       @pending_valuations = current_user.valuations.where("realizada = false")
-
-      @match_nuevos = Match_request.where('solicitado_id = ?', user_id)
+      #Cada vez que entra a su perfil busca posibles match que se hayan hecho mutuamente por casualidad
+      @match_nuevos = MatchRequest.where('solicitado_id = ?', @user.id)
+      @match_nuevos.each do |m|
+        @match_coincidentes = MatchRequest.where('solicitado_id = ? and solicitante_id = ?', m.solicitante_id, @user.id)
+        if @match_coincidentes
+          @match_coincidentes.each do |m2|
+            match = Match.new(user1_id: m2.solicitante_id,
+              user2_id: m2.solicitado_id,
+              cita_realizada: false,
+              appointment_id: nil)
+            match.save!
+            m2.destroy
+            m.destroy
+          end
+        end
+      end
+      @match_nuevos = MatchRequest.where('solicitado_id = ?', @user.id)
     end
   end
 
@@ -72,20 +87,28 @@ class PerfilController < ApplicationController
 
   end
 
-  def aceptar_match
-    @user = User.find(params[:id])
-    @match_request = Match_request.find(params[:id_matchrequest])
-    Match.new(user1_id: @match_request.solicitante,
-              user2_id: @match_request.solicitado,
-              cita_realizada: false,
-              appointment_id: null).save!
-    @match_request.destroy
-    redirect_to perfil_path(@user.id)
+  def accept_match
+    if params[:aceptar]
+      @user = User.find(params[:id])
+      @match_request = MatchRequest.find(params[:id_matchrequest])
+      match = Match.new(user1_id: @match_request.solicitante_id,
+                user2_id: @match_request.solicitado_id,
+                cita_realizada: false,
+                appointment_id: nil)
+      match.save!
+      @match_request.destroy
+      redirect_to perfil_path(@user.id)
+    else
+      @user = User.find(params[:id])
+      @match_request = MatchRequest.find(params[:id_matchrequest])
+      @match_request.destroy
+      redirect_to perfil_path(@user.id)
+    end
   end
 
   def reject_match
     @user = User.find(params[:id])
-    @match_request = Match_request.find(params[:id_matchrequest])
+    @match_request = MatchRequest.find(params[:id_matchrequest])
     @match_request.destroy
     redirect_to perfil_path(@user.id)
   end
