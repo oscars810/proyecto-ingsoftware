@@ -213,12 +213,6 @@ menu = Menu.new(local_id: 2,
                 precio: 1000)
 menu.save!
 
-<<<<<<< HEAD
-match = Match.new(user1_id: 2,
-                user2_id: ,
-                cita_realizada: false
-                appointment_id: null)
-=======
 menu = Menu.new(local_id: 4,
                 nombre: 'Metanfetamina',
                 descripcion: 'No hay descripcion',
@@ -260,4 +254,8 @@ valuation = Valuation.new(local_id: 2,
                           puntuacion: 4,
                           realizada: true)
 valuation.save!
->>>>>>> develop
+
+match = Match.new(user1_id: 2,
+    user2_id: ,
+    cita_realizada: false
+    appointment_id: null)

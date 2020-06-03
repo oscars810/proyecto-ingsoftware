@@ -39,6 +39,10 @@ Rails.application.routes.draw do
   patch 'perfil_interest/:id', to: 'perfil#update_interest', as: :perfil_edit_interest
   get 'perfil/:id/:idinterest', to: 'perfil#delete_interest', as: :perfil_delete_interest
 
+  #Aceptar/Rechazar match_request
+  get 'perfil/:id/:id_matchrequest', to: 'perfil#accept_match', as: :perfil_accept_match
+  get 'perfil/:id/:id_matchrequest', to: 'perfil#reject_match', as: :perfil_reject_match
+
   # Delete perfil
   delete 'perfil/:id', to: 'perfil#destroy'
 

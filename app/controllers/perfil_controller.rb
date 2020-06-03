@@ -16,6 +16,8 @@ class PerfilController < ApplicationController
       @interests_user = @user.interests
       @interests_all = Interest.all
       @pending_valuations = current_user.valuations.where("realizada = false")
+
+      @match_nuevos = Match_request.where('solicitado_id = ?', user_id)
     end
   end
 
@@ -70,8 +72,26 @@ class PerfilController < ApplicationController
 
   end
 
+  def aceptar_match
+    @user = User.find(params[:id])
+    @match_request = Match_request.find(params[:id_matchrequest])
+    Match.new(user1_id: @match_request.solicitante,
+              user2_id: @match_request.solicitado,
+              cita_realizada: false,
+              appointment_id: null).save!
+    @match_request.destroy
+    redirect_to perfil_path(@user.id)
+  end
+
+  def reject_match
+    @user = User.find(params[:id])
+    @match_request = Match_request.find(params[:id_matchrequest])
+    @match_request.destroy
+    redirect_to perfil_path(@user.id)
+  end
+=begin
   def verificar_matches(user_id)
-    @solicitudes = MatchRequest.all
+    @solicitudes = Match_request.all
     @match_listo = []
     @solicitudes.each do |match1|
       @solicitudes.each do |match2|
@@ -80,9 +100,27 @@ class PerfilController < ApplicationController
         end
       end
     end
-    @matches = Match.all
-    @mat
-    @match_listo
+    @apendear = false
+    @match_nuevos = []
+    @match_actuales = Match.all
+    @match_listo.each do |m_listo|
+      @match_actuales.each do |m_actual|
+        if m_actual.user1 == m_listo[0] and m_actual.user2 == m_listo[1]
+          @apendear = true
+        end
+      end
+      if apendear
+        @match_nuevos.append(m_listo)
+      end
+      @apendear = false
+    end
+    @match_nuevos.each do |match|
+      match = Match.new(user1_id: match[0],
+        user2_id: match[1],
+        cita_realizada: false
+        appointment_id: null)
+    end
+    @match_nuevos #Lista de tuplas con (id1, id2) de los usuarios que han hecho match
   end
-
+=end
 end
