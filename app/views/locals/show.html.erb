@@ -15,13 +15,14 @@
 <section class="hero is-danger">
   <div class="hero-body">
     <div class="container">
-      <h1 class="title has-text-centered"> <%= @local.nombre %> </h1>
+      <h1 class="title has-text-centered"> <%= @local.nombre %></h1>
       <h2 class="subtitle has-text-centered"> <%= @local.descripcion %></h2>
-      <h3 class="subtitle has-text-centered"> Puntuación: <%= @promedio %> de 
+      <h2 class="subtitle has-text-centered"> Comuna: <%= @local.commune.nombre %><h2>
+      <h3 class="subtitle has-text-centered"> Puntuación: <%= @promedio %>
         <%if @cantidad_valoraciones == 1 %>
-          <%= @cantidad_valoraciones %> valoracion
+          de <%= @cantidad_valoraciones %> valoracion
         <%elsif @cantidad_valoraciones != 0%>
-          <%= @cantidad_valoraciones %> valoraciones
+          de <%= @cantidad_valoraciones %> valoraciones
         <% end %></p></h3>
       <div class="buttons is-centered">
         <%= link_to 'Volver', local_index_path, class: "button is-link is-rounded"%>
