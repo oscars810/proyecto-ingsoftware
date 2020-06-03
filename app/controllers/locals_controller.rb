@@ -52,7 +52,7 @@ class LocalsController < ApplicationController
   end
 
   def index
-    @locales = Local.all
+    @locales = Local.where("aceptado = true")
   end
 
   def edit
