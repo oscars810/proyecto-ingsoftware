@@ -9,6 +9,12 @@ Perfil de <%=@local.nombre %>
 
 <h2>Mis datos </h2>
 <p><strong> Local de: </strong> <%= @local.user.nombre %> </p>
+<p><strong> Puntuacion: </strong> <%= @promedio %> 
+<%if @cantidad_valoraciones == 1 %>
+  de <%= @cantidad_valoraciones %> valoracion
+<%elsif @cantidad_valoraciones != 0%>
+  de <%= @cantidad_valoraciones %> valoraciones
+<% end %></p>
 <p><strong> Mi descripcion: </strong><%= @local.descripcion %></p>
 <p>    </p>
 <p><strong> Especialidad de la casa: </strong></p>
@@ -32,10 +38,8 @@ Perfil de <%=@local.nombre %>
 </table>
 
 <hr>
+
 <h2> Comentarios </h2>
-<%if user_signed_in? and current_user.id != @local.user_id %>
-    <p> <%= link_to 'Dejar Comentario', new_local_comentario_path(@local.id)%> </p>
-<%end%>
 
 <% @comentarios.each do |comentario|%>
     <p><strong>><%= comentario.user.nombre %> </strong> (<i><%= comentario.created_at.strftime("%d-%m-%Y")%></i> a las 

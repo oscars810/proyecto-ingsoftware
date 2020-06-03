@@ -15,6 +15,7 @@ class PerfilController < ApplicationController
       @commune = @user.commune
       @interests_user = @user.interests
       @interests_all = Interest.all
+      @pending_valuations = current_user.valuations.where("realizada = false")
     end
   end
 

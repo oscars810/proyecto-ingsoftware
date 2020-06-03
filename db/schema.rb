@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(version: 2020_06_03_025255) do
     t.integer "local_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "valoracion"
   end
 
   create_table "communes", force: :cascade do |t|
@@ -85,6 +84,15 @@ ActiveRecord::Schema.define(version: 2020_06_03_025255) do
     t.integer "commune_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "valuations", force: :cascade do |t|
+    t.integer "puntuacion", default: 0
+    t.integer "user_id"
+    t.integer "local_id"
+    t.boolean "realizada", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
