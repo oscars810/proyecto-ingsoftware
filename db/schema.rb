@@ -62,8 +62,8 @@ ActiveRecord::Schema.define(version: 2020_06_02_024535) do
 
   create_table "match_requests", force: :cascade do |t|
     t.integer "idsolicitud"
-    t.integer "solicitado"
-    t.integer "solicitante"
+    t.integer "solicitado_id"
+    t.integer "solicitante_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
