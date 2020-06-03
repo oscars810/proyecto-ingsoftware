@@ -254,3 +254,27 @@ valuation = Valuation.new(local_id: 2,
                           puntuacion: 4,
                           realizada: true)
 valuation.save!
+
+
+match_request = MatchRequest.new(
+                solicitante_id: 2,
+                solicitado_id: 3)
+match_request.save!
+
+
+macth_request = MatchRequest.new(
+                solicitante_id: 3,
+                solicitado_id: 4)
+match_request.save!
+
+
+match_request = MatchRequest.new(
+                solicitante_id: 4,
+                solicitado_id: 5)
+match_request.save!
+
+
+match_request = MatchRequest.new(
+                solicitante_id: 5,
+                solicitado_id: 2)
+match_request.save!
