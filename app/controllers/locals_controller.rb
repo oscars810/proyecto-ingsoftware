@@ -6,24 +6,16 @@ class LocalsController < ApplicationController
       if Local.find_by('user_id = ?', current_user.id)
         redirect_to local_index_path, notice: 'Tu cuenta ya tiene un local asociado.'
       else
-        @lista_comunas = []
-        Commune.all.each do |comuna|
-          @lista_comunas.append(comuna.nombre)
-        end
         @local = Local.new
       end
     end
   end
 
   def create
-    local_params = params.require(:local).permit(:nombre, :descripcion, :nombre_comuna)
-    parametros = Hash.new
-    parametros[:nombre], parametros[:descripcion] = local_params[:nombre], local_params[:descripcion]
-    parametros[:user_id] = current_user.id
-    id_comuna = Commune.find_by("nombre = ?", local_params[:nombre_comuna]).id
-    parametros[:commune_id] = id_comuna
+    local_params = params.require(:local).permit(:nombre, :descripcion, :commune_id)
+    local_params[:user_id] = current_user.id
 
-    @local = Local.new(parametros)
+    @local = Local.new(local_params)
     if @local.save
       redirect_to local_index_path, notice: 'Se ha enviado el formulario del local al administrador. Debes esperar que él acepte el local' 
     else
@@ -52,7 +44,7 @@ class LocalsController < ApplicationController
   end
 
   def index
-    @locales = Local.all
+    @locales = Local.where("aceptado = true")
   end
 
   def edit
