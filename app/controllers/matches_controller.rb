@@ -31,10 +31,4 @@ class MatchesController < ApplicationController
       redirect_to perfil_path(@user.id)
     end
   end
-
-  def propuse_appointment
-    @user = User.find(params[:id])
-    @match = Match.find(params[:match_id])
-    @match.update(:cita_realizada => true)
-  end
 end

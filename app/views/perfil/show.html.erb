@@ -208,10 +208,10 @@
               <% end %>
             <tr>
               <% unless match.cita_realizada %>
-              <td> @persona.nombre </td>
-              <td> @persona.telefono</td>
-              <td> @persona.email </td>
-              <td> <%= link_to 'Proponer cita', perfil_propuse_appointment_path(@user.id, match_id: match.id), method: :patch %> </td>
+              <td> <%= @persona.nombre %> </td>
+              <td> <%= @persona.telefono %></td>
+              <td> <%= @persona.email %> </td>
+              <td> <%= link_to 'Proponer cita', new_appointment_path(@user.id, match_id: match.id, cita: @persona.nombre), method: :get %> </td>
               <% end %>
             </tr>
             <% end %>

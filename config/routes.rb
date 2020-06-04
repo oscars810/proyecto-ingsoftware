@@ -49,7 +49,10 @@ Rails.application.routes.draw do
   get 'match/:id', to: 'matches#index', as: :match
 
   # Proponer Cita
-  patch 'perfil/:id', to: 'matches#propuse_appointment', as: :perfil_propuse_appointment
+  get 'appointment/:id', to: 'appointment#new', as: :new_appointment
+
+  # Crear Cita
+  post 'appointment/:id', to: 'appointment#create', as: :create_appointment
 
   #Aceptar/Rechazar match_request
   patch 'perfil/:id/:id_matchrequest', to: 'matches#accept_match', as: :perfil_accept_match
