@@ -1,43 +1,22 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>MatchMeat</title>
-  <%= csrf_meta_tags %>
-  <%= csp_meta_tag %>
-
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
-  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-</head>
-<body>
-
 <section class="hero is-danger">
   <div class="hero-body">
-    <div class="container">
-
-      <% if current_user and current_user.id == params[:id].to_i and Local.find_by('user_id = ?', current_user.id) %>
-        <%idlocal = Local.find_by('user_id = ?', current_user.id).id%>
-        <p align='right'><%= link_to 'Ver mi local', local_path(idlocal), class: 'button is-danger is-light'%></p>
-        
-
-      <% elsif current_user.id == params[:id].to_i %>
-        <p align='right'><%= link_to 'Inscribir mi local', new_local_path, class: 'button is-danger is-light' %></p>
+      <h1 class="title has-text-centered">Mi perfil</h1>
+      <div class="buttons is-centered">
+      <% if @local %>
+        <%= link_to 'Ver mi local', local_path(@local.id), class: 'button is-primary is-rounded'%>
+      <% else%>
+        <%= link_to 'Inscribir mi local', new_local_path, class: 'button is-primary is-rounded' %>
       <%end%>
-
-      <% if current_user.id == @user.id %>
-        <h1 class="title has-text-centered">Mi Perfil</h1>
-      <% else %>
-        <h1 class="title has-text-centered">Mi perfil</h1> 
-      <% end %>
-
-    </div>
+      <%= link_to 'Editar perfil', perfil_edit_path(@user.id), class: 'button is-link is-rounded' %>
+      <%= link_to 'Eliminar cuenta', perfil_path(@user.id), class: 'button is-danger is-light is-rounded',  method: :delete, alert: '¿Estas seguro?' %>
   </div>
 </section>
 
+<section class="section">
 <div class="columns">
   <div class="column">
-    <div class="box" style="color: is-danger;">
+    <div class="box">
+      <h1 class="title has-text-centered">Mis datos</h1>
       <article class="media">
         <div class="media-content">
           <div class="content">
@@ -71,121 +50,49 @@
               <%= @commune.nombre%>
             </center></p>
 
-            <% if current_user.id == @user.id %>
-              <p><center>
-                <strong>Todos los Gustos:</strong>
+            <p><center>
+              <% if not @interests_user.nil?%>
+                <strong>Mis Gustos:</strong>
                 <br>
                 <br>
-                <%= form_with(model: @interest_all, url: perfil_edit_interest_path(@user.id), method: :patch) do |form| %>
-                  <div class="field">
+                <div class="field is-grouped is-grouped-multiline">    
+                  <% @interests_user.each do |interest| %>
                     <div class="control">
-                      <div class="select is-fullwidth is-danger">
-                        <%= form.select(:id_interest, Interest.all.collect {|c| [c.nombre, c.id]}) %>
+                      <div class="tags has-addons">
+                        <a class="tag is-danger"><%= interest.nombre %></a>
+                        <a href="<%=perfil_delete_interest_path(@user.id, interest.id)%>" class="tag is-delete"></a>
                       </div>
                     </div>
+                  <% end %>
+                </div>
+              <% end %>
+              <hr>
+              <strong>Agregar gusto:</strong>
+              <br>
+              <br>
+              <%= form_with(model: @interest_all, url: perfil_edit_interest_path(@user.id), method: :patch) do |form| %>
+                <div class="field">
+                  <div class="control">
+                    <div class="select is-fullwidth is-danger">
+                      <%= form.select(:id_interest, Interest.all.collect {|c| [c.nombre, c.id]}) %>
+                    </div>
                   </div>
-                  
-                  <div class="button is-danger" value="Guardar interes">
-                    <%= form.submit "Guardar gusto", class: "button is-danger"%>
-                  </div>
-                <% end %>
-
-                <br>
+                </div>
                 
-                <%if not @interests_user.nil?%>
+                <div class="button is-danger" value="Guardar interes">
+                  <%= form.submit "Guardar gusto", class: "button is-danger"%>
+                </div>
+              <% end %>
+              <br>
+              
 
-                  <strong>Mis Gustos:</strong>
-                  <br>
-                  <br>
-                  <div class="field is-grouped is-grouped-multiline">    
-                    <% @interests_user.each do |interest| %>
-                      <div class="control">
-                        <div class="tags has-addons">
-                          <a class="tag is-danger"><%= interest.nombre %></a>
-                          <a href="<%=perfil_delete_interest_path(@user.id, interest.id)%>" class="tag is-delete"></a>
-                        </div>
-                      </div>
-                    <% end %>
-                  </div>
-                <% end %>
-              </center></p> 
-            <%else%>
-              <p><center>
-                <strong> Gustos: </strong>
-                    <ul>
-                      <% @interests_user.each do |interest| %>
-                        <li><%= interest.nombre %></li>
-                      <% end %>
-                    </ul>
-              </center></p>
-            <% end %>        
+            </center></p>     
           </div>
         </div>
       </article>
     </div>
-
-    <% if current_user.id == @user.id %>
-      <%= link_to 'Editar perfil', perfil_edit_path(@user.id), class: 'button is-link is-inverted' %>
-      <%= link_to 'Eliminar cuenta', perfil_path(@user.id), class: 'button is-danger is-inverted',  method: :delete, alert: '¿Estas seguro?' %>
-
-    <% end %>
   </div>
-  <% if current_user.id == params[:id].to_i%>
-    <div class="column">
-      <div class="box" style="color: is-danger;">
-        <div class="content">
-          <h2><center> Mis Citas </center></h2>
-          <table class="table">
-            <thead>
-              <tr>
-                <td> Local  </td>
-                <td> Estado </td>
-                <td> Acción </td>
-              </tr>
-            </thead>
-            <tbody>
-              <% @pending_valuations.each do |valuation|%>
-              <tr>
-                <td> <%= valuation.local.nombre %> </td>
-                <td> Cita exitosa </td>
-                <td> <%= link_to 'Dejar valoración', new_local_comentario_path(valuation.local.id, valuation_id: valuation.id)%>
-              </tr>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  <% end %>
-</div>
-<% if current_user.id == params[:id].to_i%>
-<div class="columns">
-  <div class="column is-two-fifths">
-    <div class="box">
-      <div class="content">
-      <h1 class="title is-5"> Personas que quieren hacer match contigo:</h1>
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Persona</th>
-            <th>Aceptar</th>
-            <th>Rechazar</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @match_nuevos.each do |match| %>
-            <% @persona = User.find(match.solicitante_id) %>
-            <tr>
-              <td><%=@persona.nombre%></td>
-              <td><i class="far fa-heart"></i><%= link_to 'Aceptar', perfil_accept_match_path(@user.id, match.id, aceptar: true), method: :patch%><i class="far fa-heart"></i></td>
-              <td><%= link_to 'Rechazar', perfil_accept_match_path(@user.id, match.id, aceptar: false), method: :patch %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-    </div>
-  </div>
+
   <div class="column">
     <div class="box" style="color: is-danger;">
       <div class="content">
@@ -193,10 +100,10 @@
         <table class="table">
           <thead>
             <tr>
-              <td> Persona  </td>
-              <td> Telefono </td>
-              <td> Correo </td>
-              <td> Acción </td>
+              <th> Persona  </th>
+              <th> Telefono </th>
+              <th> Correo </th>
+              <th> Acción </th>
             </tr>
           </thead>
           <tbody>
@@ -221,7 +128,58 @@
     </div>
   </div>
 </div>
-<% end %>
-</body>
-</html>
+</section>
 
+<section class="section">
+<div class="columns">
+  <div class="column">
+    <div class="box">
+      <div class="content">
+      <h1 class="title has-text-centered"> Solicitudes de match</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Persona</th>
+            <th>Aceptar</th>
+            <th>Rechazar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @match_nuevos.each do |match| %>
+            <% @persona = User.find(match.solicitante_id) %>
+            <tr>
+              <td><%=@persona.nombre%></td>
+              <td><i class="far fa-heart"></i><%= link_to 'Aceptar', perfil_accept_match_path(@user.id, match.id, aceptar: true), method: :patch, class: "button is-success"%><i class="far fa-heart"></i></td>
+              <td><%= link_to 'Rechazar', perfil_accept_match_path(@user.id, match.id, aceptar: false), method: :patch , class: "button is-danger"%></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    </div>
+  </div>
+  <div class="column">
+    <div class="box">
+      <div class="content">
+        <h1 class="title has-text-centered"> Valoraciones pendientes</h1>
+        <table class="table">
+          <thead>
+            <tr>
+              <th> Local  </th>
+              <th> Acción </th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @pending_valuations.each do |valuation|%>
+            <tr>
+              <td> <%= valuation.local.nombre %> </td>
+              <td> <%= link_to 'Dejar valoración', new_local_comentario_path(valuation.local.id, valuation_id: valuation.id), class: "button is-primary"%>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
