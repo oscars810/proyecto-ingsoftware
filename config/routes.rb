@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'admin', to: 'admin#index'
 
   scope '/admin' do
+    get 'usuarios', to: 'perfil#index', as: 'admin_usuarios'
     get 'locales', to: 'admin#ver_locales', as: 'admin_locales'
     delete 'locales/:local_id', to: 'admin#eliminar_local', as: 'admin_delete_local'
     get 'aceptar_locales', to: 'admin#aceptar_locales', as: 'admin_aceptar_locales'
@@ -27,8 +28,7 @@ Rails.application.routes.draw do
                                     registrations: 'users/registrations' }
 
   # Read Usuarios
-  get 'perfiles', to: 'perfil#index'
-  get 'perfil/:id', to: 'perfil#show', as: :perfil
+  get 'perfil/:user_id', to: 'perfil#show', as: :perfil
 
   # Update perfil
   get 'perfil/:id/edit', to: 'perfil#edit', as: :perfil_edit

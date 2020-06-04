@@ -4,6 +4,7 @@ class PerfilController < ApplicationController
   # Read
   def index
     @users = User.where("admin = false")
+    render :layout => 'admin'
   end
 
   #Show
