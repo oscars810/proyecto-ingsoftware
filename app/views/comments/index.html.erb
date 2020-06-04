@@ -1,5 +1,6 @@
+<section class="section">
 <div class="container">
-<h1 class="title is-5 has-text-white">Comentarios</h1>
+<h1 class="title is-5 has-text-centered">Comentarios</h1>
 
 <table class="table">
 <thead>
@@ -17,12 +18,12 @@
         <td><%= comentario.user.nombre %></td>
         <td><%= comentario.local.nombre %></td>
         <td><%= comentario.contenido %></td>
-        <td><%= link_to 'Eliminar comentario', comentario_path(comentario.id, :admin => true),  method: :delete, alert: '¿Estas seguro?' %></td>
+        <td><%= link_to 'Eliminar comentario', comentario_path(comentario.id, :admin => true),  method: :delete, class: "button is-danger"%></td>
     </tr>
     <% end %>
 </tbody>
 </table>
 
-<br>
-<%= link_to 'Volver al Panel', admin_path%>
+<%= link_to 'Volver al Panel', admin_path, class: "button is-link"%>
 </div>
+</section>
