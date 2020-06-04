@@ -1,8 +1,16 @@
-<p>
-  <strong>Nombre:</strong>
-  <%= @comuna.nombre %>
-</p>
-
-<%= link_to 'Editar Comuna', edit_comuna_path(@comuna.id) %>
-<%= link_to 'Eliminar Comuna', comuna_path(@comuna.id), method: :delete, alert: 'Estás seguro?' %>
-<%= link_to 'Lista de Comunas', comunas_path %>
+<section class="section">
+  <div class="columns">
+    <div class="column"></div>
+    <div class="column is-4">
+      <div class="box">
+        <h1 class="title has-text-centered">Comuna de <%= @comuna.nombre %></h1>
+        <div class="actions">
+          <%= link_to "Editar", edit_comuna_path(@comuna.id), class: "button is-primary"%>
+          <%= link_to "Eliminar", comuna_path(@comuna.id), method: :delete, class: "button is-danger"%>
+          <%= link_to "Volver", comunas_path, class: "button is-link"%>
+        </div>
+      </div>
+    </div>
+    <div class="column"></div>
+  </div>
+</section>
