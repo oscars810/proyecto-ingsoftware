@@ -134,7 +134,7 @@
     <div class="column">
       <div class="box" style="color: is-danger;">
         <div class="content">
-          <h2><center> Mis match </center></h2>
+          <h2><center> Mis Citas </center></h2>
           <table class="table">
             <thead>
               <tr>
@@ -147,7 +147,7 @@
               <% @pending_valuations.each do |valuation|%>
               <tr>
                 <td> <%= valuation.local.nombre %> </td>
-                <td> Realizada </td>
+                <td> Cita exitosa </td>
                 <td> <%= link_to 'Dejar valoración', new_local_comentario_path(valuation.local.id, valuation_id: valuation.id)%>
               </tr>
               <% end %>
@@ -177,7 +177,7 @@
             <% @persona = User.find(match.solicitante_id) %>
             <tr>
               <td><%=@persona.nombre%></td>
-              <td><%= link_to 'Aceptar', perfil_accept_match_path(@user.id, match.id, aceptar: true), method: :patch %></td>
+              <td><i class="far fa-heart"></i><%= link_to 'Aceptar', perfil_accept_match_path(@user.id, match.id, aceptar: true), method: :patch%><i class="far fa-heart"></i></td>
               <td><%= link_to 'Rechazar', perfil_accept_match_path(@user.id, match.id, aceptar: false), method: :patch %></td>
             </tr>
           <% end %>
@@ -186,7 +186,42 @@
     </div>
     </div>
   </div>
+  <div class="column">
+    <div class="box" style="color: is-danger;">
+      <div class="content">
+        <h2><center> Mis match </center></h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <td> Persona  </td>
+              <td> Telefono </td>
+              <td> Correo </td>
+              <td> Acción </td>
+            </tr>
+          </thead>
+          <tbody>
+            <% @match_todos.each do |match|%>
+              <% if match.user1_id == @user.id %>
+                <% @persona = User.find(match.user2_id) %>
+              <% else %>
+                <% @persona = User.find(match.user1_id) %>
+              <% end %>
+            <tr>
+              <% unless match.cita_realizada %>
+              <td> @persona.nombre </td>
+              <td> @persona.telefono</td>
+              <td> @persona.email </td>
+              <td> <%= link_to 'Proponer cita', perfil_propuse_appointment_path(@user.id, match_id: match.id), method: :patch %> </td>
+              <% end %>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
 <% end %>
 </body>
 </html>
+

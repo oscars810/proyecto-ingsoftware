@@ -16,6 +16,7 @@ class PerfilController < ApplicationController
       @interests_user = @user.interests
       @interests_all = Interest.all
       @pending_valuations = current_user.valuations.where("realizada = false")
+
       #Cada vez que entra a su perfil busca posibles match que se hayan hecho mutuamente por casualidad
       @match_nuevos = MatchRequest.where('solicitado_id = ?', @user.id)
       @match_nuevos.each do |m|
@@ -33,6 +34,7 @@ class PerfilController < ApplicationController
         end
       end
       @match_nuevos = MatchRequest.where('solicitado_id = ?', @user.id)
+      @match_todos = Match.where('user1_id = ? or user2_id = ?', @user.id, @user.id)
     end
   end
 
@@ -85,31 +87,5 @@ class PerfilController < ApplicationController
     @user.destroy
     redirect_to root_path, notice: 'Usuario eliminado con exito' 
 
-  end
-
-  def accept_match
-    if params[:aceptar]
-      @user = User.find(params[:id])
-      @match_request = MatchRequest.find(params[:id_matchrequest])
-      match = Match.new(user1_id: @match_request.solicitante_id,
-                user2_id: @match_request.solicitado_id,
-                cita_realizada: false,
-                appointment_id: nil)
-      match.save!
-      @match_request.destroy
-      redirect_to perfil_path(@user.id)
-    else
-      @user = User.find(params[:id])
-      @match_request = MatchRequest.find(params[:id_matchrequest])
-      @match_request.destroy
-      redirect_to perfil_path(@user.id)
-    end
-  end
-
-  def reject_match
-    @user = User.find(params[:id])
-    @match_request = MatchRequest.find(params[:id_matchrequest])
-    @match_request.destroy
-    redirect_to perfil_path(@user.id)
   end
 end
