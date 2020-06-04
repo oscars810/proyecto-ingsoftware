@@ -1,27 +1,27 @@
-<div class="container">
-    <h1 class="title is-5 has-text-white">Locales Pendientes</h1>
+<section class="section">
+<div class="box">
+<h1 class="title is-5 has-text-centered">Aceptar locales</h1>
 
-    <hr>
-    <table class="table">
-    <thead>
-        <tr>
-        <th>Nombre</th>
-        <th>Descripción</th>
-        <th colspan="3"> Acciones </th>
-        </tr>
-    </thead>
+<table class="table is-fullwidth is-striped">
+<thead>
+    <tr>
+    <th>Nombre</th>
+    <th>Descripción</th>
+    <th>Acciones</th>
+    </tr>
+</thead>
 
-    <tbody>
-        <% @locales_pendientes.each do |local| %>
-        <tr>
-            <td><%= local.nombre %></td>
-            <td><%= local.descripcion %></td>
-            <td><%= link_to 'Aceptar Local', admin_aceptar_local_path(local.id), method: :patch%></td>
-        </tr>
-        <% end %>
-    </tbody>
-    </table>
+<tbody>
+    <% @locales_pendientes.each do |local| %>
+    <tr>
+        <td><%= local.nombre %></td>
+        <td><%= local.descripcion %></td>
+        <td><%= link_to 'Aceptar local', admin_aceptar_local_path(local.id), method: :patch, class: "button is-primary"%></td>
+    </tr>
+    <% end %>
+</tbody>
+</table>
 
-    <br>
-    <%= link_to 'Volver al Panel', admin_path, style: "color:white"%>
+<%= link_to 'Volver al Panel', admin_path, class: "button is-link"%>
 </div>
+</section>
