@@ -32,6 +32,7 @@
                 <th>Edad</th>
                 <th>Descripcion</th>
                 <th>Gustos</th>
+                <th>Match</th>
               </tr>
             </thead> 
             <tbody>
@@ -48,6 +49,7 @@
                         <% end %>
                       </ul>
                     </td>
+                    <th><%= link_to 'MATCH', match_new_path(@user.id, usuario.id), class: 'button is-link is-inverted', method: :get %></td>
 
                   </tr>
                 <% end %>
@@ -62,8 +64,8 @@
   <div class="column"></div>
 </div>
 
-<div style='width: 400px; margin-left: 415px; .pagination-ellipsis color:  white'>
-  <%= will_paginate @users, renderer: BulmaPagination::Rails, class: 'is-centered' %>
+<div style='width: 500px; margin-left: 405px; background-color: white;'>
+  <%= will_paginate @users, renderer: BulmaPagination::Rails, class: 'pagination is-rounded' %>
 </div>
 
 </body>

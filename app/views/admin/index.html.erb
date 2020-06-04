@@ -1,23 +1,16 @@
-<head>
-	<title>Admin</title>
-	<%= csrf_meta_tags %>
-	<%= csp_meta_tag %>
-
-	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-	<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
-	<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-</head>
-
-<div class="container has-text-white">
-	<h1 class="title is-4 has-text-white">¿Qué deseas administrar?</h1>
-
-<ul>
-    <li> <%= link_to 'Comunas', comunas_path, style: "color:white" %></li>
-    <li> <%= link_to 'Gustos', gustos_path, style: "color:white"%>
-    <li> <%= link_to 'Locales', admin_locales_path, style: "color:white"%> </li>
-    <li> <%= link_to 'Usuarios', perfiles_path, style: "color:white" %></li>
-    <li> <%= link_to 'Comentarios', comentarios_path, style: "color:white"%> </li>
-    <li> <%= link_to 'Aceptar Locales', admin_aceptar_locales_path, style: "color:white"%> </li>
-</ul>
-</div>
+<section class="section">
+	<div class="columns">
+		<div class="column"></div>
+		<div class="column is-4">
+			<h1 class="title has-text-centered">¿Qué deseas administrar?</h1>
+			<div class="list is-hoverable">
+				<%= link_to "Comunas", comunas_path, class: "list-item has-text-centered"%>
+				<%= link_to "Gustos", gustos_path, class: "list-item has-text-centered"%>
+				<%= link_to "Locales", admin_locales_path, class: "list-item has-text-centered"%>
+				<%= link_to "Usuarios", perfiles_path, class: "list-item has-text-centered"%>
+				<%= link_to "Comentarios", comentarios_path, class: "list-item has-text-centered"%>
+				<%= link_to "Aceptar locales", admin_aceptar_locales_path, class: "list-item has-text-centered"%>
+			</div>
+		</div>
+		<div class="column"></div>
+</section>
