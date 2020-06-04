@@ -1,27 +1,29 @@
-<h1>Dejar Valoración en <%= @local.nombre%></h1>
+<div class="columns">
+    <div class="column"></div>
+    <div class="column is-6">
+        <div class="box">
+            <h1 class="title has-text-centered"> Nueva valoración en <%= @local.nombre %></h1>
+            <%= form_with(model: @comentario, url: local_comentarios_path(@local.id, valuation_id: @valuation_id), method: :post) do |form| %>
+                <div class="control">
+                    Valoración (Obligatoria): <br>
+                    <% [1, 2, 3, 4, 5].each do |i|%>
+                    <label class="radio">
+                        <%= i %>
+                        <%= form.radio_button(:valuation, i)%>
+                    </label>
+                    <% end %>
+                </div><br>
+                <div class="field">
+                    Comentario (Opcional)
+                    <%= form.text_area :contenido, class: "textarea"%>
+                </div>
 
-<%= form_with(model: @comentario, url: local_comentarios_path(@local.id, valuation_id: @valuation_id), method: :post) do |form| %>
-<div class="field">
-    <%= form.label "Comentario (Opcional)" %></br>
-    <%= form.text_area :contenido %>
+                <div class="actions">
+                    <%= form.submit 'Dejar Valoración', class: "button is-primary"%>
+                    <%= link_to "Volver", perfil_path(current_user.id), class: "button is-link"%>
+                </div>
+            <% end %>
+        </div>
+    </div>
+    <div class="column"></div>
 </div>
-
-</br>
-<div class="control">
-    <%= form.label "Valoración (Obligatorio)"%>
-    </br>
-    <% [1, 2, 3, 4, 5].each do |i|%>
-    <label class="radio">
-        <%= i %>
-        <%= form.radio_button(:valuation, i)%>
-    </label>
-    <% end %>
-</div>
-
-</br>
-<div class="actions">
-    <%= form.submit 'Dejar Valoración'%>
-</div>
-<% end %>
-
-<%= link_to 'Volver', perfil_path(current_user.id) %>
