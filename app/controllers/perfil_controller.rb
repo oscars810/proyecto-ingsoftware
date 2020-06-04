@@ -3,7 +3,7 @@ class PerfilController < ApplicationController
   
   # Read
   def index
-    @users = User.all
+    @users = User.where("admin = false")
   end
 
   #Show

@@ -1,28 +1,33 @@
-<div class="container">
-<h1 class="title is-5 has-text-white is-spaced">Comunas</h1>
+<section class="section">
+<div class="columns">
+  <div class="column"></div>
+  <div class="column is-4">
+    <div class="box">
+      <h1 class="title has-text-centered"> Comunas </h1>
+      <table class="table is-striped is-fullwidth">
+        <thead>
+          <tr>
+            <th> Nombre </th>
+            <th> Acciones </th>
+          </tr>
+        </thead>
 
-<hr>
-<table class="table">
-  <thead>
-    <tr>
-      <th>Nombre</th>
-      <th colspan="3"> Acciones </th>
-    </tr>
-  </thead>
+        <tbody>
+          <% @comunas.each do |comuna| %>
+            <tr>
+              <td><%= comuna.nombre %>
+              <td><%=link_to "Ver detalles", comuna_path(comuna.id), class: "button is-primary"%>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
 
-  <tbody>
-    <% @comunas.each do |comuna| %>
-      <tr>
-        <td><%= comuna.nombre %></td>
-        <td><%= link_to 'Ver', comuna_path(comuna.id)%></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'Crear Comuna', new_comuna_path, style: "color:white" %>
-<br>
-<%= link_to 'Volver al Panel', admin_path, style: "color:white" %>
+      <div class="actions">
+        <%= link_to "Crear comuna", new_comuna_path, class: "button is-primary"%>
+        <%= link_to "Volver al panel", admin_path, class: "button is-link"%>
+      </div>
+    </div>
+  </div>
+  <div class="column"></div>
 </div>
+</section>
