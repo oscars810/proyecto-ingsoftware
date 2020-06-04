@@ -15,6 +15,15 @@ ActiveRecord::Schema.define(version: 2020_06_03_025255) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "appointments", force: :cascade do |t|
+    t.integer "match_id"
+    t.integer "solicitante_id"
+    t.integer "local_id"
+    t.date "fecha"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "comments", force: :cascade do |t|
     t.text "contenido"
     t.integer "user_id"
@@ -55,6 +64,15 @@ ActiveRecord::Schema.define(version: 2020_06_03_025255) do
     t.integer "idsolicitud"
     t.integer "solicitado_id"
     t.integer "solicitante_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "matches", force: :cascade do |t|
+    t.integer "user1_id"
+    t.integer "user2_id"
+    t.boolean "cita_realizada"
+    t.integer "appointment_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
