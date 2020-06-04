@@ -47,4 +47,5 @@ Rails.application.routes.draw do
   get 'match/:id', to: 'matches#index', as: :match
 
   # Create match
+  get 'match/:id/:idsolicitado', to: 'matches#new', as: :match_new
 end

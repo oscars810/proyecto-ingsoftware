@@ -36,7 +36,7 @@ interest.save!
 
 interest = Interest.new(nombre: 'Viajar', descripcion: 'Para los amantes de viajar')
 interest.save!
-
+ 
 user = User.new(email: 'hackerman@uc.cl',
                 password: 'hackerman',
                 password_confirmation: 'hackerman',
@@ -44,6 +44,7 @@ user = User.new(email: 'hackerman@uc.cl',
                 nombre: 'Admin',
                 commune_id: 1)
 user.save!
+
 
 user = User.new(email: 'oscar@uc.cl',
                 password: 'oscars810',
@@ -212,6 +213,7 @@ menu = Menu.new(local_id: 2,
                 descripcion: 'Sandwich que posee jamón, tomate, queso, lechuga, pepino, pepinillo y aceitunas',
                 precio: 1000)
 menu.save!
+
 
 menu = Menu.new(local_id: 4,
                 nombre: 'Metanfetamina',
