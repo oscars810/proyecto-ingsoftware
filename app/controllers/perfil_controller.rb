@@ -9,10 +9,9 @@ class PerfilController < ApplicationController
 
   #Show
   def show
-    unless user_signed_in?
-      redirect_to root_path, notice: 'Usted debe ingresar sesión para poder ver el perfil de otro usuario'
-    else
-      @user = User.find(params[:id])
+    if user_signed_in? and current_user.id == params[:user_id].to_i
+      @user = User.find(params[:user_id])
+      @local = @user.local
       @commune = @user.commune
       @interests_user = @user.interests
       @interests_all = Interest.all
@@ -36,6 +35,8 @@ class PerfilController < ApplicationController
       end
       @match_nuevos = MatchRequest.where('solicitado_id = ?', @user.id)
       @match_todos = Match.where('user1_id = ? or user2_id = ?', @user.id, @user.id)
+    else
+      redirect_to root_path, notice: 'No puedes acceder a esta página'
     end
   end
 
@@ -79,7 +80,7 @@ class PerfilController < ApplicationController
     @interest = Interest.find(params[:idinterest])
     @user = User.find(params[:id])
     @user.interests.delete(@interest)
-    redirect_to perfil_path(@user.id), notice: 'Revisar si se eliminó el interes'
+    redirect_to perfil_path(@user.id), notice: 'El interés ha sido eliminado de forma exitosa'
   end
 
   #Delete
