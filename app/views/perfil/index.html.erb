@@ -1,13 +1,15 @@
-<div class="container">
-  <h1 class="title is-5 has-text-white">Usuarios</h1>
-<hr>
-<table class="table">
+<section class="section">
+<div class="box">
+<h1 class="title is-5 has-text-centered">Usuarios</h1>
+
+<table class="table is-fullwidth is-striped">
 <thead>
     <tr>
     <th>Email</th>
     <th>Nombre</th>
+    <th>Descripcion</th>
     <th>Edad</th>
-    <th colspan="3"> Acciones </th>
+    <th>Acciones</th>
     </tr>
 </thead>
 
@@ -16,13 +18,14 @@
     <tr>
         <td><%= usuario.email %></td>
         <td><%= usuario.nombre %></td>
+        <td><%= usuario.descripcion%></td>
         <td><%= usuario.edad %></td>
-        <td><%= link_to 'Eliminar cuenta', perfil_path(usuario.id),  method: :delete, alert: '¿Estas seguro?' %></td>
+        <td><%= link_to 'Eliminar cuenta', perfil_path(usuario.id),  method: :delete, class: "button is-danger"%></td>
     </tr>
     <% end %>
 </tbody>
 </table>
 
-<br>
-<%= link_to 'Volver al Panel', admin_path, style: "color:white"%>
+<%= link_to 'Volver al Panel', admin_path, class: "button is-link"%>
 </div>
+</section>
