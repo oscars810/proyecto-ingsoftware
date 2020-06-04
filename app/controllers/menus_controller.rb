@@ -4,7 +4,7 @@ class MenusController < ApplicationController
       redirect_to local_index_path, notice: 'No puedes acceder a esta página'
     else
       @menu = Menu.new
-      @local_id = params[:local_id]
+      @local = Local.find(params[:local_id])
     end
   end
 
