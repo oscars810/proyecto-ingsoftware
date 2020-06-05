@@ -86,8 +86,10 @@ class PerfilController < ApplicationController
   #Delete
   def destroy
     @user = User.find(params[:id])
+
+    MatchRequest.where(solicitante_id: @user.id).destroy_all
+    MatchRequest.where(solicitado_id: @user.id).destroy_all
     @user.destroy
     redirect_to root_path, notice: 'Usuario eliminado con exito' 
-
   end
 end
