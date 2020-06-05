@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'admin', to: 'admin#index'
 
   scope '/admin' do
+    get 'usuarios', to: 'perfil#index', as: 'admin_usuarios'
     get 'locales', to: 'admin#ver_locales', as: 'admin_locales'
     delete 'locales/:local_id', to: 'admin#eliminar_local', as: 'admin_delete_local'
     get 'aceptar_locales', to: 'admin#aceptar_locales', as: 'admin_aceptar_locales'
@@ -27,8 +28,7 @@ Rails.application.routes.draw do
                                     registrations: 'users/registrations' }
 
   # Read Usuarios
-  get 'perfiles', to: 'perfil#index'
-  get 'perfil/:id', to: 'perfil#show', as: :perfil
+  get 'perfil/:user_id', to: 'perfil#show', as: :perfil
 
   # Update perfil
   get 'perfil/:id/edit', to: 'perfil#edit', as: :perfil_edit
@@ -39,8 +39,7 @@ Rails.application.routes.draw do
   patch 'perfil_interest/:id', to: 'perfil#update_interest', as: :perfil_edit_interest
   get 'perfil/:id/:idinterest', to: 'perfil#delete_interest', as: :perfil_delete_interest
 
-  #Aceptar/Rechazar match_request
-  patch 'perfil/:id/:id_matchrequest', to: 'perfil#accept_match', as: :perfil_accept_match
+ 
 
   # Delete perfil
   delete 'perfil/:id', to: 'perfil#destroy'
@@ -51,4 +50,16 @@ Rails.application.routes.draw do
 
   # Create match
   get 'match/:id/:idsolicitado', to: 'matches#new', as: :match_new
+  #Aceptar/Rechazar match_request
+  patch 'perfil/:id/:id_matchrequest', to: 'matches#accept_match', as: :perfil_accept_match
+
+  #CITAS
+  # Proponer Cita
+  get 'appointment/:id', to: 'appointment#new', as: :new_appointment
+
+  # Crear Cita
+  post 'appointment/:id', to: 'appointment#create', as: :create_appointment
+
+  # Aceptar Cita
+  put 'perfil/:id/:appointment_id', to: 'appointment#accept', as: :accept_appointment
 end
