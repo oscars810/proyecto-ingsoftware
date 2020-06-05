@@ -274,6 +274,27 @@ local = Local.new(nombre: 'Pollos Hermanos',
                   user_id: 5)
 local.save!
 
+local = Local.new(nombre: 'SubGuay',
+                descripcion: 'Sandwiches con todo lo que puedas comer.',
+                aceptado: true,
+                commune_id: 1,
+                user_id: 9)
+local.save!
+
+local = Local.new(nombre: 'Chicken Brother',
+                descripcion: 'Totalmente una copia de un local de pollos.',
+                aceptado: false,
+                commune_id: 2,
+                user_id: 8)
+local.save!
+
+local = Local.new(nombre: 'El Fito',
+                descripcion: 'Grandes cantidades de cerveza por bajas cantidades de dinero.',
+                aceptado: true,
+                commune_id: 2,
+                user_id: 7)
+local.save!
+
 comentario = Comment.new(contenido: 'Un local bastante variado y con muy buena atención', 
                         user_id: 8,
                         local_id: 1)
@@ -297,6 +318,27 @@ comentario.save!
 comentario = Comment.new(contenido: 'Se demoraban demasiado en atender, pero la comida estaba muy buena',
                          user_id: 11,
                          local_id: 4)
+comentario.save!
+
+comentario = Comment.new(contenido: 'Pesima atencion',
+    user_id: 11,
+    local_id: 5)
+comentario.save!
+
+comentario = Comment.new(contenido: 'El mejor lugar para ir con amigos',
+    user_id: 10,
+    local_id: 7)
+comentario.save!
+
+comentario = Comment.new(contenido: 'Atencion lenta, pero la comida vale la pena',
+    user_id: 9,
+    local_id: 5)
+comentario.save!
+
+comentario = Comment.new(contenido: 'Excelentes precios!!!!!!!',
+    user_id: 11,
+    local_id: 7)
+comentario.save!
 
 menu = Menu.new(local_id: 1,
                 nombre: 'Cazuela',
@@ -383,6 +425,65 @@ valuation = Valuation.new(local_id: 2,
                           realizada: true)
 valuation.save!
 
+valuation = Valuation.new(local_id: 5,
+    user_id: 11,
+    puntuacion: 1,
+    realizada: true)
+valuation.save!
+
+valuation = Valuation.new(local_id: 7,
+    user_id: 10,
+    puntuacion: 5,
+    realizada: true)
+valuation.save!
+
+valuation = Valuation.new(local_id: 5,
+    user_id: 9,
+    puntuacion: 4,
+    realizada: true)
+valuation.save!
+
+valuation = Valuation.new(local_id: 7,
+    user_id: 11,
+    puntuacion: 5,
+    realizada: true)
+valuation.save!
+
+valuation = Valuation.new(local_id: 4,
+    user_id: 9,
+    puntuacion: 4,
+    realizada: true)
+valuation.save!
+
+valuation = Valuation.new(local_id: 4,
+    user_id: 8,
+    puntuacion: 2,
+    realizada: true)
+valuation.save!
+
+valuation = Valuation.new(local_id: 1,
+    user_id: 7,
+    puntuacion: 5,
+    realizada: true)
+valuation.save!
+
+valuation = Valuation.new(local_id: 1,
+    user_id: 2,
+    puntuacion: 3,
+    realizada: true)
+valuation.save!
+
+valuation = Valuation.new(local_id: 2,
+    user_id: 6,
+    puntuacion: 5,
+    realizada: true)
+valuation.save!
+
+valuation = Valuation.new(local_id: 2,
+    user_id: 7,
+    puntuacion: 4,
+    realizada: true)
+valuation.save!
 
 match_request = MatchRequest.new(
                 solicitante_id: 2,
@@ -405,4 +506,29 @@ match_request.save!
 match_request = MatchRequest.new(
                 solicitante_id: 5,
                 solicitado_id: 2)
+match_request.save!
+
+match_request = MatchRequest.new(
+    solicitante_id: 3,
+    solicitado_id: 7)
+match_request.save!
+
+match_request = MatchRequest.new(
+    solicitante_id: 3,
+    solicitado_id: 8)
+match_request.save!
+
+match_request = MatchRequest.new(
+    solicitante_id: 3,
+    solicitado_id: 9)
+match_request.save!
+
+match_request = MatchRequest.new(
+    solicitante_id: 3,
+    solicitado_id: 13)
+match_request.save!
+
+match_request = MatchRequest.new(
+    solicitante_id: 3,
+    solicitado_id: 14)
 match_request.save!
