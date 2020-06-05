@@ -9,25 +9,25 @@ class MatchesController < ApplicationController
       #@users = User.all.paginate(page: params[:page], per_page: 2)
       @user = User.find(params[:id])
 
-    @users_previus = User.where("id != " + @user.id.to_s + " AND admin = false")
-    @matches_request = MatchRequest.where("solicitante_id = " + @user.id.to_s)
-    @users = []
-    
-    @users_previus.each do |user|
-      repetido = false
-      @matches_request.each do |match_request|
-        if match_request.solicitado_id == user.id
-          repetido = true
-          break
+      @users_previus = User.where("id != " + @user.id.to_s + " AND admin = false")
+      @matches_request = MatchRequest.where("solicitante_id = " + @user.id.to_s)
+      @users = []
+      
+      @users_previus.each do |user|
+        repetido = false
+        @matches_request.each do |match_request|
+          if match_request.solicitado_id == user.id
+            repetido = true
+            break
+          end
+        end
+        if not repetido
+          @users << user
         end
       end
-      if not repetido
-        @users << user
-      end
-    end
-    @users = @users.shuffle!
-    @users = @users.paginate(page: params[:page], per_page: 3)
-      
+      @users = @users.shuffle!
+      @users = @users.paginate(page: params[:page], per_page: 3)
+        
     end
   end
 
@@ -42,7 +42,6 @@ class MatchesController < ApplicationController
     
 
     redirect_to match_path(@user.id)
-    end
   end
 
   def accept_match
