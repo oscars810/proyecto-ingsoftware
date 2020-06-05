@@ -1,3 +1,4 @@
+
 comuna = Commune.new(nombre: 'Santiago Centro')
 comuna.save!
 

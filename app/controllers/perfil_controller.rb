@@ -3,19 +3,20 @@ class PerfilController < ApplicationController
   
   # Read
   def index
-    @users = User.all
+    @users = User.where("admin = false")
+    render :layout => 'admin'
   end
 
   #Show
   def show
-    unless user_signed_in?
-      redirect_to root_path, notice: 'Usted debe ingresar sesión para poder ver el perfil de otro usuario'
-    else
-      @user = User.find(params[:id])
+    if user_signed_in? and current_user.id == params[:user_id].to_i
+      @user = User.find(params[:user_id])
+      @local = @user.local
       @commune = @user.commune
       @interests_user = @user.interests
       @interests_all = Interest.all
       @pending_valuations = current_user.valuations.where("realizada = false")
+
       #Cada vez que entra a su perfil busca posibles match que se hayan hecho mutuamente por casualidad
       @match_nuevos = MatchRequest.where('solicitado_id = ?', @user.id)
       @match_nuevos.each do |m|
@@ -33,6 +34,9 @@ class PerfilController < ApplicationController
         end
       end
       @match_nuevos = MatchRequest.where('solicitado_id = ?', @user.id)
+      @match_todos = Match.where('user1_id = ? or user2_id = ?', @user.id, @user.id)
+    else
+      redirect_to root_path, notice: 'No puedes acceder a esta página'
     end
   end
 
@@ -76,7 +80,7 @@ class PerfilController < ApplicationController
     @interest = Interest.find(params[:idinterest])
     @user = User.find(params[:id])
     @user.interests.delete(@interest)
-    redirect_to perfil_path(@user.id), notice: 'Revisar si se eliminó el interes'
+    redirect_to perfil_path(@user.id), notice: 'El interés ha sido eliminado de forma exitosa'
   end
 
   #Delete
@@ -85,31 +89,5 @@ class PerfilController < ApplicationController
     @user.destroy
     redirect_to root_path, notice: 'Usuario eliminado con exito' 
 
-  end
-
-  def accept_match
-    if params[:aceptar]
-      @user = User.find(params[:id])
-      @match_request = MatchRequest.find(params[:id_matchrequest])
-      match = Match.new(user1_id: @match_request.solicitante_id,
-                user2_id: @match_request.solicitado_id,
-                cita_realizada: false,
-                appointment_id: nil)
-      match.save!
-      @match_request.destroy
-      redirect_to perfil_path(@user.id)
-    else
-      @user = User.find(params[:id])
-      @match_request = MatchRequest.find(params[:id_matchrequest])
-      @match_request.destroy
-      redirect_to perfil_path(@user.id)
-    end
-  end
-
-  def reject_match
-    @user = User.find(params[:id])
-    @match_request = MatchRequest.find(params[:id_matchrequest])
-    @match_request.destroy
-    redirect_to perfil_path(@user.id)
   end
 end

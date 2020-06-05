@@ -9,6 +9,7 @@ class MatchesController < ApplicationController
       #@users = User.all.paginate(page: params[:page], per_page: 2)
       @user = User.find(params[:id])
 
+<<<<<<< HEAD
     @users_previus = User.where("id != " + @user.id.to_s + " AND admin = false")
     @matches_request = MatchRequest.where("solicitante_id = " + @user.id.to_s)
     @users = []
@@ -42,5 +43,28 @@ class MatchesController < ApplicationController
     
 
     redirect_to match_path(@user.id)
+=======
+      @users = User.where("id != " + @user.id.to_s).paginate(page: params[:page], per_page: 2)
+    end
+  end
+
+  def accept_match
+    if params[:aceptar] == "true"
+      @user = User.find(params[:id])
+      @match_request = MatchRequest.find(params[:id_matchrequest])
+      match = Match.new(user1_id: @match_request.solicitante_id,
+                user2_id: @match_request.solicitado_id,
+                cita_realizada: false,
+                local_id: nil)
+      match.save!
+      @match_request.destroy
+      redirect_to perfil_path(@user.id)
+    else
+      @user = User.find(params[:id])
+      @match_request = MatchRequest.find(params[:id_matchrequest])
+      @match_request.destroy
+      redirect_to perfil_path(@user.id)
+    end
+>>>>>>> 06549ac1098af2c2b61652158dd796954a2cbe3c
   end
 end

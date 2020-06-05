@@ -1,28 +1,27 @@
-<div class="container">
-<h1 class="title is-5 has-text-white">Locales Aceptados</h1>
+<section class="section">
+<div class="box">
+<h1 class="title is-5 has-text-centered">Locales</h1>
 
-<hr>
-<table class="table">
-  <thead>
+<table class="table is-fullwidth is-striped">
+<thead>
     <tr>
-      <th>Nombre</th>
-      <th>Descripción</th>
-      <th colspan="3"> Acciones </th>
+    <th>Nombre</th>
+    <th>Descripción</th>
+    <th>Acciones</th>
     </tr>
-  </thead>
+</thead>
 
-  <tbody>
+<tbody>
     <% @locales.each do |local| %>
-      <tr>
+    <tr>
         <td><%= local.nombre %></td>
         <td><%= local.descripcion %></td>
-        <td><%= link_to 'Eliminar Local', admin_delete_local_path(local.id),  method: :delete, alert: '¿Estas seguro?' %></td>
-      </tr>
+        <td><%= link_to 'Eliminar local', admin_delete_local_path(local.id),  method: :delete, class: "button is-danger"%></td>
+    </tr>
     <% end %>
-  </tbody>
+</tbody>
 </table>
 
-<br>
-
-<%= link_to 'Volver al Panel', admin_path, style: "color:white"%>
+<%= link_to 'Volver al Panel', admin_path, class: "button is-link"%>
 </div>
+</section>
