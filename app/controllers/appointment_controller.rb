@@ -21,20 +21,25 @@ class AppointmentController < ApplicationController
       @appointment = Appointment.find(params[:appointment_id])
       match = Match.find(@appointment.match_id)
       match.update(:cita_realizada => true, :local_id =>@appointment.local_id)
-      valuation1 = Valuation.new(puntuacion: 0,
-        user_id: @user.id,
-        local_id: @appointment.local_id,
-        realizada: false)
-      valuation1.save
+
+      @fecha = @appointment.fecha
       if match.user1_id == @user.id
-        solicitado_id = match.user2_id
-      else
         solicitado_id = match.user1_id
+        solicitante_id = match.user2_id
+      else
+        solicitado_id = match.user2_id
+        solicitante_id = match.user1_id
       end
-      valuation2 = Valuation.new(puntuacion: 0,
-        user_id: solicitado_id,
+      valuation1 = Valuation.new(user_id: solicitante_id,
         local_id: @appointment.local_id,
-        realizada: false)
+        fecha: @fecha,
+        nombre: User.find(solicitado_id).nombre)
+      valuation1.save
+
+      valuation2 = Valuation.new(user_id: solicitado_id,
+        local_id: @appointment.local_id,
+        fecha: @fecha,
+        nombre: User.find(solicitante_id).nombre)
       if valuation2.save
         trash = Appointment.where("match_id = ?", match.id)
         trash.destroy_all

@@ -8,7 +8,8 @@
         <%= link_to 'Inscribir mi local', new_local_path, class: 'button is-primary is-rounded' %>
       <%end%>
       <%= link_to 'Editar perfil', perfil_edit_path(@user.id), class: 'button is-link is-rounded' %>
-      <%= link_to 'Eliminar cuenta', perfil_path(@user.id), class: 'button is-danger is-light is-rounded',  method: :delete, alert: '¿Estas seguro?' %>
+      <%= link_to 'Eliminar cuenta', perfil_path(@user.id), class: 'button is-danger is-light is-rounded',  method: :delete, data: { confirm: "¿Estas seguro? \n 
+      Esta acción no es reversible" }%>
   </div>
 </section>
 
@@ -123,7 +124,7 @@
               <td> <%= @persona.nombre %> </td>
               <td> <%= @persona.telefono %></td>
               <td> <%= @persona.email %> </td>
-              <td> <%= link_to 'Proponer cita', new_appointment_path(@user.id, match_id: match.id, cita: @persona.nombre), method: :get %> </td>
+              <td> <%= link_to 'Proponer cita', new_appointment_path(@user.id, match_id: match.id, cita: @persona.nombre), method: :get, class: "button is-primary"%> </td>
               <% end %>
             </tr>
             <% end %>
@@ -159,8 +160,8 @@
                 <td> <%= @persona.nombre %> </td>
                 <td> <%= @lugar.nombre %></td>
                 <td> <%= appointment.fecha.strftime("%d-%m-%Y") %> </td>
-                <td> <%= link_to 'Aceptar', accept_appointment_path(@user.id, appointment.id, accept: true), method: :put %> /
-                  <%= link_to 'Rechazar', accept_appointment_path(@user.id, appointment.id, accept: false), method: :put %></td>
+                <td> <%= link_to 'Aceptar', accept_appointment_path(@user.id, appointment.id, accept: true), method: :put, class: "button is-success"%> /
+                  <%= link_to 'Rechazar', accept_appointment_path(@user.id, appointment.id, accept: false), method: :put , class: "button is-danger"%></td>
                 <% end %>
               </tr>
               <% end %>
@@ -208,14 +209,18 @@
         <table class="table">
           <thead>
             <tr>
+              <th> Afortunad@ </th>
               <th> Local  </th>
+              <th> Fecha </th>
               <th> Acción </th>
             </tr>
           </thead>
           <tbody>
             <% @pending_valuations.each do |valuation|%>
             <tr>
-              <td> <%= valuation.local.nombre %> </td>
+              <td> <%= valuation.nombre %></td>
+              <td> <%= valuation.local.nombre %></td>
+              <td> <%= valuation.fecha %></td>
               <td> <%= link_to 'Dejar valoración', new_local_comentario_path(valuation.local.id, valuation_id: valuation.id), class: "button is-primary"%>
             </tr>
             <% end %>

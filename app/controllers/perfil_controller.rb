@@ -41,8 +41,7 @@ class PerfilController < ApplicationController
           @match_coincidentes.each do |m2|
             match = Match.new(user1_id: m2.solicitante_id,
               user2_id: m2.solicitado_id,
-              cita_realizada: false,
-              appointment_id: nil)
+              cita_realizada: false)
             match.save!
             m2.destroy
             m.destroy
@@ -108,15 +107,15 @@ class PerfilController < ApplicationController
       match_request.destroy
     end
 
-    @match_request_solicitado.each do |macth_request|
-      macth_request.destroy
+    @match_request_solicitado.each do |match_request|
+      match_request.destroy
     end
 
     @match_1 = Match.where('user1_id = ' + @user.id.to_s)
     @match_2 = Match.where('user2_id = ' + @user.id.to_s)
     
     @match_1.each do |match|
-      macth.destroy
+      match.destroy
     end
 
     @match_2.each do |match|
@@ -125,6 +124,5 @@ class PerfilController < ApplicationController
 
     @user.destroy
     redirect_to root_path, notice: 'Usuario eliminado con exito' 
-
   end
 end
