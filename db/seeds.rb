@@ -1,3 +1,9 @@
+descripcion = 
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+"
 
 comuna = Commune.new(nombre: 'Santiago Centro')
 comuna.save!
@@ -37,13 +43,37 @@ interest.save!
 
 interest = Interest.new(nombre: 'Viajar', descripcion: 'Para los amantes de viajar')
 interest.save!
- 
+
+interest = Interest.new(nombre: 'Lectura', descripcion: 'Para los amantes de la lectura')
+interest.save!
+
+interest = Interest.new(nombre: 'Deporte', descripcion: 'Para los amantes del deporte')
+interest.save!
+
+interest = Interest.new(nombre: 'Política', descripcion: 'Para los amantes de la política')
+interest.save!
+
+interest = Interest.new(nombre: 'Astronomía', descripcion: 'Para los amantes de la astronomía')
+interest.save!
+
+interest = Interest.new(nombre: 'Programación', descripcion: 'Para los amantes de la programación')
+interest.save!
+
+interest = Interest.new(nombre: 'Ciencia', descripcion: 'Para los amantes de la ciencia')
+interest.save!
+
+interest = Interest.new(nombre: 'Tecnología', descripcion: 'Para los amantes de la tecnología')
+interest.save!
+
+interest = Interest.new(nombre: 'Filosofía', descripcion: 'Para los amantes de la filosofía')
+interest.save!
+
 user = User.new(email: 'hackerman@uc.cl',
                 password: 'hackerman',
                 password_confirmation: 'hackerman',
                 admin: true,
                 nombre: 'Admin',
-                commune_id: 1)
+                commune_id: 7)
 user.save!
 
 
@@ -53,8 +83,12 @@ user = User.new(email: 'oscar@uc.cl',
                 admin: false,
                 nombre: 'Oscar',
                 commune_id: 2,
-                edad: 20)
+                edad: 20,
+                descripcion: descripcion)
 user.save!
+user.interests << Interest.find(2)
+user.interests << Interest.find(3)
+user.interests << Interest.find(11)
 
 user = User.new(email: 'benito1234@uc.cl',
                 password: '1junio1996',
@@ -62,8 +96,11 @@ user = User.new(email: 'benito1234@uc.cl',
                 admin: false,
                 nombre: 'Benito',
                 commune_id: 3,
-                edad: 5)
+                edad: 5,
+                descripcion: descripcion)
 user.save!
+user.interests << Interest.find(1)
+user.interests << Interest.find(4)
 
 user = User.new(email: 'eduardo@uc.cl',
                 password: 'eduardo1234',
@@ -71,8 +108,11 @@ user = User.new(email: 'eduardo@uc.cl',
                 admin: false,
                 nombre: 'Eduardo',
                 commune_id: 4,
-                edad: 20)
+                edad: 20,
+                descripcion: descripcion)
 user.save!
+user.interests << Interest.find(5)
+user.interests << Interest.find(8)
 
 user = User.new(email: 'felipe1234@uc.cl',
                 password: 'felipe1234',
@@ -80,8 +120,11 @@ user = User.new(email: 'felipe1234@uc.cl',
                 admin: false,
                 nombre: 'Felipe',
                 commune_id: 5,
-                edad: 20)
+                edad: 20,
+                descripcion: descripcion)
 user.save!
+user.interests << Interest.find(6)
+user.interests << Interest.find(7)
 
 user = User.new(email: 'alfonso@uc.cl',
                 password: 'alfonso1234',
@@ -89,8 +132,11 @@ user = User.new(email: 'alfonso@uc.cl',
                 admin: false,
                 nombre: 'Alfonso',
                 commune_id: 4,
-                edad: 20)
+                edad: 20,
+                descripcion: descripcion)
 user.save!
+user.interests << Interest.find(9)
+user.interests << Interest.find(10)
 
 user = User.new(email: 'mario@uc.cl',
                 password: 'mario1234',
@@ -98,8 +144,12 @@ user = User.new(email: 'mario@uc.cl',
                 admin: false,
                 nombre: 'Mario',
                 commune_id: 4,
-                edad: 19)
+                edad: 19,
+                descripcion: descripcion)
 user.save!
+user.interests << Interest.find(1)
+user.interests << Interest.find(3)
+user.interests << Interest.find(5)
 
 user = User.new(email: 'fernando@uc.cl',
                 password: 'fernando1234',
@@ -107,8 +157,13 @@ user = User.new(email: 'fernando@uc.cl',
                 admin: false,
                 nombre: 'Fernando',
                 commune_id: 2,
-                edad: 21)
+                edad: 21,
+                descripcion: descripcion)
 user.save!
+user.interests << Interest.find(2)
+user.interests << Interest.find(4)
+user.interests << Interest.find(6)
+user.interests << Interest.find(13)
 
 user = User.new(email: 'ricardo@uc.cl',
                 password: 'ricardo1234',
@@ -116,8 +171,10 @@ user = User.new(email: 'ricardo@uc.cl',
                 admin: false,
                 nombre: 'Ricardo',
                 commune_id: 6,
-                edad: 18)
+                edad: 18,
+                descripcion: descripcion)
 user.save!
+user.interests << Interest.find(7)
 
 user = User.new(email: 'benjamin@uc.cl',
                 password: 'benjamin1234',
@@ -125,8 +182,10 @@ user = User.new(email: 'benjamin@uc.cl',
                 admin: false,
                 nombre: 'Benjamin',
                 commune_id: 7,
-                edad: 19)
+                edad: 19,
+                descripcion: descripcion)
 user.save!
+user.interests << Interest.find(8)
 
 user = User.new(email: 'esteban@uc.cl',
                 password: 'esteban1234',
@@ -134,13 +193,63 @@ user = User.new(email: 'esteban@uc.cl',
                 admin: false,
                 nombre: 'Esteban',
                 commune_id: 8,
-                edad: 19)
+                edad: 19,
+                descripcion: descripcion)
 user.save!
+user.interests << Interest.find(9)
+
+user = User.new(email: "cristina@uc.cl",
+                password: 'cristina1234',
+                password_confirmation: 'cristina1234',
+                admin: false,
+                nombre: 'Cristina',
+                commune_id: 4,
+                edad: 24,
+                descripcion: descripcion)
+user.save!
+user.interests << Interest.find(10)
+user.interests << Interest.find(1)
+
+user = User.new(email: "valentina@uc.cl",
+    password: "valentina1234",
+    password_confirmation: "valentina1234",
+    admin: false,
+    nombre: "Valentina",
+    commune_id: 5,
+    edad: 20,
+    descripcion: descripcion)
+user.save!
+user.interests << Interest.find(8)
+user.interests << Interest.find(4)
+
+user = User.new(email: "daniela@uc.cl",
+    password: "daniela1234",
+    password_confirmation: "daniela1234",
+    admin: false,
+    nombre: "Daniela",
+    commune_id: 5,
+    edad: 23,
+    descripcion: descripcion)
+user.save!
+user.interests << Interest.find(7)
+user.interests << Interest.find(3)
+
+user = User.new(email: "fernanda@uc.cl",
+    password: "fernanda1234",
+    password_confirmation: "fernanda1234",
+    admin: false,
+    nombre: "Fernanda",
+    commune_id: 2,
+    edad: 19,
+    descripcion: descripcion)
+user.save!
+user.interests << Interest.find(5)
+user.interests << Interest.find(2)
 
 local = Local.new(nombre: 'Juan y Medio',
                   descripcion: 'Restaurante de comida tipica chilena', 
                   aceptado: true, 
-                  commune_id: 1, 
+                  commune_id: 2, 
                   user_id: 2)
 local.save!
 
