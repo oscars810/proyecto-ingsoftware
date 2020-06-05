@@ -233,11 +233,15 @@ menu = Menu.new(local_id: 4,
 menu.save!
 
 valuation = Valuation.new(local_id: 4,
-                          user_id: 6)
+                          user_id: 6,
+                          nombre: "Catalina",
+                          fecha: "05-04-2020")
 valuation.save!
 
 valuation = Valuation.new(local_id: 4,
-                          user_id: 7)
+                          user_id: 7,
+                          nombre: "Valentina",
+                          fecha: "08-03-2020")
 valuation.save!
 
 valuation = Valuation.new(local_id: 2,
@@ -247,7 +251,9 @@ valuation = Valuation.new(local_id: 2,
 valuation.save!
 
 valuation = Valuation.new(local_id: 2,
-                          user_id: 6)
+                          user_id: 6,
+                          nombre: "Daniela",
+                          fecha: "22-05-2020")
 valuation.save!
 
 valuation = Valuation.new(local_id: 1,

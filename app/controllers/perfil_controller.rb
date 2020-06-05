@@ -108,15 +108,15 @@ class PerfilController < ApplicationController
       match_request.destroy
     end
 
-    @match_request_solicitado.each do |macth_request|
-      macth_request.destroy
+    @match_request_solicitado.each do |match_request|
+      match_request.destroy
     end
 
     @match_1 = Match.where('user1_id = ' + @user.id.to_s)
     @match_2 = Match.where('user2_id = ' + @user.id.to_s)
     
     @match_1.each do |match|
-      macth.destroy
+      match.destroy
     end
 
     @match_2.each do |match|
