@@ -13,13 +13,13 @@ Rails.application.routes.draw do
     patch 'aceptar_locales/:local_id', to: 'admin#aceptar_local', as: 'admin_aceptar_local'
     resources :comunas, controller: 'communes'
     resources :gustos, controller: 'interests'
-    resources :comentarios, controller: 'comments', only: [:index, :destroy]
+    resources :comentarios, controller: 'comments', only: %i[index destroy]
   end
 
   # Locales, Menus y Comentarios
   resources :locales, controller: 'locals', as: 'local' do
-    resources :menus, only: [:new, :create, :edit, :update, :destroy]
-    resources :comentarios, controller: 'comments', only: [:new, :create, :destroy]
+    resources :menus, only: %i[new create edit update destroy]
+    resources :comentarios, controller: 'comments', only: %i[new create destroy]
   end
 
   # Perfil
@@ -35,11 +35,9 @@ Rails.application.routes.draw do
   patch 'perfil/:id', to: 'perfil#update'
   put 'perfil/:id', to: 'perfil#update'
 
-  #Update interes
+  # Update interes
   patch 'perfil_interest/:id', to: 'perfil#update_interest', as: :perfil_edit_interest
   get 'perfil/:id/:idinterest', to: 'perfil#delete_interest', as: :perfil_delete_interest
-
- 
 
   # Delete perfil
   delete 'perfil/:id', to: 'perfil#destroy'
@@ -50,10 +48,10 @@ Rails.application.routes.draw do
 
   # Create match
   get 'match/:id/:idsolicitado', to: 'matches#new', as: :match_new
-  #Aceptar/Rechazar match_request
+  # Aceptar/Rechazar match_request
   patch 'perfil/:id/:id_matchrequest', to: 'matches#accept_match', as: :perfil_accept_match
 
-  #CITAS
+  # CITAS
   # Proponer Cita
   get 'appointment/:id', to: 'appointment#new', as: :new_appointment
 

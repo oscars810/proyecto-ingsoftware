@@ -15,6 +15,22 @@ class PerfilController < ApplicationController
       @commune = @user.commune
       @interests_user = @user.interests
       @interests_all = Interest.all
+      @interests_not_user = []
+
+      @interests_all.each do |interest|
+        repetido = false
+        @interests_user.each do |interest_user|
+          if interest_user.nombre == interest.nombre
+            repetido = true
+            break
+          end
+        end
+
+        if not repetido
+          @interests_not_user << interest
+        end
+      end
+
       @pending_valuations = current_user.valuations.where("realizada = false")
 
       #Cada vez que entra a su perfil busca posibles match que se hayan hecho mutuamente por casualidad
@@ -25,8 +41,7 @@ class PerfilController < ApplicationController
           @match_coincidentes.each do |m2|
             match = Match.new(user1_id: m2.solicitante_id,
               user2_id: m2.solicitado_id,
-              cita_realizada: false,
-              appointment_id: nil)
+              cita_realizada: false)
             match.save!
             m2.destroy
             m.destroy
@@ -51,7 +66,6 @@ class PerfilController < ApplicationController
 
   def update
     user_params = params.require(:user).permit(:nombre, :email, :descripcion, :edad, :telefono, :commune_id)
-    print("ESTOY EN EL CONTROLADOR")
 
     @user = User.find(params[:id])
 
@@ -86,8 +100,29 @@ class PerfilController < ApplicationController
   #Delete
   def destroy
     @user = User.find(params[:id])
+    @match_request_solicitante = MatchRequest.where('solicitante_id = ' + @user.id.to_s)
+    @match_request_solicitado = MatchRequest.where('solicitado_id = ' + @user.id.to_s)
+
+    @match_request_solicitante.each do |match_request|
+      match_request.destroy
+    end
+
+    @match_request_solicitado.each do |match_request|
+      match_request.destroy
+    end
+
+    @match_1 = Match.where('user1_id = ' + @user.id.to_s)
+    @match_2 = Match.where('user2_id = ' + @user.id.to_s)
+    
+    @match_1.each do |match|
+      match.destroy
+    end
+
+    @match_2.each do |match|
+      match.destroy
+    end
+
     @user.destroy
     redirect_to root_path, notice: 'Usuario eliminado con exito' 
-
   end
 end

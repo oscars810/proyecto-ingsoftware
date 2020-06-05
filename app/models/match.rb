@@ -1,5 +1,5 @@
 class Match < ApplicationRecord
-    belongs_to :user1, class_name: 'User'
-    belongs_to :user2, class_name: 'User'
-    has_many :appointments
+  belongs_to :user1, class_name: 'User'
+  belongs_to :user2, class_name: 'User'
+  has_many :appointments
 end

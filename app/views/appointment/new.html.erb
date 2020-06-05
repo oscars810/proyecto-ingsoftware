@@ -10,7 +10,7 @@
             <div class="control">
               Local:
               <div class="select is-fullwidth">
-                <%= f.select(:local_id, Local.all.collect {|c| [c.nombre, c.id]}) %>
+                <%= f.select(:local_id, Local.all.where('aceptado = ?', true).collect {|c| [c.nombre, c.id]}) %>
               </div>
             </div>
           </div>
@@ -18,7 +18,8 @@
           <div class="field">
             <div class="control">
               Fecha:
-              <%= f.date_field :fecha, class: "input" %>
+              <%@current_date = Date.today%>
+              <%= f.date_field :fecha, class: "input", min: @current_date%>
             </div>
           </div>
 

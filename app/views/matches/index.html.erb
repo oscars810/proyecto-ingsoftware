@@ -25,6 +25,7 @@
   </div>
 </section>
 
+<section class="section">
 <div class="columns">
   <div class="column"></div>
   <div class="column is-two-thirds">
@@ -39,7 +40,10 @@
           <div class="media-content">
             <div class="content">
               <p>
-                <strong><%= user.nombre %></strong> <small><%= user.email %></small> 
+                <strong><%= user.nombre %></strong> <small><%= user.edad %> años</small> 
+                <br>
+                <strong>Comuna: </strong>
+                <%= user.commune.nombre %>
                 <br>
                 <strong>Descripcion: </strong>
                 <%= user.descripcion %> 
@@ -84,5 +88,6 @@
   <%= will_paginate @users, :page_links => false, renderer: BulmaPagination::Rails, class: 'pagination is-rounded' %>
 </div>
 
+</section>
 </body>
 </html>
