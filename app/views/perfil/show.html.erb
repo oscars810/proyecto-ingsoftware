@@ -70,11 +70,15 @@
               <strong>Agregar gusto:</strong>
               <br>
               <br>
-              <%= form_with(model: @interest_all, url: perfil_edit_interest_path(@user.id), method: :patch) do |form| %>
+              <%= form_with(model: @interests_user, url: perfil_edit_interest_path(@user.id), method: :patch) do |form| %>
                 <div class="field">
                   <div class="control">
                     <div class="select is-fullwidth is-danger">
-                      <%= form.select(:id_interest, Interest.all.collect {|c| [c.nombre, c.id]}) %>
+                      <select name='id_interest'>
+                        <% @interests_not_user.each do |interest|%>
+                          <option value="<%= interest.id %>"><%= interest.nombre %></option>
+                        <% end %>
+                      </select>
                     </div>
                   </div>
                 </div>

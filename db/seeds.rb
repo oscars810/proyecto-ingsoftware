@@ -52,7 +52,8 @@ user = User.new(email: 'oscar@uc.cl',
                 password_confirmation: 'oscars810',
                 admin: false,
                 nombre: 'Oscar',
-                commune_id: 2)
+                commune_id: 2,
+                edad: 20)
 user.save!
 
 user = User.new(email: 'benito1234@uc.cl',
@@ -60,7 +61,8 @@ user = User.new(email: 'benito1234@uc.cl',
                 password_confirmation: '1junio1996',
                 admin: false,
                 nombre: 'Benito',
-                commune_id: 3)
+                commune_id: 3,
+                edad: 5)
 user.save!
 
 user = User.new(email: 'eduardo@uc.cl',
@@ -68,7 +70,8 @@ user = User.new(email: 'eduardo@uc.cl',
                 password_confirmation: 'eduardo1234',
                 admin: false,
                 nombre: 'Eduardo',
-                commune_id: 4)
+                commune_id: 4,
+                edad: 20)
 user.save!
 
 user = User.new(email: 'felipe1234@uc.cl',
@@ -76,7 +79,8 @@ user = User.new(email: 'felipe1234@uc.cl',
                 password_confirmation: 'felipe1234',
                 admin: false,
                 nombre: 'Felipe',
-                commune_id: 5)
+                commune_id: 5,
+                edad: 20)
 user.save!
 
 user = User.new(email: 'alfonso@uc.cl',
@@ -84,7 +88,8 @@ user = User.new(email: 'alfonso@uc.cl',
                 password_confirmation: 'alfonso1234',
                 admin: false,
                 nombre: 'Alfonso',
-                commune_id: 4)
+                commune_id: 4,
+                edad: 20)
 user.save!
 
 user = User.new(email: 'mario@uc.cl',
@@ -92,7 +97,8 @@ user = User.new(email: 'mario@uc.cl',
                 password_confirmation: 'mario1234',
                 admin: false,
                 nombre: 'Mario',
-                commune_id: 4)
+                commune_id: 4,
+                edad: 19)
 user.save!
 
 user = User.new(email: 'fernando@uc.cl',
@@ -100,7 +106,8 @@ user = User.new(email: 'fernando@uc.cl',
                 password_confirmation: 'fernando1234',
                 admin: false,
                 nombre: 'Fernando',
-                commune_id: 2)
+                commune_id: 2,
+                edad: 21)
 user.save!
 
 user = User.new(email: 'ricardo@uc.cl',
@@ -108,7 +115,8 @@ user = User.new(email: 'ricardo@uc.cl',
                 password_confirmation: 'ricardo1234',
                 admin: false,
                 nombre: 'Ricardo',
-                commune_id: 6)
+                commune_id: 6,
+                edad: 18)
 user.save!
 
 user = User.new(email: 'benjamin@uc.cl',
@@ -116,7 +124,8 @@ user = User.new(email: 'benjamin@uc.cl',
                 password_confirmation: 'benjamin1234',
                 admin: false,
                 nombre: 'Benjamin',
-                commune_id: 7)
+                commune_id: 7,
+                edad: 19)
 user.save!
 
 user = User.new(email: 'esteban@uc.cl',
@@ -124,7 +133,8 @@ user = User.new(email: 'esteban@uc.cl',
                 password_confirmation: 'esteban1234',
                 admin: false,
                 nombre: 'Esteban',
-                commune_id: 8)
+                commune_id: 8,
+                edad: 19)
 user.save!
 
 local = Local.new(nombre: 'Juan y Medio',
