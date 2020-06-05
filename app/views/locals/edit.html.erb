@@ -22,7 +22,8 @@
         </div>
         <div class='actions'>
           <%= form.submit "Guardar cambios", class: "button is-primary"%>
-          <%= link_to "Eliminar local", local_path(@local.id), method: :delete, class: "button is-danger"%>
+          <%= link_to "Eliminar local", local_path(@local.id), method: :delete, class: "button is-danger",
+          data: {confirm: "¿Estás seguro? \n Esta acción no es reversible"} %>
         </div>
       <%end%>
     </div>
@@ -47,7 +48,8 @@
               <td><%= menu.descripcion%></td>
               <td><%= menu.precio %></td>
               <td><%= link_to 'Editar', edit_local_menu_path(@local.id, menu.id), class: "button is-primary"%></td>
-              <td><%= link_to 'Eliminar', local_menu_path(@local.id, menu.id), method: :delete, class: "button is-danger"%></td>
+              <td><%= link_to 'Eliminar', local_menu_path(@local.id, menu.id), method: :delete, class: "button is-danger",
+                      data: { confirm: "¿Estás seguro?"} %></td>
             </tr>
           <% end %>
         </tbody>

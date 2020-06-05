@@ -15,7 +15,8 @@
         </p><br>
         <div class="actions">
           <%= link_to "Editar", edit_gusto_path(@gusto.id), class: "button is-primary"%>
-          <%= link_to "Eliminar", gusto_path(@gusto.id), method: :delete, class: "button is-danger"%>
+          <%= link_to "Eliminar", gusto_path(@gusto.id), method: :delete, class: "button is-danger",
+          data: { confirm: "¿Estás seguro?"} %>
           <%= link_to "Volver", gustos_path, class: "button is-link"%>
         </div>
       </div>
