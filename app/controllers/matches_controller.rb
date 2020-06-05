@@ -14,13 +14,13 @@ class MatchesController < ApplicationController
   end
 
   def accept_match
-    if params[:aceptar]
+    if params[:aceptar] == "true"
       @user = User.find(params[:id])
       @match_request = MatchRequest.find(params[:id_matchrequest])
       match = Match.new(user1_id: @match_request.solicitante_id,
                 user2_id: @match_request.solicitado_id,
                 cita_realizada: false,
-                appointment_id: nil)
+                local_id: nil)
       match.save!
       @match_request.destroy
       redirect_to perfil_path(@user.id)

@@ -94,6 +94,7 @@
   </div>
 
   <div class="column">
+    
     <div class="box" style="color: is-danger;">
       <div class="content">
         <h2><center> Mis match </center></h2>
@@ -115,12 +116,50 @@
               <% end %>
             <tr>
               <% unless match.cita_realizada %>
-              <td> @persona.nombre </td>
-              <td> @persona.telefono</td>
-              <td> @persona.email </td>
-              <td> <%= link_to 'Proponer cita', perfil_propuse_appointment_path(@user.id, match_id: match.id), method: :patch %> </td>
+              <td> <%= @persona.nombre %> </td>
+              <td> <%= @persona.telefono %></td>
+              <td> <%= @persona.email %> </td>
+              <td> <%= link_to 'Proponer cita', new_appointment_path(@user.id, match_id: match.id, cita: @persona.nombre), method: :get %> </td>
               <% end %>
             </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="box" style="color: is-danger;">
+      <div class="content">
+        <h2><center> Agenda de citas </center></h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th> Persona  </th>
+              <th> Lugar </th>
+              <th> Fecha </th>
+              <th> Acción </th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @match_todos.each do |match|%>
+              <% @appointments = match.appointments.where('solicitante_id != ?', @user.id) %>
+              <% if match.user1_id == @user.id %>
+                <% @persona = User.find(match.user2_id) %>
+              <% else %>
+                <% @persona = User.find(match.user1_id) %>
+              <% end %>
+              <% @appointments.each do |appointment|%>
+                <% @lugar = Local.find(appointment.local_id) %>
+              <tr>
+                <% unless match.cita_realizada %>
+                <td> <%= @persona.nombre %> </td>
+                <td> <%= @lugar.nombre %></td>
+                <td> <%= appointment.fecha.strftime("%d-%m-%Y") %> </td>
+                <td> <%= link_to 'Aceptar', accept_appointment_path(@user.id, appointment.id, accept: true), method: :put %> /
+                  <%= link_to 'Rechazar', accept_appointment_path(@user.id, appointment.id, accept: false), method: :put %></td>
+                <% end %>
+              </tr>
+              <% end %>
             <% end %>
           </tbody>
         </table>
@@ -149,7 +188,7 @@
             <% @persona = User.find(match.solicitante_id) %>
             <tr>
               <td><%=@persona.nombre%></td>
-              <td><i class="far fa-heart"></i><%= link_to 'Aceptar', perfil_accept_match_path(@user.id, match.id, aceptar: true), method: :patch, class: "button is-success"%><i class="far fa-heart"></i></td>
+              <td><%= link_to 'Aceptar', perfil_accept_match_path(@user.id, match.id, aceptar: true), method: :patch, class: "button is-success"%></td>
               <td><%= link_to 'Rechazar', perfil_accept_match_path(@user.id, match.id, aceptar: false), method: :patch , class: "button is-danger"%></td>
             </tr>
           <% end %>
