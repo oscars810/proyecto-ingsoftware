@@ -1,30 +1,51 @@
-<p id="notice"><%= notice %></p> 
-<h1>Form registro nuevo local</h1>
-<p>Ingrese los datos de su local:</p>
-
-<%= form_with(model: @local, method: :post) do |form| %>
-
-    <% lista_comunas = [] %> 
-    <% Comuna.all.each do |comuna| %>
-        <% lista_comunas.append(comuna.nombre) %> 
-    <% end %>
-
-    <div class='field'>
-        <%= form.label :nombre %>
-        <%= form.text_field :nombre %>
+<section class="hero is-danger">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title has-text-centered"> Registrar un nuevo local</h1>
+            <h2 class="subtitle has-text-centered"> El formulario será enviado a un administrador, quien puede o no aceptar la solicitud</h2>
+            <div class="buttons is-centered">
+                <%= link_to "Volver", perfil_path(current_user.id), class: "button is-link is-rounded"%>
+            </div>
+        </div>
     </div>
-    
-    <div class='field'>
-        <%= form.label :comuna %>
-        <%= form.select :nombre_comuna, lista_comunas %> 
-    </div>
+</section>
 
-    <div class='field'>
-        <%= form.label :descripcion %>
-        <%= form.text_area :descripcion %> 
+<section class="section">
+    <div class="columns">
+        <div class="column"></div>
+        <div class="column is-4">
+            <div class="box">
+                <%= form_with(model: @local, url: local_index_path, method: :post) do |form| %>
+                    <div class='field'>
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-address-card"></i>
+                        </span>
+                        Nombre:
+                        <%= form.text_field :nombre, placeholder: "Nombre", class: "input"%>
+                    </div>
+                    <div class='field'>
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-home"></i>
+                        </span>
+                        Comuna:
+                        <div class="select is-fullwidth">
+                            <%= form.select(:commune_id, Commune.all.collect {|c| [c.nombre, c.id]}) %>
+                        </div>
+                    </div>
+                    <div class='field'>
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-question"></i>
+                        </span>
+                        Descripción:
+                        <%= form.text_area :descripcion, placeholder: "Descripción", class: "textarea"%> 
+                    </div>
+                    <p></p>
+                    <div class='actions'>
+                        <%= form.submit "Enviar", class: "button is-primary"%>
+                    </div>
+                <%end%>
+            </div>
+        </div>
+        <div class="column"></div>
     </div>
-    <p></p>
-    <div class='actions'>
-        <%= form.submit %>
-    </div>
-<%end%>
+</section>

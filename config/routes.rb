@@ -3,72 +3,24 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   # Administrador
-  get 'administrar', to: 'admin#index'
-  get 'aceptar_locales', to: 'admin#aceptar_locales'
-  patch 'aceptar_locales/:id', to: 'admin#aceptar_local'
-  get 'administrar_locales', to: 'admin#ver_locales'
-  delete 'administrar_locales/:id', to: 'admin#eliminar_local'
+  get 'admin', to: 'admin#index'
 
-  # Locales
-  # Create
-  get 'locales/new', to: 'locals#new'
-  post 'locals', to: 'locals#create'
+  scope '/admin' do
+    get 'usuarios', to: 'perfil#index', as: 'admin_usuarios'
+    get 'locales', to: 'admin#ver_locales', as: 'admin_locales'
+    delete 'locales/:local_id', to: 'admin#eliminar_local', as: 'admin_delete_local'
+    get 'aceptar_locales', to: 'admin#aceptar_locales', as: 'admin_aceptar_locales'
+    patch 'aceptar_locales/:local_id', to: 'admin#aceptar_local', as: 'admin_aceptar_local'
+    resources :comunas, controller: 'communes'
+    resources :gustos, controller: 'interests'
+    resources :comentarios, controller: 'comments', only: %i[index destroy]
+  end
 
-  # Read
-  get 'locales', to: 'locals#index'
-  get 'locales/:id', to: 'locals#show', as: 'local'
-
-  # Edit
-  get 'locales/:id/edit', to: 'locals#edit', as: 'local_edit'
-  patch 'locales/:id', to: 'locals#update'
-
-  # Destroy
-  delete 'locales/:id', to: 'locals#destroy'
-
-  # Comunas
-  # Create
-  get 'comunas/new', to: 'comunas#new'
-  post 'comunas', to: 'comunas#create'
-
-  # Read
-  get 'comunas', to: 'comunas#index'
-  get 'comunas/:id', to: 'comunas#show', as: :comuna
-
-  # Update
-  get 'comunas/:id/edit', to: 'comunas#edit', as: :comunas_edit
-  patch 'comunas/:id/', to: 'comunas#update'
-  put 'comunas/:id/', to: 'comunas#update'
-
-  # Destroy
-  delete 'comunas/:id', to: 'comunas#destroy'
-
-  # Gustos
-  # Create
-  get 'gustos/new', to: 'gustos#new'
-  post 'gustos', to: 'gustos#create'
-
-  # Read
-  get 'gustos', to: 'gustos#index'
-  get 'gustos/:id', to: 'gustos#show', as: :gusto
-
-  # Update
-  get 'gustos/:id/edit', to: 'gustos#edit', as: :gustos_edit
-  patch 'gustos/:id/', to: 'gustos#update'
-  put 'gustos/:id/', to: 'gustos#update'
-
-  # Destroy
-  delete 'gustos/:id', to: 'gustos#destroy'
-
-  # Comentarios
-  # Create
-  get 'locales/comentarios/new/:id', to: 'comentarios#new'
-  post 'comentarios', to: 'comentarios#create'
-
-  # Read
-  get 'comentarios', to: 'comentarios#index'
-
-  # Delete
-  delete 'comentarios', to: 'comentarios#destroy'
+  # Locales, Menus y Comentarios
+  resources :locales, controller: 'locals', as: 'local' do
+    resources :menus, only: %i[new create edit update destroy]
+    resources :comentarios, controller: 'comments', only: %i[new create destroy]
+  end
 
   # Perfil
   # Create
@@ -76,37 +28,36 @@ Rails.application.routes.draw do
                                     registrations: 'users/registrations' }
 
   # Read Usuarios
-  get 'perfiles', to: 'perfil#index'
-  get 'perfil/:id', to: 'perfil#show', as: :perfil
+  get 'perfil/:user_id', to: 'perfil#show', as: :perfil
 
   # Update perfil
   get 'perfil/:id/edit', to: 'perfil#edit', as: :perfil_edit
   patch 'perfil/:id', to: 'perfil#update'
   put 'perfil/:id', to: 'perfil#update'
 
+  # Update interes
+  patch 'perfil_interest/:id', to: 'perfil#update_interest', as: :perfil_edit_interest
+  get 'perfil/:id/:idinterest', to: 'perfil#delete_interest', as: :perfil_delete_interest
+
   # Delete perfil
   delete 'perfil/:id', to: 'perfil#destroy'
 
   # Match
   # Mostrar perfiles
-  get 'match/:id', to: 'match#index', as: :match
+  get 'match/:id', to: 'matches#index', as: :match
 
   # Create match
+  get 'match/:id/:idsolicitado', to: 'matches#new', as: :match_new
+  # Aceptar/Rechazar match_request
+  patch 'perfil/:id/:id_matchrequest', to: 'matches#accept_match', as: :perfil_accept_match
 
-  # MENUS
-  # Create
-  get 'menus/new/:idlocal', to: 'menus#new', as: :menus_new
-  post 'menus', to: 'menus#create'
+  # CITAS
+  # Proponer Cita
+  get 'appointment/:id', to: 'appointment#new', as: :new_appointment
 
-  # Edit
-  get 'menus/:id/edit/:idlocal', to: 'menus#edit'
-  patch 'menus/:id', to: 'menus#update', as: :menu
+  # Crear Cita
+  post 'appointment/:id', to: 'appointment#create', as: :create_appointment
 
-  # Update
-  get 'menus/:id/edit', to: 'menus#edit', as: :menus_edit
-  patch 'menus/:id/', to: 'menus#update'
-  put 'menus/:id/', to: 'menus#update'
-
-  # Destroy
-  delete 'menus', to: 'menus#destroy'
+  # Aceptar Cita
+  put 'perfil/:id/:appointment_id', to: 'appointment#accept', as: :accept_appointment
 end

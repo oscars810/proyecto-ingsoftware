@@ -1,2 +1,0 @@
-class Gusto < ApplicationRecord
-end

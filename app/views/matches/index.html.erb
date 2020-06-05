@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MatchMeat</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  <style>
+    ul#interests li {
+      display:inline;
+    }
+  </style>
+</head>
+<body>
+<section class="hero is-danger">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title has-text-centered">Matchs</h1>
+      <h2 class="subtitle has-text-centered">En esta sección puedes ver a todos los usuarios y enviar una solicitud de MATCH</h2>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+<div class="columns">
+  <div class="column"></div>
+  <div class="column is-two-thirds">
+    <% @users.each do |user| %>
+      <div class="box">
+        <article class="media">
+          <div class="media-left">
+            <figure class="image is-64x64">
+              <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+            </figure>
+          </div>
+          <div class="media-content">
+            <div class="content">
+              <p>
+                <strong><%= user.nombre %></strong> <small><%= user.edad %> años</small> 
+                <br>
+                <strong>Comuna: </strong>
+                <%= user.commune.nombre %>
+                <br>
+                <strong>Descripcion: </strong>
+                <%= user.descripcion %> 
+                <br>
+              </p>
+            </div>
+            <div class="control">
+              <div class="tab">
+              <div class="tags">
+                <strong>Gustos: &nbsp; &nbsp; </strong>
+                <br>
+                <ul id="interests">
+                  <% user.interests.each do |interest|%>
+                    <li>
+                    <span class="tag is-danger is-light"><%= interest.nombre %><span>
+                    </li>
+                  <% end %>
+                </ul>
+              </div>
+              </div>
+            </div>
+            <br>
+            <nav class="level is-mobile">
+              <div class="level-left">
+                <a class="level-item" aria-label="like" href="<%=match_new_path(@user.id, user.id)%>">
+                  <span class="icon is-small">
+                    <i class="fas fa-heart" aria-hidden="true"></i>
+                  </span>
+                </a>
+              </div>
+            </nav>
+          </div>
+        </article>
+      </div>
+
+    <% end %>
+  </div>
+  <div class="column"></div>
+</div>
+
+<div style='width: 350px; margin-left: 405px; background-color: white;'>
+  <%= will_paginate @users, :page_links => false, renderer: BulmaPagination::Rails, class: 'pagination is-rounded' %>
+</div>
+
+</section>
+</body>
+</html>

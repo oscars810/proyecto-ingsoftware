@@ -10,46 +10,75 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_08_144845) do
+ActiveRecord::Schema.define(version: 2020_06_05_182126) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "comentarios", force: :cascade do |t|
-    t.text "contenido"
-    t.integer "idusuario"
-    t.integer "idlocal"
+  create_table "appointments", force: :cascade do |t|
+    t.integer "match_id"
+    t.integer "solicitante_id"
+    t.integer "local_id"
+    t.date "fecha"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "valoracion"
   end
 
-  create_table "comunas", force: :cascade do |t|
+  create_table "comments", force: :cascade do |t|
+    t.text "contenido"
+    t.integer "user_id"
+    t.integer "local_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "communes", force: :cascade do |t|
     t.string "nombre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "gustos", force: :cascade do |t|
+  create_table "interests", force: :cascade do |t|
     t.string "nombre"
     t.text "descripcion"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  create_table "interests_users", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "interest_id", null: false
+  end
+
   create_table "locals", force: :cascade do |t|
     t.string "nombre"
     t.string "descripcion"
     t.boolean "aceptado", default: false
-    t.integer "idusuario"
-    t.integer "idcomuna"
+    t.integer "user_id"
+    t.integer "commune_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "match_requests", force: :cascade do |t|
+    t.integer "solicitado_id"
+    t.integer "solicitante_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "matches", force: :cascade do |t|
+    t.integer "user1_id"
+    t.integer "user2_id"
+    t.boolean "cita_realizada"
+    t.integer "local_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "menus", force: :cascade do |t|
     t.string "nombre"
-    t.integer "idlocal"
+    t.integer "local_id"
     t.string "descripcion"
     t.integer "precio"
     t.datetime "created_at", null: false
@@ -69,8 +98,20 @@ ActiveRecord::Schema.define(version: 2020_05_08_144845) do
     t.text "descripcion"
     t.integer "edad"
     t.string "telefono"
+    t.integer "commune_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "valuations", force: :cascade do |t|
+    t.integer "puntuacion", default: 0
+    t.integer "user_id"
+    t.integer "local_id"
+    t.boolean "realizada", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "nombre"
+    t.date "fecha"
   end
 
 end

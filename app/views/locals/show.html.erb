@@ -1,49 +1,109 @@
-<p id="notice"><%= notice %></p>
-<h1>
-Perfil de <%=  @local.nombre %>
-<% unless @local.aceptado %>
-    (Pendiente)
-<% end %>
-</h1>
-<% if current_user and current_user.id ==  @local.idusuario%>
-    <p align='right'><%= link_to 'Editar', local_edit_path(params[:id]) %> </p>
-<% end%>
-<strong>Mis datos. </strong>
-<p><strong> Local de:</strong> 
-<%= User.find_by('id = ?', @local.idusuario).nombre %> </p>
-<p><strong> Mi descripcion: </strong>
-<%= @local.descripcion %> </p>
-<p>    </p>
-<p><strong> Especialidad de la casa: </strong></p>
-<table>
-  <thead>
-    <tr>
-      <th>Plato</th>
-      <th>Descripcion</th>
-      <th>Precio</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @menus.each do |menu| %>
-      <tr>
-        <td><%= menu.nombre %></td>
-        <td><%= menu.descripcion %></td>
-        <td><%= menu.precio %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Match and Meat</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-<hr>
-<h2> Comentarios </h2>
-<%if current_user and current_user.id != @local.idusuario %>
-    <p align = 'right'> <%= link_to 'Dejar Comentario', "comentarios/new/#{@local.id}"%> </p>
-<%end%>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+</head>
+<body>
 
-<% @comentarios.each do |comentario|%>
-    <p><strong>><%= User.find_by("id=?", comentario.idusuario).nombre %> </strong> (<i><%= comentario.created_at.strftime("%d-%m-%Y")%></i> a las 
-    <i><%= comentario.created_at.strftime("%H:%M")%></i>): <%= comentario.contenido %></p>
-    <% if user_signed_in? and current_user.id == comentario.idusuario%>
-        <%= link_to 'Eliminar Comentario', comentarios_path(:id_comentario => comentario.id), method: :delete, alert: '¿Estás seguro?'%>
-    <%end%>
-<%end%>
+<section class="hero is-danger">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title has-text-centered"> <%= @local.nombre %></h1>
+      <h2 class="subtitle has-text-centered"> <%= @local.descripcion %></h2>
+      <h2 class="subtitle has-text-centered"> Comuna: <%= @local.commune.nombre %><h2>
+      <h3 class="subtitle has-text-centered"> Puntuación: <%= @promedio %>
+        <%if @cantidad_valoraciones == 1 %>
+          de <%= @cantidad_valoraciones %> valoracion
+        <%elsif @cantidad_valoraciones != 0%>
+          de <%= @cantidad_valoraciones %> valoraciones
+        <% end %></p></h3>
+      <div class="buttons is-centered">
+        <%= link_to 'Volver', local_index_path, class: "button is-link is-rounded"%>
+        <% if user_signed_in? and current_user.id == @local.user_id%>
+          <%= link_to 'Editar', edit_local_path(@local.id), class: "button is-primary is-rounded"%>
+        <% end%>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+<section class="section">
+<div class="columns">
+  <div class="column"></div>
+  <div class="column is-two-thirds">
+    <div class="box" style="color: is-danger;">
+    <h1 class="title has-text-centered"> Menus ofrecidos </h1>
+      <div class="media-content">
+        <div class="content">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Menú</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+              </tr>
+            </thead> 
+            <tbody>
+              <% @menus.each do |menu| %>
+                <tr>
+                  <td><%= menu.nombre %></td>
+                  <td><%= menu.descripcion%></td>
+                  <td>$<%= menu.precio%></td>
+                </tr>
+              <% end %>
+            </tbody> 
+          </table> 
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="column"></div>
+</div>
+</section>
+
+<section class="section">
+  <div class="box" style="color: is-danger;">
+    <h1 class="title has-text-centered"> Comentarios </h1>
+  </div>
+  <div class="columns">
+    <div class="column"></div>
+    <div class="column is-two-thirds">
+      <% @comentarios.each do |comentario|%>
+      <div class="box">
+        <article class="media">
+          <div class="media-left">
+            <figure class="image is-64x64">
+              <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+            </figure>
+          </div>
+          <div class="media-content">
+            <div class="content">
+              <p>
+                <strong><%= comentario.user.nombre %></strong> 
+                <small><i><%= comentario.created_at.strftime("%d-%m-%Y")%></i> a las <i><%= comentario.created_at.strftime("%H:%M")%></i></small>
+                <br>
+                <%= comentario.contenido %>
+              </p>
+            </div>
+            <div class="buttons">
+            <% if user_signed_in? and current_user.id == comentario.user_id%>
+              <%= link_to 'Eliminar Comentario', local_comentario_path(@local.id, comentario.id), method: :delete, class: "button is-danger"%>
+            <% end %>
+            </div>
+          </div>
+        </article>
+      </div>
+      <% end %>
+    </div>
+    <div class="column"></div>
+  </div>
+</section>
+</body>

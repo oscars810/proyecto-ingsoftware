@@ -1,2 +1,0 @@
-class Comuna < ApplicationRecord
-end

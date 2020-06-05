@@ -1,32 +1,56 @@
-<h1>Aqui podras ver todos los locales que tenemos para tus citas:</h1>
-<p>No olvides preguntar por descuentos al hacer citas a traves de nuestra aplicación.</p>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Match and Meat</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-<p id="notice"><%= notice %></p>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+</head>
+<body>
 
-<h1>Locales</h1>
+<section class="hero is-danger">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title has-text-centered"> Locales </h1>
+      <h2 class="subtitle has-text-centered"> En esta sección puedes ver todos los locales que nuestra aplicación tiene disponible para tus citas</h2>
+    </div>
+  </div>
+</section>
 
-<table>
-  <thead>
-    <tr>
-      <th>Nombre</th>
-      <th>Comuna</th>
-      <th>Descripcion</th>
-      <th colspan="3"> Acciones </th>
-    </tr>
-  </thead>
+<section class="section">
+  <div class="columns">
+    <div class="column"></div>
+    <div class="column is-two-thirds">
+      <% @locales.each do |local|%>
+      <div class="box">
+        <article class="media">
+          <div class="media-left">
+            <figure class="image is-128x128">
+              <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+            </figure>
+          </div>
+          <div class="media-content">
+            <div class="content">
+              <p>
+                <strong><%= local.nombre %></strong> <small><%= local.commune.nombre %></small>
+                <br>
+                <%= local.descripcion %>
+              </p>
+            </div>
+            <div class="buttons">
+              <%= link_to "Más información", local_path(local.id) , class: "button is-link"%>
+            </div>
+          </div>
+        </article>
+      </div>
+      <% end %>
+    </div>
+    <div class="column"></div>
+  </div>
+</section>
 
-  <tbody>
-    <% @locales.each do |local| %>
-      <tr>
-        <% if local.aceptado %>
-            <td><%= local.nombre %></td>
-            <td><%= Comuna.find_by("id = ?", local.idcomuna).nombre %></td>
-            <td><%= local.descripcion %></td>
-            <td><%= link_to 'Ver detalles', local_path(local.id) %></td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+</body>
