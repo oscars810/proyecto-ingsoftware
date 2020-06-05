@@ -27,7 +27,7 @@ class MatchesController < ApplicationController
       end
       @users = @users.shuffle!
       @users = @users.paginate(page: params[:page], per_page: 3)
-      
+        
     end
   end
 
@@ -42,7 +42,6 @@ class MatchesController < ApplicationController
     
 
     redirect_to match_path(@user.id)
-    end
   end
 
   def accept_match
