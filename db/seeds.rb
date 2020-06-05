@@ -265,7 +265,7 @@ match_request = MatchRequest.new(
 match_request.save!
 
 
-macth_request = MatchRequest.new(
+math_request = MatchRequest.new(
                 solicitante_id: 3,
                 solicitado_id: 4)
 match_request.save!
