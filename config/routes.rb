@@ -48,6 +48,10 @@ Rails.application.routes.draw do
   # Mostrar perfiles
   get 'match/:id', to: 'matches#index', as: :match
 
+<<<<<<< HEAD
+  # Create match
+  get 'match/:id/:idsolicitado', to: 'matches#new', as: :match_new
+=======
   #Aceptar/Rechazar match_request
   patch 'perfil/:id/:id_matchrequest', to: 'matches#accept_match', as: :perfil_accept_match
 
@@ -60,4 +64,5 @@ Rails.application.routes.draw do
 
   # Aceptar Cita
   put 'perfil/:id/:appointment_id', to: 'appointment#accept', as: :accept_appointment
+>>>>>>> 06549ac1098af2c2b61652158dd796954a2cbe3c
 end

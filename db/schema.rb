@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 2020_06_03_034745) do
+=======
 ActiveRecord::Schema.define(version: 2020_06_04_214230) do
+>>>>>>> 06549ac1098af2c2b61652158dd796954a2cbe3c
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,7 +65,6 @@ ActiveRecord::Schema.define(version: 2020_06_04_214230) do
   end
 
   create_table "match_requests", force: :cascade do |t|
-    t.integer "idsolicitud"
     t.integer "solicitado_id"
     t.integer "solicitante_id"
     t.datetime "created_at", null: false
