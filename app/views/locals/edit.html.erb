@@ -1,0 +1,64 @@
+<section class="hero is-danger">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title has-text-centered"> Editar el local <%= @local.nombre%> </h1>
+      <div class="buttons is-centered">
+        <%= link_to 'Volver', local_path(@local.id), class: "button is-link is-rounded"%>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+<div class="columns">
+  <div class="column is-1"></div>
+  <div class="column is-4">
+    <div class="box">
+      <h1 class="title has-text-centered"> Datos</h1>
+      <%= form_with(model: @local, url: local_path(@local.id), method: :patch) do |form| %>
+        <div class='field'>
+          <%= form.label :descripcion%>
+          <%= form.text_area :descripcion, class: "textarea"%>
+        </div>
+        <div class='actions'>
+          <%= form.submit "Guardar cambios", class: "button is-primary"%>
+          <%= link_to "Eliminar local", local_path(@local.id), method: :delete, class: "button is-danger",
+          data: {confirm: "¿Estás seguro? \n Esta acción no es reversible"} %>
+        </div>
+      <%end%>
+    </div>
+  </div>
+  <div class="column is-6">
+    <div class="box">
+      <h1 class="title has-text-centered"> Menus </h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Menu</th>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Acciones</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @menus.each do |menu| %>
+            <tr>
+              <td><%= menu.nombre %></td>
+              <td><%= menu.descripcion%></td>
+              <td><%= menu.precio %></td>
+              <td><%= link_to 'Editar', edit_local_menu_path(@local.id, menu.id), class: "button is-primary"%></td>
+              <td><%= link_to 'Eliminar', local_menu_path(@local.id, menu.id), method: :delete, class: "button is-danger",
+                      data: { confirm: "¿Estás seguro?"} %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="actions">
+        <%= link_to "Agregar menú", new_local_menu_path(@local.id), class: "button is-primary"%>
+      </div>
+    </div>
+  </div>
+  <div class="column is-1"></div>
+</div>
+</section>

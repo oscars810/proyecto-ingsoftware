@@ -1,8 +1,8 @@
 AllCops:
-  Includes:
+  Include:
     - config/routes.rb
     - app/models/*
-  Excludes:
+  Exclude:
     - db/**
     #- config/**/*
     - script/**
@@ -14,8 +14,17 @@ AllCops:
     - lib/**
     - bin/**
 
-Metrics/LineLength:
+Layout/LineLength:
   Max: 100
+
+Layout/IndentationWidth:
+  Width: 2
 
 Style/FrozenStringLiteralComment:
   Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/BlockLength:
+  Max: 40
