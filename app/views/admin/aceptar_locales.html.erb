@@ -16,7 +16,9 @@
     <tr>
         <td><%= local.nombre %></td>
         <td><%= local.descripcion %></td>
-        <td><%= link_to 'Aceptar local', admin_aceptar_local_path(local.id), method: :patch, class: "button is-primary"%></td>
+        <td><%= link_to 'Aceptar local', admin_aceptar_local_path(local.id), method: :patch, class: "button is-primary"%>
+            <%= link_to 'Rechazar local', admin_delete_local_path(local.id, aceptado: "no"), method: :delete, class: "button is-danger",
+            data: { confirm: "¿Estás seguro?"}%></td>
     </tr>
     <% end %>
 </tbody>
