@@ -221,7 +221,7 @@
               <td> <%= valuation.nombre %></td>
               <td> <%= valuation.local.nombre %></td>
               <td> <%= valuation.fecha %></td>
-              <td> <%= link_to 'Dejar valoración', new_local_comentario_path(valuation.local.id, valuation_id: valuation.id), class: "button is-primary"%>
+              <td> <%= link_to 'Dejar valoración', edit_local_valoracione_path(valuation.local.id, valuation.id), class: "button is-primary"%>
             </tr>
             <% end %>
           </tbody>

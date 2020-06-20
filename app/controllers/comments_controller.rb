@@ -8,13 +8,6 @@ class CommentsController < ApplicationController
         redirect_to local_path(@local.id), notice: 'No puedes comentar en tu propio local'
       else
         render
-        # valoraciones_pendientes = current_user.valuations.where("realizada = false AND local_id = #{params[:local_id]}")
-        # @valuation_id = params[:valuation_id]
-        # if not valoraciones_pendientes.empty? and @valuation_id
-        #   render
-        # else
-        #   redirect_to root_path, notice: 'No puedes acceder a esta página'
-        # end
       end
     else
       redirect_to root_path, notice: 'Debes iniciar sesión para comentar'
