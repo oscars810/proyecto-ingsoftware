@@ -17,8 +17,13 @@ class AdminController < ApplicationController
   end
 
   def eliminar_local
+    aceptado = params[:aceptado]
     @local = Local.find(params[:local_id])
     @local.destroy
-    redirect_to admin_locales_path, notice: 'El local ha sido eliminado con éxito'
+    if aceptado == "si"
+      redirect_to admin_locales_path, notice: 'El local ha sido eliminado con éxito'
+    elsif aceptado == "no"
+      redirect_to admin_aceptar_locales_path, notice: 'El local ha sido rechazado con éxito'
+    end
   end
 end

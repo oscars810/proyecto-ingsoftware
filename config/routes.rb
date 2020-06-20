@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'valuations/new'
+  get 'valuation/new'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'welcome#index'
 
@@ -20,6 +22,7 @@ Rails.application.routes.draw do
   resources :locales, controller: 'locals', as: 'local' do
     resources :menus, only: %i[new create edit update destroy]
     resources :comentarios, controller: 'comments', only: %i[new create destroy]
+    resources :valoraciones, controller: 'valuations', only: %i[edit update destroy]
   end
 
   # Perfil

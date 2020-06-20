@@ -1,6 +1,7 @@
+require 'date'
+
 class PerfilController < ApplicationController
 
-  
   # Read
   def index
     @users = User.where("admin = false")
@@ -32,7 +33,7 @@ class PerfilController < ApplicationController
       end
 
       @pending_valuations = current_user.valuations.where("realizada = false")
-
+      @current_date = DateTime.now.to_date
       #Cada vez que entra a su perfil busca posibles match que se hayan hecho mutuamente por casualidad
       @match_nuevos = MatchRequest.where('solicitado_id = ?', @user.id)
       @match_nuevos.each do |m|

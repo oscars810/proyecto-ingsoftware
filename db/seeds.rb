@@ -1,3 +1,5 @@
+require "csv"
+
 descripcion = 
 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
@@ -5,29 +7,10 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 "
 
-comuna = Commune.new(nombre: 'Santiago Centro')
-comuna.save!
-
-comuna = Commune.new(nombre: 'San Joaquin')
-comuna.save!
-
-comuna = Commune.new(nombre: 'Macul')
-comuna.save!
-
-comuna = Commune.new(nombre: 'Conchalí')
-comuna.save!
-
-comuna = Commune.new(nombre: 'Providencia')
-comuna.save!
-
-comuna = Commune.new(nombre: 'Las Condes')
-comuna.save!
-
-comuna = Commune.new(nombre: 'Estación Central')
-comuna.save!
-
-comuna = Commune.new(nombre: 'Renca')
-comuna.save!
+CSV.foreach("db/comunas_ordenadas.csv") do |row|
+    comuna = Commune.new(nombre: row[0])
+    comuna.save!
+end
 
 interest = Interest.new(nombre: 'Escalada', descripcion: 'Para los amantes de la escalada')
 interest.save!
