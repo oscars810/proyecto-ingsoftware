@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   resources :locales, controller: 'locals', as: 'local' do
     resources :menus, only: %i[new create edit update destroy]
     resources :comentarios, controller: 'comments', only: %i[new create destroy]
-    resources :valoraciones, controller: 'valuations', only: %i[edit update]
+    resources :valoraciones, controller: 'valuations', only: %i[edit update destroy]
   end
 
   # Perfil

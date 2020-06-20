@@ -24,4 +24,10 @@ class ValuationsController < ApplicationController
       redirect_to perfil_path(current_user.id), notice: "Ocurrió un error al agregar la valoración"
     end
   end
+
+  def destroy
+    @valuation = Valuation.find(params[:id])
+    @valuation.destroy
+    redirect_to perfil_path(current_user.id), notice: "Lamentamos que la cita no haya ocurrido, más suerte para la próxima"
+  end
 end
