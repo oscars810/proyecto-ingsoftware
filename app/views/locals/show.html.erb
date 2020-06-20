@@ -38,7 +38,7 @@
 <div class="columns">
   <div class="column"></div>
   <div class="column is-two-thirds">
-    <div class="box" style="color: is-danger;">
+    <div class="box">
     <h1 class="title has-text-centered"> Menus ofrecidos </h1>
       <div class="media-content">
         <div class="content">
@@ -70,8 +70,13 @@
 </section>
 
 <section class="section">
-  <div class="box" style="color: is-danger;">
+  <div class="notification is-fluid is-danger">
     <h1 class="title has-text-centered"> Comentarios </h1>
+    <div class="buttons is-centered">
+      <% if user_signed_in? and current_user.id != @local.user_id %>
+        <%=link_to "Nuevo Comentario", new_local_comentario_path(@local.id), class: "button is-primary is-rounded"%>
+      <% end %>
+    </div>
   </div>
   <div class="columns">
     <div class="column"></div>
