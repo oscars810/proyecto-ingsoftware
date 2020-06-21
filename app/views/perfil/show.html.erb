@@ -7,9 +7,11 @@
       <% else%>
         <%= link_to 'Inscribir mi local', new_local_path, class: 'button is-primary is-rounded' %>
       <%end%>
+      <%= link_to 'Mis comentarios', perfil_comentarios_path(current_user.id), class: "button is-primary is-rounded is-centered"%>
       <%= link_to 'Editar perfil', perfil_edit_path(@user.id), class: 'button is-link is-rounded' %>
       <%= link_to 'Eliminar cuenta', perfil_path(@user.id), class: 'button is-danger is-light is-rounded', method: :delete, data: { confirm: "¿Estas seguro? \n 
       Esta acción no es reversible" }%>
+      </div>
   </div>
 </section>
 
