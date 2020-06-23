@@ -25,12 +25,16 @@ Rails.application.routes.draw do
     resources :valoraciones, controller: 'valuations', only: %i[edit update destroy]
   end
 
+  patch 'locales', to: 'locals#index_search', as: :index_search
   # Perfil
   # Create
   devise_for :users, controllers: { sessions: 'users/sessions',
                                     registrations: 'users/registrations' }
 
-  # Read Usuarios
+  # Ver comentarios
+  get 'perfil/:user_id/comentarios', to: 'comments#show', as: :perfil_comentarios
+
+  # Read perfil
   get 'perfil/:user_id', to: 'perfil#show', as: :perfil
 
   # Update perfil

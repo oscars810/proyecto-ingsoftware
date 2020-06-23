@@ -32,9 +32,22 @@ class CommentsController < ApplicationController
     render :layout => 'admin'
   end
 
+  def show
+    if user_signed_in? and current_user.id == params[:user_id].to_i
+      @user = User.find(params[:user_id])
+      @comentarios = Comment.where("user_id = #{@user.id}")
+    else
+      redirect_to root_path, notice: "No puedes acceder a esta página"
+    end
+  end
+
   def destroy
     @comentario = Comment.find(params[:id])
     @comentario.destroy
+    if params[:perfil]
+      redirect_to perfil_comentarios_path(current_user.id), notice: "El comentario ha sido eliminado con éxito"
+      return
+    end
     unless params[:admin]
       redirect_to local_path(params[:local_id]), notice: 'El comentario ha sido eliminado con éxito'
     else
