@@ -20,7 +20,19 @@
     </div>
   </div>
 </section>
+<nav class="panel">
+  <%= form_tag local_index_path, :method => 'get' do %>
+  <p class="panel-heading">
+      Buscador de locales:
+    </p>
+    <div class="panel-block">
 
+      <%= text_field_tag :search, params[:search], class: "input" %>
+      <%= submit_tag "Search", :name => nil, class: "button is-link" %>
+    </div>
+  <% end %>
+  </form>
+</nav>
 <section class="section">
   <div class="columns">
     <div class="column"></div>
