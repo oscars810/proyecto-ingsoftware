@@ -48,6 +48,8 @@ Rails.application.routes.draw do
   # Match
   # Mostrar perfiles
   get 'match/:id', to: 'matches#index', as: :match
+  # Mostrar informacion de los matches del usuario 
+  post 'match/:id', to: 'matches#show', as: :match_info
 
   # Create match
   get 'match/:id/:idsolicitado', to: 'matches#new', as: :match_new

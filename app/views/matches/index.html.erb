@@ -25,65 +25,81 @@
   </div>
 </section>
 
+<br>
+<div class="tabs is-centered">
+  <ul>
+    <li class="is-active"><a href="<%=match_path(current_user.id)%>">Buscar Suerte</a></li>
+    <li><%= link_to 'Tus Matchs', match_info_path(current_user.id), method: :post%></li>
+  </ul>
+</div>
+
+
 <section class="section">
 <div class="columns">
-  <div class="column"></div>
-  <div class="column is-two-thirds">
-    <% @users.each do |user| %>
-      <div class="box">
-        <article class="media">
+  <%@users.each do |user|%>
+  <div class="column">
+    <div class="card">
+      <div class="card-image">
+        <figure class="image is-4by3">
+          <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+        </figure>
+      </div>
+      <div class="card-content">
+        <div class="media">
           <div class="media-left">
-            <figure class="image is-64x64">
-              <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+            <figure class="image is-48x48">
+              <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
             </figure>
           </div>
           <div class="media-content">
-            <div class="content">
-              <p>
-                <strong><%= user.nombre %></strong> <small><%= user.edad %> años</small> 
-                <br>
-                <strong>Comuna: </strong>
-                <%= user.commune.nombre %>
-                <br>
-                <strong>Descripcion: </strong>
-                <%= user.descripcion %> 
-                <br>
-              </p>
-            </div>
-            <div class="control">
-              <div class="tab">
-              <div class="tags">
-                <strong>Gustos: &nbsp; &nbsp; </strong>
-                <br>
-                <ul id="interests">
-                  <% user.interests.each do |interest|%>
-                    <li>
-                    <span class="tag is-danger is-light"><%= interest.nombre %><span>
-                    </li>
-                  <% end %>
-                </ul>
-              </div>
-              </div>
-            </div>
-            <br>
-            <nav class="level is-mobile">
-              <div class="level-left">
-                <a class="level-item" aria-label="like" href="<%=match_new_path(@user.id, user.id)%>">
-                  <span class="icon is-small">
-                    <i class="fas fa-heart" aria-hidden="true"></i>
-                  </span>
-                </a>
-              </div>
-            </nav>
+            <p class="title is-4"><%= user.nombre %></p>
+            <p class="subtitle is-6"><%= user.edad%> años</p>
           </div>
-        </article>
+        </div>
+
+        <div class="content">
+          <p>
+            <strong><%= user.nombre %></strong> <small><%= user.edad %> años</small> 
+            <br>
+            <strong>Comuna: </strong>
+            <%= user.commune.nombre %>
+            <br>
+            <strong>Descripcion: </strong>
+            <%= user.descripcion %> 
+            <br>
+          </p>
+          <div class="control">
+            <div class="tab">
+            <div class="tags">
+              <strong>Gustos:</strong>
+              <ul id="interests">
+                <% user.interests.each do |interest|%>
+                  <li>
+                  <span class="tag is-danger is-light"><%= interest.nombre %><span>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+            </div>
+          </div>
+          <br>
+          <div style="width:60px; margin:0 auto;">
+          <nav class="level is-mobile">
+            <div align="center">
+              <a class="level-item" aria-label="like" href="<%=match_new_path(@user.id, user.id)%>">
+                <span class="icon is-medium is-centered">
+                    <i class="fas fa-heart fas fa-2x" aria-hidden="true"></i>
+                </span>
+              </a>
+            </div>
+          </nav>
+          </div>
+        </div>
       </div>
-
-    <% end %>
+    </div>
   </div>
-  <div class="column"></div>
+  <%end%>
 </div>
-
 <div style='width: 350px; margin-left: 405px; background-color: white;'>
   <%= will_paginate @users, :page_links => false, renderer: BulmaPagination::Rails, class: 'pagination is-rounded' %>
 </div>
