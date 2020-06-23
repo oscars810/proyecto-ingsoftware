@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     resources :valoraciones, controller: 'valuations', only: %i[edit update destroy]
   end
 
+  patch 'locales', to: 'locals#index_search', as: :index_search
   # Perfil
   # Create
   devise_for :users, controllers: { sessions: 'users/sessions',
@@ -51,6 +52,8 @@ Rails.application.routes.draw do
   # Match
   # Mostrar perfiles
   get 'match/:id', to: 'matches#index', as: :match
+  # Mostrar informacion de los matches del usuario 
+  post 'match/:id', to: 'matches#show', as: :match_info
 
   # Create match
   get 'match/:id/:idsolicitado', to: 'matches#new', as: :match_new

@@ -44,7 +44,16 @@ class LocalsController < ApplicationController
   end
 
   def index
-    @locales = Local.where("aceptado = true")
+
+    if params[:search]
+      @locales = Local.where("nombre ILIKE ?", "%" + params[:search] + "%")
+    else
+      @locales = Local.where("aceptado = true")
+    end
+  end
+
+  def index_search
+    @locales = Local.where("aceptado = false")
   end
 
   def edit
