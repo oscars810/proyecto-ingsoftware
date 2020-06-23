@@ -80,6 +80,18 @@
             </div>
           </div>
 
+          <div class="field">
+            <div class="control">
+              <span class="icon is-small is-left">
+                <i class="fas fa-venus-mars"></i>
+              </span>
+              Genero:
+              <div class="select is-fullwidth">
+                <%= form.select(:genero, ['masculino', 'femenino', 'otro'])%>
+              </div>
+            </div>
+          </div>
+
           <div class="button is-medium is-info is-fullwidth" value="Ingresar">
             <%= form.submit "Editar", class: "button is-medium is-info is-fullwidth"%>
           </div>
