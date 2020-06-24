@@ -78,6 +78,18 @@
           <div class="field">
             <div class="control">
               <span class="icon is-small is-left">
+                <i class="fas fa-venus-mars"></i>
+              </span>
+              Genero:
+              <div class="select is-fullwidth">
+                <%= f.select(:genero, ['masculino', 'femenino', 'otro'])%>
+              </div>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="control">
+              <span class="icon is-small is-left">
                 <i class="fas fa-key"></i>
               </span>
               Contraseña:
