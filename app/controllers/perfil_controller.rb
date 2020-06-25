@@ -66,13 +66,12 @@ class PerfilController < ApplicationController
   end
 
   def update
-    user_params = params.require(:user).permit(:nombre, :email, :descripcion, :edad, :telefono, :commune_id)
+    user_params = params.require(:user).permit(:nombre, :email, :descripcion, :edad, :telefono, :commune_id, :genero)
 
     @user = User.find(params[:id])
 
     unless user_params[:nombre].empty?
       if @user.update(user_params)
-        #@user.commune_id = @commune
         redirect_to perfil_path(@user.id), notice: 'Datos de usuario actualizados con éxito'
 
       else

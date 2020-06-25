@@ -66,6 +66,7 @@ user = User.new(email: 'oscar@uc.cl',
                 admin: false,
                 nombre: 'Oscar',
                 commune_id: 2,
+                genero: 'masculino',
                 edad: 20,
                 descripcion: descripcion)
 user.save!
@@ -79,6 +80,7 @@ user = User.new(email: 'benito1234@uc.cl',
                 admin: false,
                 nombre: 'Benito',
                 commune_id: 3,
+                genero: 'masculino',
                 edad: 5,
                 descripcion: descripcion)
 user.save!
@@ -91,6 +93,7 @@ user = User.new(email: 'eduardo@uc.cl',
                 admin: false,
                 nombre: 'Eduardo',
                 commune_id: 4,
+                genero: 'masculino',
                 edad: 20,
                 descripcion: descripcion)
 user.save!
@@ -103,6 +106,7 @@ user = User.new(email: 'felipe1234@uc.cl',
                 admin: false,
                 nombre: 'Felipe',
                 commune_id: 5,
+                genero: 'masculino',
                 edad: 20,
                 descripcion: descripcion)
 user.save!
@@ -115,6 +119,7 @@ user = User.new(email: 'alfonso@uc.cl',
                 admin: false,
                 nombre: 'Alfonso',
                 commune_id: 4,
+                genero: 'masculino',
                 edad: 20,
                 descripcion: descripcion)
 user.save!
@@ -127,6 +132,7 @@ user = User.new(email: 'mario@uc.cl',
                 admin: false,
                 nombre: 'Mario',
                 commune_id: 4,
+                genero: 'otro',
                 edad: 19,
                 descripcion: descripcion)
 user.save!
@@ -140,6 +146,7 @@ user = User.new(email: 'fernando@uc.cl',
                 admin: false,
                 nombre: 'Fernando',
                 commune_id: 2,
+                genero: 'masculino',
                 edad: 21,
                 descripcion: descripcion)
 user.save!
@@ -154,6 +161,7 @@ user = User.new(email: 'ricardo@uc.cl',
                 admin: false,
                 nombre: 'Ricardo',
                 commune_id: 6,
+                genero: 'masculino',
                 edad: 18,
                 descripcion: descripcion)
 user.save!
@@ -165,6 +173,7 @@ user = User.new(email: 'benjamin@uc.cl',
                 admin: false,
                 nombre: 'Benjamin',
                 commune_id: 7,
+                genero: 'otro',
                 edad: 19,
                 descripcion: descripcion)
 user.save!
@@ -176,6 +185,7 @@ user = User.new(email: 'esteban@uc.cl',
                 admin: false,
                 nombre: 'Esteban',
                 commune_id: 8,
+                genero: 'masculino',
                 edad: 19,
                 descripcion: descripcion)
 user.save!
@@ -187,6 +197,7 @@ user = User.new(email: "cristina@uc.cl",
                 admin: false,
                 nombre: 'Cristina',
                 commune_id: 4,
+                genero: 'otro',
                 edad: 24,
                 descripcion: descripcion)
 user.save!
@@ -199,6 +210,7 @@ user = User.new(email: "valentina@uc.cl",
     admin: false,
     nombre: "Valentina",
     commune_id: 5,
+    genero: 'femenino',
     edad: 20,
     descripcion: descripcion)
 user.save!
@@ -211,6 +223,7 @@ user = User.new(email: "daniela@uc.cl",
     admin: false,
     nombre: "Daniela",
     commune_id: 5,
+    genero: 'femenino',
     edad: 23,
     descripcion: descripcion)
 user.save!
@@ -223,6 +236,7 @@ user = User.new(email: "fernanda@uc.cl",
     admin: false,
     nombre: "Fernanda",
     commune_id: 2,
+    genero: 'femenino',
     edad: 19,
     descripcion: descripcion)
 user.save!
