@@ -7,10 +7,16 @@
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
   <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 </head>
 <body>
+
+<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 
 <section class="hero is-danger">
   <div class="hero-body">
@@ -29,9 +35,40 @@
 
       <%= text_field_tag :search, params[:search], class: "input" %>
       <%= submit_tag "Search", :name => nil, class: "button is-link" %>
+      <a class="button is-link is-light" data-toggle="collapse" href="#collapseOne" role="button" aria-expanded="false" aria-controls="collapseExample">
+        Filtrar
+      </a>
     </div>
   <% end %>
   </form>
+  <div class="collapse" id="collapseOne">
+      <%= form_tag local_index_path, :method => 'get' do %>
+      <div class="field-body">
+        <div class="field">
+          <div class="control">
+            Comuna:
+            <div class="select is-fullwidth">
+              <% comunas = Commune.all.collect {|c| [c.nombre, c.id]} %>
+              <% comunas.unshift("Todas") %>
+              <%= select_tag(:commune_id, options_for_select(comunas)) %>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <div class="control">
+            Valoracion:
+            <div class="select is-fullwidth">
+              <%= select_tag(:valoracion, options_for_select(["Todas", "0-1", "1-2", "2-3", "3-4", "4-5"])) %>
+            </div>
+          </div>
+        </div>
+        <div>
+          <br>
+          <div><%= submit_tag "Aplicar Filtros", :name => nil, class: "button is-warning is-light" %></div>
+        </div>
+      </div>
+      <% end %>
+  </div>
 </nav>
 <section class="section">
   <div class="columns">

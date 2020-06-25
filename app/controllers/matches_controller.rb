@@ -4,7 +4,7 @@ class MatchesController < ApplicationController
 
   def index
     unless user_signed_in?
-      redirect_to root_path, notice: 'Usted debe iniciar secion para poder realizar match'
+      redirect_to root_path, notice: 'Usted debe iniciar sesión para poder realizar match'
     else
       #@users = User.all.paginate(page: params[:page], per_page: 2)
       @user = User.find(params[:id])

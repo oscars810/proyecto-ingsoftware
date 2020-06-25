@@ -49,16 +49,41 @@ class LocalsController < ApplicationController
   end
 
   def index
+    if params[:valoracion]
+      if params[:valoracion] != 'Todas'
+        max = params[:valoracion][-1]
+        min = params[:valoracion][0]
+        @locales = []
+        if params[:commune_id] != 'Todas'
+          all_locals = Local.where("commune_id = ?", params[:commune_id])
+        else
+          all_locals = Local.all
+        end
+        all_locals.each do |local|
+          @promedio = local.valuations.where("realizada = true").average(:puntuacion)
+          if @promedio 
+            @promedio = @promedio.round(1)
+            if @promedio >= min.to_i and @promedio <= max.to_i
+              @locales = @locales.append(local)
+            end
+          end
+        end
+      elsif params[:commune_id] != 'Todas'
+        @locales = Local.where("commune_id = ?", params[:commune_id])
+      else
+        @locales = Local.where("aceptado = true")
+      end
 
-    if params[:search]
-      @locales = Local.where("nombre ILIKE ?", "%" + params[:search] + "%")
+    elsif params[:search]
+      if params[:search] == ""
+        @locales = Local.where("aceptado = true")
+      else
+        @locales = Local.where("nombre ILIKE ?", "%" + params[:search] + "%")
+      end
+
     else
       @locales = Local.where("aceptado = true")
     end
-  end
-
-  def index_search
-    @locales = Local.where("aceptado = false")
   end
 
   def edit
