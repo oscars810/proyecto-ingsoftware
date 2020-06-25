@@ -262,62 +262,76 @@ local = Local.new(nombre: 'Juan y Medio',
                   aceptado: true, 
                   telefono:  '2 242 131 46',
                   direccion: "Rosario, Rengo, O'Higgins",
-                  commune_id: 2, 
-                  user_id: 2)
+                  commune_id: 162, 
+                  user_id: 2,
+                  lat: -34.3476978,
+                  long: -70.8430037)
 local.save!
 
 local = Local.new(nombre: 'Pamplona',
                   descripcion: 'Sandwicheria española',
                   aceptado: true,
-                  commune_id: 3,
                   telefono: '2 345 672 49',
                   direccion: 'Exequiel Fernandez 6030, Macul, Región Metropolitana', 
-                  user_id: 3)
+                  commune_id: 162, 
+                  user_id: 3,
+                  lat:-33.508417, 
+                  long:-70.604095)
 local.save!
 
 local = Local.new(nombre: 'Taiko',
                   descripcion: 'Tenedor libre de sushi',
                   aceptado: false,
-                  commune_id: 4,
                   telefono: '2 634 019 21',
                   direecion: 'Av. Departamental 119, Santiago, San Joaquín, Región Metropolitana', 
-                  user_id: 4)
+                  commune_id: 290, 
+                  user_id: 4,
+                  lat:-33.507832,
+                  long:-70.618347)
 local.save!
 
 local = Local.new(nombre: 'Pollos Hermanos',
                   descripcion: 'Totalmente un local de pollo',
                   aceptado: true,
-                  commune_id: 5,
                   telefono: '2 295 294 43',
                   direecion: 'Los Zapadores 1130, Recoleta, Región Metropolitana',
-                  user_id: 5)
+                  commune_id: 63,
+                  user_id: 5,
+                  lat:-33.387296,
+                  long:-70.651944)
 local.save!
 
 local = Local.new(nombre: 'SubGuay',
                 descripcion: 'Sandwiches con todo lo que puedas comer.',
                 aceptado: true,
-                commune_id: 1,
                 telefono: '2 340 847 05',
                 direccion: "Av Libertador Bernardo O'Higgins 1031-1047, Santiago, Región Metropolitana",
-                user_id: 9)
+                commune_id: 307,
+                user_id: 9,
+                lat:-33.443948, 
+                long:-70.650323)
 local.save!
 
 local = Local.new(nombre: 'Chicken Brother',
                 descripcion: 'Totalmente una copia de un local de pollos.',
                 aceptado: false,
-                commune_id: 2,
                 telefono: '2 420 549 23',
                 direccion: "Av Libertador Bernardo O'Higgins 1111, Santiago, XIII Metropolitana de Santiago",
-                user_id: 8)
+                commune_id: 307,
+                user_id: 8,
+                lat:-33.443905, 
+                long:-70.651794)
 local.save!
 
 local = Local.new(nombre: 'El Fito',
                 descripcion: 'Grandes cantidades de cerveza por bajas cantidades de dinero.',
                 aceptado: true,
-                commune_id: 2,
                 telefono: "2 328 340 12",
                 direccion: "Vicuña Mackenna 4779, Macul, San Joaquín, Región Metropolitana",
-                user_id: 7)
+                commune_id: 290,
+                user_id: 7,
+                lat: -33.498188,
+                long: -70.616262)
 local.save!
 
 comentario = Comment.new(contenido: 'Un local bastante variado y con muy buena atención', 
