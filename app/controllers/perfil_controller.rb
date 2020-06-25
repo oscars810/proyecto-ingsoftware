@@ -32,8 +32,6 @@ class PerfilController < ApplicationController
         end
       end
 
-      @pending_valuations = current_user.valuations.where("realizada = false")
-      @current_date = DateTime.now.to_date
       #Cada vez que entra a su perfil busca posibles match que se hayan hecho mutuamente por casualidad
       @match_nuevos = MatchRequest.where('solicitado_id = ?', @user.id)
       @match_nuevos.each do |m|
@@ -51,9 +49,19 @@ class PerfilController < ApplicationController
       end
       @match_nuevos = MatchRequest.where('solicitado_id = ?', @user.id)
       @match_todos = Match.where('user1_id = ? or user2_id = ?', @user.id, @user.id)
+    elsif user_signed_in?
+      @user = User.find(params[:user_id])
+      @interests_user = @user.interests
+      @commune = @user.commune
+      render "show_incomplete"
     else
       redirect_to root_path, notice: 'No puedes acceder a esta página'
     end
+  end
+
+  def valuations
+    @pending_valuations = current_user.valuations.where("realizada = false").sort_by(&:fecha)
+    @current_date = DateTime.now.to_date
   end
 
   #Update

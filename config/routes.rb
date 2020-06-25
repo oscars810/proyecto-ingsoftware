@@ -33,6 +33,8 @@ Rails.application.routes.draw do
 
   # Ver comentarios
   get 'perfil/:user_id/comentarios', to: 'comments#show', as: :perfil_comentarios
+  # Ver valoraciones pendientes
+  get 'perfil/:user_id/valoraciones', to: 'perfil#valuations', as: :perfil_valuations
 
   # Read perfil
   get 'perfil/:user_id', to: 'perfil#show', as: :perfil
@@ -53,7 +55,7 @@ Rails.application.routes.draw do
   # Mostrar perfiles
   get 'match/:id', to: 'matches#index', as: :match
   # Mostrar informacion de los matches del usuario 
-  post 'match/:id', to: 'matches#show', as: :match_info
+  get 'match/:id/info', to: 'matches#show', as: :match_info
 
   # Create match
   get 'match/:id/:idsolicitado', to: 'matches#new', as: :match_new
