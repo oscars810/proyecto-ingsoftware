@@ -19,7 +19,9 @@
         <td><%= comentario.local.nombre %></td>
         <td><%= comentario.contenido %></td>
         <td><%= link_to 'Eliminar comentario', comentario_path(comentario.id, :admin => true),  method: :delete, class: "button is-danger",
-        data: { confirm: "¿Estás seguro?"} %></td>
+        data: { confirm: "¿Estás seguro?"} %>
+        <%= link_to 'Ver usuario', perfil_path(comentario.user_id), class: "button is-link", target: :_blank%>
+        <%= link_to 'Ver local', local_path(comentario.local_id), class: "button is-link", target: :_blank%></td>
     </tr>
     <% end %>
 </tbody>

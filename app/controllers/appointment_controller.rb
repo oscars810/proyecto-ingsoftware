@@ -30,15 +30,20 @@ class AppointmentController < ApplicationController
         solicitado_id = match.user2_id
         solicitante_id = match.user1_id
       end
+      local = Local.find(@appointment.local_id)
       valuation1 = Valuation.new(user_id: solicitante_id,
         local_id: @appointment.local_id,
+        local_name: local.nombre,
+        lucky_id: solicitado_id,
         fecha: @fecha,
         nombre: User.find(solicitado_id).nombre)
       valuation1.save
 
       valuation2 = Valuation.new(user_id: solicitado_id,
         local_id: @appointment.local_id,
+        local_name: local.nombre,
         fecha: @fecha,
+        lucky_id: solicitante_id,
         nombre: User.find(solicitante_id).nombre)
       if valuation2.save
         trash = Appointment.where("match_id = ?", match.id)
