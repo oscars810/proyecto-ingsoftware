@@ -36,9 +36,23 @@
           <tbody>
             <% @pending_valuations.each do |valuation|%>
               <% @disabled = (valuation.fecha >= @current_date)%>
+              <% user = User.find(valuation.lucky_id)%>
+              <% local = Local.find(valuation.local_id)%>
             <tr>
-              <td> <%= valuation.nombre %></td>
-              <td> <%= valuation.local.nombre %></td>
+              <td>
+                <% if user %>
+                  <%= link_to valuation.nombre, perfil_path(valuation.lucky_id), target: :_blank %>
+                <% else %>
+                  <%= valuation.nombre %>
+                <% end %>
+              </td>
+              <td>
+                <% if local %>
+                  <%= link_to valuation.local_name, local_path(valuation.local_id), target: :_blank %>
+                <% else %>
+                  <%= valuation.local_name %>
+                <% end %>
+              </td>
               <td> <%= valuation.fecha %></td>
               <td> 
                 <button class="button is-primary" <%if @disabled%> disabled <% end %>>

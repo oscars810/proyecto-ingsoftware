@@ -222,7 +222,7 @@ user = User.new(email: "daniela@uc.cl",
     password_confirmation: "daniela1234",
     admin: false,
     nombre: "Daniela",
-    commune_id: 5,
+    commune_id: 82,
     genero: 'femenino',
     edad: 23,
     descripcion: descripcion)
@@ -235,13 +235,27 @@ user = User.new(email: "fernanda@uc.cl",
     password_confirmation: "fernanda1234",
     admin: false,
     nombre: "Fernanda",
-    commune_id: 2,
+    commune_id: 47,
     genero: 'femenino',
     edad: 19,
     descripcion: descripcion)
 user.save!
 user.interests << Interest.find(5)
 user.interests << Interest.find(2)
+
+user = User.new(email: "catalina@uc.cl",
+    password: "catalina1234",
+    password_confirmation: "catalina1234",
+    admin: false,
+    nombre: "Catalina",
+    commune_id: 36,
+    edad: 23,
+    descripcion: descripcion)
+user.save!
+user.interests << Interest.find(7)
+user.interests << Interest.find(4)
+user.interests << Interest.find(2)
+user.interests << Interest.find(1)
 
 local = Local.new(nombre: 'Juan y Medio',
                   descripcion: 'Restaurante de comida tipica chilena', 
@@ -381,13 +395,17 @@ menu = Menu.new(local_id: 4,
 menu.save!
 
 valuation = Valuation.new(local_id: 4,
+                          local_name: "Pollos Hermanos",
                           user_id: 6,
                           nombre: "Catalina",
+                          lucky_id: 16,
                           fecha: "05-04-2020")
 valuation.save!
 
 valuation = Valuation.new(local_id: 4,
+                          local_name: "Pollos Hermanos",
                           user_id: 7,
+                          lucky_id: 13,
                           nombre: "Valentina",
                           fecha: "08-03-2020")
 valuation.save!
@@ -399,8 +417,10 @@ valuation = Valuation.new(local_id: 2,
 valuation.save!
 
 valuation = Valuation.new(local_id: 2,
+                          local_name: "Pamplona",
                           user_id: 6,
                           nombre: "Daniela",
+                          lucky_id: 14,
                           fecha: "22-05-2020")
 valuation.save!
 
