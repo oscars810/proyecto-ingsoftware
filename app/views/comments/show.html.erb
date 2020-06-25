@@ -28,7 +28,7 @@
              <div class="media-content">
                 <div class="content">
                     <p><small><i><%= comentario.created_at.strftime("%d-%m-%Y")%></i> a las <i><%= comentario.created_at.strftime("%H:%M")%>
-                    en <%= link_to local.nombre, local_path(local.id)%> </i></small>
+                    en <%= link_to local.nombre, local_path(local.id), target: :_blank%> </i></small>
                     <br>
                     <%= comentario.contenido %>
                     </p>
