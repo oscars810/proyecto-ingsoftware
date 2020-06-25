@@ -1,3 +1,9 @@
+<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 <script>
 
   var marker;
@@ -10,26 +16,11 @@
       center: myLatLng
     });
 
-    var contentString = '<div id="content">'+
-    '<div id="siteNotice">'+
-    '</div>'+
-    '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
-    '<div id="bodyContent">'+
-    '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
-    'sandstone rock formation in the southern part of the '+
-    'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
-    'south west of the nearest large town, Alice Springs; 450&#160;km '+
-    '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
-    'features of the Uluru - Kata Tjuta National Park. Uluru is '+
-    'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
-    'Aboriginal people of the area. It has many springs, waterholes, '+
-    'rock caves and ancient paintings. Uluru is listed as a World '+
-    'Heritage Site.</p>'+
-    '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
-    'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
-    '(last visited June 22, 2009).</p>'+
-    '</div>'+
-    '</div>';
+    var contentString =
+    '<h1><b><%=@local.nombre%></b></h1>'+
+    '<p><b>Direccion:</b> Mendoza 501, Rengo</p>'+
+    '<p><b>Telefono:</b> 522-204-560</p>'+
+    '<p><b>Descripcion:</b> <%=@local.descripcion%></p>';
 
     var infowindow = new google.maps.InfoWindow({
       content: contentString
@@ -40,7 +31,7 @@
       map: map,
       draggable: true,
       animation: google.maps.Animation.DROP,
-      title: 'Hello World!'
+      title: '<%=@local.nombre%>'
     });
     marker.addListener('click', function(){
       infowindow.open(map, marker);
@@ -61,11 +52,8 @@
 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsShmfQR57ZbpPbdBYV0yUiG9NfaAE1q8&callback=initMap">
 </script>
 
-
-
-
-<section class="hero is-danger">
-  <div class="hero-body">
+<section>
+  <div class="hero is-danger">
     <div class="container">
       <h1 class="title has-text-centered"> <%= @local.nombre %></h1>
       <h2 class="subtitle has-text-centered"> <%= @local.descripcion %></h2>
@@ -83,60 +71,53 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsShmfQR57ZbpPbdBYV0yUiG9
         <% end%>
       </div>
     </div>
+    <br>
   </div>
-</section>
 
-<section class="section">
-<div class="notification is-fluid is-danger">
-  <h1 class="title has-text-centered"> Imágenes </h1>
-</div>
+  <div class="columns">
+  <div class="column is-6">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin:18px;">
+      <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner">
+        <div class="item active">
+          <figure class="image is-5by3">
+            <img src="https://images.pexels.com/photos/260922/pexels-photo-260922.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+          </figure>
+        </div>
 
-<div class="columns">
-<div class="column"></div>
-<div class="column is-6">
-  <div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-  </ol>
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner">
-      <div class="item active">
-        <figure class="image is-5by3">
-          <img src="https://images.pexels.com/photos/260922/pexels-photo-260922.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
-        </figure>
+        <div class="item">
+          <figure class="image is-5by3">
+            <img src="https://images.pexels.com/photos/1307698/pexels-photo-1307698.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+          </figure>
+        </div>
+      
+        <div class="item">
+          <figure class="image is-5by3">
+            <img src="https://images.pexels.com/photos/1449775/pexels-photo-1449775.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+          </figure>
+        </div>
       </div>
 
-      <div class="item">
-        <figure class="image is-5by3">
-          <img src="https://images.pexels.com/photos/1307698/pexels-photo-1307698.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
-        </figure>
-      </div>
-    
-      <div class="item">
-        <figure class="image is-5by3">
-          <img src="https://images.pexels.com/photos/1449775/pexels-photo-1449775.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
-        </figure>
-      </div>
+      <!-- Left and right controls -->
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        <span class="sr-only">Next</span>
+      </a>
     </div>
-
-    <!-- Left and right controls -->
-    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right"></span>
-      <span class="sr-only">Next</span>
-    </a>
   </div>
-</div>
-<div class="column"></div>
-</div>
-</section>
+  <div class="column"></div>
+      <div id="map" style="width:40%;height:350px;display:block;margin:30px;"></div>
+  </div>
 
-<section class="section">
 <div class="columns">
   <div class="column"></div>
   <div class="column is-two-thirds">
@@ -169,57 +150,46 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsShmfQR57ZbpPbdBYV0yUiG9
   </div>
   <div class="column"></div>
 </div>
-</section>
 
-<section class="section">
-  <div class="notification is-fluid is-danger">
-    <h1 class="title has-text-centered"> Comentarios </h1>
-    <div class="buttons is-centered">
-      <% if user_signed_in? and current_user.id != @local.user_id %>
-        <%=link_to "Nuevo Comentario", new_local_comentario_path(@local.id), class: "button is-primary is-rounded"%>
-      <% end %>
-    </div>
-  </div>
-  <div class="columns">
-    <div class="column"></div>
-    <div class="column is-two-thirds">
-      <% @comentarios.each do |comentario|%>
-      <div class="box">
-        <article class="media">
-          <div class="media-left">
-            <figure class="image is-64x64">
-              <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
-            </figure>
-          </div>
-          <div class="media-content">
-            <div class="content">
-              <p>
-                <strong><%= comentario.user.nombre %></strong> 
-                <small><i><%= comentario.created_at.strftime("%d-%m-%Y")%></i> a las <i><%= comentario.created_at.strftime("%H:%M")%></i></small>
-                <br>
-                <%= comentario.contenido %>
-              </p>
-            </div>
-            <div class="buttons">
-            <% if user_signed_in? and current_user.id == comentario.user_id%>
-              <%= link_to 'Eliminar Comentario', local_comentario_path(@local.id, comentario.id), method: :delete, class: "button is-danger"%>
-            <% end %>
-            </div>
-          </div>
-        </article>
-      </div>
-      <% end %>
-    </div>
-    <div class="column"></div>
-  </div>
-
-<div class="columns">
-  <div class="column is-two-thirds">
-    <div id="map" style="width:40%;height:350px;display:block;margin:auto;"></div>
-  </div>
-  <div class="column">
+<div class="notification is-fluid is-danger">
+  <h1 class="title has-text-centered"> Comentarios </h1>
+  <div class="buttons is-centered">
+    <% if user_signed_in? and current_user.id != @local.user_id %>
+      <%=link_to "Nuevo Comentario", new_local_comentario_path(@local.id), class: "button is-primary is-rounded"%>
+    <% end %>
   </div>
 </div>
-
+<div class="columns">
+  <div class="column"></div>
+  <div class="column is-two-thirds">
+    <% @comentarios.each do |comentario|%>
+    <div class="box">
+      <article class="media">
+        <div class="media-left">
+          <figure class="image is-64x64">
+            <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+          </figure>
+        </div>
+        <div class="media-content">
+          <div class="content">
+            <p>
+              <strong><%= comentario.user.nombre %></strong> 
+              <small><i><%= comentario.created_at.strftime("%d-%m-%Y")%></i> a las <i><%= comentario.created_at.strftime("%H:%M")%></i></small>
+              <br>
+              <%= comentario.contenido %>
+            </p>
+          </div>
+          <div class="buttons">
+          <% if user_signed_in? and current_user.id == comentario.user_id%>
+            <%= link_to 'Eliminar Comentario', local_comentario_path(@local.id, comentario.id), method: :delete, class: "button is-danger"%>
+          <% end %>
+          </div>
+        </div>
+      </article>
+    </div>
+    <% end %>
+  </div>
+  <div class="column"></div>
+</div>
 </section>
 
