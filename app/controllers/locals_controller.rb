@@ -27,11 +27,6 @@ class LocalsController < ApplicationController
     @local = Local.find(params[:id])
     @cantidad_valoraciones = @local.valuations.where("realizada = true").count
     @promedio = @local.valuations.where("realizada = true").average(:puntuacion)
-    locales = [{latitude: 39.7392358, longitude: -104.990251}, {latitude: 32.6130007, longitude: -83.624201}]
-    @hash = Gmaps4rails.build_markers(locales) do |local, marker|
-      marker.lat local['latitude']
-      marker.lng local['longitude']
-    end
     unless @promedio
       @promedio = "(El local aún no tiene puntuaciones)"
     else
@@ -101,7 +96,7 @@ class LocalsController < ApplicationController
   end
 
   def update
-    local_params = params.require(:local).permit(:descripcion)
+    local_params = params.require(:local).permit(:descripcion, :telefono)
     @local = Local.find(params[:id])
 
     if @local.update(local_params)

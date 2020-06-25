@@ -9,7 +9,7 @@
   var marker;
 
   function initMap() {
-    var myLatLng = {lat: -40.574598, lng:  -73.170117};
+    var myLatLng = {lat: <%=@local.lat%>, lng: <%=@local.long%>};
 
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 17,
@@ -18,8 +18,8 @@
 
     var contentString =
     '<h1><b><%=@local.nombre%></b></h1>'+
-    '<p><b>Direccion:</b> Mendoza 501, Rengo</p>'+
-    '<p><b>Telefono:</b> 522-204-560</p>'+
+    '<p><b>Direccion:</b> <%=@local.direccion%></p>'+
+    '<p><b>Telefono:</b> <%=@local.telefono%></p>'+
     '<p><b>Descripcion:</b> <%=@local.descripcion%></p>';
 
     var infowindow = new google.maps.InfoWindow({

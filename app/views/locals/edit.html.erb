@@ -20,6 +20,10 @@
           <%= form.label :descripcion%>
           <%= form.text_area :descripcion, class: "textarea"%>
         </div>
+        <div class='field'>
+          <%= form.label :telefono%>
+          <%= form.text_field :telefono, autofocus: true, autocomplete: "telefono", placeholder: "Telefono", class: "input"%>
+        </div>
         <div class='actions'>
           <%= form.submit "Guardar cambios", class: "button is-primary"%>
           <%= link_to "Eliminar local", local_path(@local.id), method: :delete, class: "button is-danger",
