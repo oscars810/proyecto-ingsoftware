@@ -96,7 +96,7 @@ class LocalsController < ApplicationController
   end
 
   def update
-    local_params = params.require(:local).permit(:descripcion)
+    local_params = params.require(:local).permit(:descripcion, :telefono)
     @local = Local.find(params[:id])
 
     if @local.update(local_params)
