@@ -60,8 +60,12 @@ class PerfilController < ApplicationController
   end
 
   def valuations
-    @pending_valuations = current_user.valuations.where("realizada = false").sort_by(&:fecha)
-    @current_date = DateTime.now.to_date
+    if user_signed_in? and current_user.id == params[:user_id].to_i
+      @pending_valuations = current_user.valuations.where("realizada = false").sort_by(&:fecha)
+      @current_date = DateTime.now.to_date
+    else
+      redirect_to root_path, notice: "No puedes acceder a esta página"
+    end
   end
 
   #Update
