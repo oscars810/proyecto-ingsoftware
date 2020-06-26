@@ -12,14 +12,27 @@ class LocalsController < ApplicationController
   end
 
   def create
-    local_params = params.require(:local).permit(:nombre, :descripcion, :commune_id)
+    local_params = params.require(:local).permit(:nombre, :descripcion, :commune_id, :telefono, :direccion)
     local_params[:user_id] = current_user.id
 
-    @local = Local.new(local_params)
-    if @local.save
-      redirect_to local_index_path, notice: 'Se ha enviado el formulario del local al administrador. Debes esperar que él acepte el local' 
-    else
-      redirect_to local_index_path, notice: 'Ha ocurrido un error al crear el local' 
+    local_direccion = local_params[:direccion]
+
+    require 'opencage/geocoder'
+    geocoder = OpenCage::Geocoder.new(api_key: '60c54918b16a4e338ecb409cc525b948')
+    results = geocoder.geocode(local_direccion)
+
+    if results.first
+      @coordenadas = results.first.coordinates
+      local_params[:lat] = @coordenadas[0]
+      local_params[:long] = @coordenadas[1]
+      @local = Local.new(local_params)
+      if @local.save
+        redirect_to local_index_path, notice: 'Se ha enviado el formulario del local al administrador. Debes esperar que él acepte el local' 
+      else
+        redirect_to local_index_path, notice: 'Ha ocurrido un error al crear el local' 
+      end
+    else 
+      redirect_to new_local_path, notice: 'La dirección ingresada no se ha podido encontrar. Se recomienda utilizar direcciones existentes en Google Maps'
     end
   end
 
@@ -27,6 +40,7 @@ class LocalsController < ApplicationController
     @local = Local.find(params[:id])
     @cantidad_valoraciones = @local.valuations.where("realizada = true").count
     @promedio = @local.valuations.where("realizada = true").average(:puntuacion)
+
     unless @promedio
       @promedio = "(El local aún no tiene puntuaciones)"
     else

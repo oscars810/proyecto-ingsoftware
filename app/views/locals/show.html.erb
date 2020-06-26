@@ -57,7 +57,8 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsShmfQR57ZbpPbdBYV0yUiG9
     <div class="container">
       <h1 class="title has-text-centered"> <%= @local.nombre %></h1>
       <h2 class="subtitle has-text-centered"> <%= @local.descripcion %></h2>
-      <h2 class="subtitle has-text-centered"> Comuna: <%= @local.commune.nombre %><h2>
+      <h2 class="subtitle has-text-centered"> Comuna: <%= @local.commune.nombre %></h2>
+      <h2 class="subtitle has-text-centered"> Telefono: <%=@local.telefono%></h2>
       <h3 class="subtitle has-text-centered"> Puntuación: <%= @promedio %>
         <%if @cantidad_valoraciones == 1 %>
           de <%= @cantidad_valoraciones %> valoracion
