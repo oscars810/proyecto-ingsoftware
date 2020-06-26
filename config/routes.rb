@@ -29,6 +29,12 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { sessions: 'users/sessions',
                                     registrations: 'users/registrations' }
 
+  # Ver menus 
+  get 'locales/:local_id/edit/menus', to: 'menus#show', as: :local_menues
+
+  # Imagenes del local
+  get 'locales/:local_id/edit/imagenes', to: 'locals#images', as: :local_images
+
   # Ver comentarios
   get 'perfil/:user_id/comentarios', to: 'comments#show', as: :perfil_comentarios
   # Ver valoraciones pendientes
