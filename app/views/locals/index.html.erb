@@ -75,6 +75,14 @@
     <div class="column"></div>
     <div class="column is-two-thirds">
       <% @locales.each do |local|%>
+      <% @promedio = local.valuations.where("realizada = true").average(:puntuacion)%>
+      <% @cantidad_valoraciones = local.valuations.where("realizada = true").count %>
+      <% unless @promedio %>
+        <% @promedio = "(El local aún to tiene puntuaciones)"%>
+      <% else %>
+        <% @promedio = @promedio.round(1)%>
+        <% @promedio = " #{@promedio} / 5"%>
+      <% end %>
       <div class="box">
         <article class="media">
           <div class="media-left">
@@ -86,6 +94,13 @@
             <div class="content">
               <p>
                 <strong><%= local.nombre %></strong> <small><%= local.commune.nombre %></small>
+                <br>
+                <strong> Puntuación: </strong> <%= @promedio %> 
+                <%if @cantidad_valoraciones == 1 %>
+                  de <%= @cantidad_valoraciones %> valoracion
+                <%elsif @cantidad_valoraciones != 0%>
+                  de <%= @cantidad_valoraciones %> valoraciones
+                <% end %>
                 <br>
                 <%= local.descripcion %>
               </p>
