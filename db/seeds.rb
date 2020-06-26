@@ -250,6 +250,7 @@ user = User.new(email: "catalina@uc.cl",
     nombre: "Catalina",
     commune_id: 36,
     edad: 23,
+    genero: 'femenino',
     descripcion: descripcion)
 user.save!
 user.interests << Interest.find(7)
