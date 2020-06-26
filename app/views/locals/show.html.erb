@@ -54,11 +54,11 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsShmfQR57ZbpPbdBYV0yUiG9
 
 <section>
   <div class="hero is-danger">
-    <div class="container">
+    <div class="hero-body">
       <h1 class="title has-text-centered"> <%= @local.nombre %></h1>
       <h2 class="subtitle has-text-centered"> <%= @local.descripcion %></h2>
       <h2 class="subtitle has-text-centered"> Comuna: <%= @local.commune.nombre %></h2>
-      <h2 class="subtitle has-text-centered"> Telefono: <%=@local.telefono%></h2>
+      <h2 class="subtitle has-text-centered"> Teléfono: <%= @local.telefono %></h2>
       <h3 class="subtitle has-text-centered"> Puntuación: <%= @promedio %>
         <%if @cantidad_valoraciones == 1 %>
           de <%= @cantidad_valoraciones %> valoracion
@@ -74,7 +74,9 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsShmfQR57ZbpPbdBYV0yUiG9
     </div>
     <br>
   </div>
+</section>
 
+<section class="section">
   <div class="columns">
   <div class="column is-6">
     <div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin:18px;">
@@ -116,7 +118,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsShmfQR57ZbpPbdBYV0yUiG9
     </div>
   </div>
   <div class="column"></div>
-      <div id="map" style="width:40%;height:350px;display:block;margin:30px;"></div>
+      <div id="map" style="width:40%;height:400px;display:block;margin:30px;"></div>
   </div>
 
 <div class="columns">
@@ -151,6 +153,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsShmfQR57ZbpPbdBYV0yUiG9
   </div>
   <div class="column"></div>
 </div>
+</section>
 
 <div class="notification is-fluid is-danger">
   <h1 class="title has-text-centered"> Comentarios </h1>
