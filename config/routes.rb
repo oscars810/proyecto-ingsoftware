@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'valuations/new'
-  get 'valuation/new'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'welcome#index'
 
@@ -47,6 +45,10 @@ Rails.application.routes.draw do
   # Update interes
   patch 'perfil_interest/:id', to: 'perfil#update_interest', as: :perfil_edit_interest
   get 'perfil/:id/:idinterest', to: 'perfil#delete_interest', as: :perfil_delete_interest
+
+  # Update Profile Avatar
+  patch 'perfil_avatar/:user_id', to: 'perfil#update_avatar', as: :perfil_update_avatar
+  delete 'perfil_avatar/:user_id', to: 'perfil#delete_avatar', as: :perfil_delete_avatar
 
   # Delete perfil
   delete 'perfil/:id', to: 'perfil#destroy'
