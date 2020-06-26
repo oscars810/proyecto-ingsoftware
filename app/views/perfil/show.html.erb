@@ -156,11 +156,31 @@
         </center>
         
         <%= form_with(model: @user, url: perfil_update_avatar_path(@user.id), method: :patch) do |form| %>
-          <center>
-            <div class="field">
-              <%= form.file_field :avatar, accept: 'image/png,image/jpeg'%>
-            </div>
-          </center>
+          <div id="file-js-example" class="file is-centered has-name">
+            <label class="file-label">
+              <%= form.file_field :avatar, accept: 'image/png,image/jpeg', class: "file-input"%>
+              <span class="file-cta">
+                <span class="file-icon">
+                  <i class="fas fa-upload"></i>
+                </span>
+                <span class="file-label">
+                  Elige un archivo...
+                </span>
+              </span>
+              <span class="file-name">
+                Sin imagen cargada
+              </span>
+            </label>
+          </div>
+          <script>
+            const fileInput = document.querySelector('#file-js-example input[type=file]');
+            fileInput.onchange = () => {
+              if (fileInput.files.length > 0) {
+                const fileName = document.querySelector('#file-js-example .file-name');
+                fileName.textContent = fileInput.files[0].name;
+              }
+            }
+          </script>
           <br>
           <center>
             <div class="button is-primary">
