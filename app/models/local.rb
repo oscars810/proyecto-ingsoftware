@@ -1,6 +1,8 @@
 class Local < ApplicationRecord
   validates :nombre, :descripcion, presence: true
 
+  has_many_attached :images
+
   belongs_to :user
   belongs_to :commune
   has_many :menus, dependent: :destroy

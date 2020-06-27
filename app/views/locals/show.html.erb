@@ -54,11 +54,11 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsShmfQR57ZbpPbdBYV0yUiG9
 
 <section>
   <div class="hero is-danger">
-    <div class="container">
+    <div class="hero-body">
       <h1 class="title has-text-centered"> <%= @local.nombre %></h1>
       <h2 class="subtitle has-text-centered"> <%= @local.descripcion %></h2>
       <h2 class="subtitle has-text-centered"> Comuna: <%= @local.commune.nombre %></h2>
-      <h2 class="subtitle has-text-centered"> Telefono: <%=@local.telefono%></h2>
+      <h2 class="subtitle has-text-centered"> Teléfono: <%= @local.telefono %></h2>
       <h3 class="subtitle has-text-centered"> Puntuación: <%= @promedio %>
         <%if @cantidad_valoraciones == 1 %>
           de <%= @cantidad_valoraciones %> valoracion
@@ -74,35 +74,49 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsShmfQR57ZbpPbdBYV0yUiG9
     </div>
     <br>
   </div>
+</section>
 
+<section class="section">
   <div class="columns">
   <div class="column is-6">
     <div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin:18px;">
-      <ol class="carousel-indicators">
-      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-    </ol>
-      <!-- Wrapper for slides -->
-      <div class="carousel-inner">
-        <div class="item active">
-          <figure class="image is-5by3">
-            <img src="https://images.pexels.com/photos/260922/pexels-photo-260922.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
-          </figure>
-        </div>
+      <% if @empty_images%>
+        <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        </ol>
 
-        <div class="item">
-          <figure class="image is-5by3">
-            <img src="https://images.pexels.com/photos/1307698/pexels-photo-1307698.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
-          </figure>
+        <div class="carousel-inner">
+          <div class="item active">
+            <figure class="image is-5by3">
+              <img src="https://bulma.io/images/placeholders/800x480.png">
+            </figure>
+          </div>
         </div>
-      
-        <div class="item">
-          <figure class="image is-5by3">
-            <img src="https://images.pexels.com/photos/1449775/pexels-photo-1449775.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
-          </figure>
+      <% else %>
+        <ol class="carousel-indicators">
+          <li data-taget="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          <% (1...@images.count).each do |i|%>
+            <li data-target="#carouselExampleIndicators" data-slide-to=<%= "#{i}" %>></li>
+          <% end %>
+        </ol>
+        
+        <div class="carousel-inner">
+          <div class="item active">
+            <figure class="image is-5by3">
+              <%= image_tag(@images[0]) %>
+            </figure>
+          </div>
+          <% unless @one_image %>
+            <% (1...@images.count).each do |index_image|%>
+              <div class="item">
+                <figure class="image is-5by3">
+                  <%= image_tag(@images[index_image]) %>
+                </figure>
+              </div>
+            <% end %>
+          <% end %>
         </div>
-      </div>
+      <% end %>
 
       <!-- Left and right controls -->
       <a class="left carousel-control" href="#myCarousel" data-slide="prev">
@@ -116,7 +130,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsShmfQR57ZbpPbdBYV0yUiG9
     </div>
   </div>
   <div class="column"></div>
-      <div id="map" style="width:40%;height:350px;display:block;margin:30px;"></div>
+      <div id="map" style="width:40%;height:400px;display:block;margin:30px;"></div>
   </div>
 
 <div class="columns">
@@ -151,6 +165,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsShmfQR57ZbpPbdBYV0yUiG9
   </div>
   <div class="column"></div>
 </div>
+</section>
 
 <div class="notification is-fluid is-danger">
   <h1 class="title has-text-centered"> Comentarios </h1>
@@ -167,8 +182,12 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsShmfQR57ZbpPbdBYV0yUiG9
     <div class="box">
       <article class="media">
         <div class="media-left">
-          <figure class="image is-64x64">
-            <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+          <figure class="image is-128x128">
+            <% unless comentario.user.avatar.attached? %>
+              <img src="https://bulma.io/images/placeholders/128x128.png" alt="Imagen de perfil">
+            <% else %>
+              <%= image_tag comentario.user.avatar, class: "is-rounded" %>
+            <% end %>
           </figure>
         </div>
         <div class="media-content">

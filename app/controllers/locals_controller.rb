@@ -54,6 +54,9 @@ class LocalsController < ApplicationController
     else 
       @menus = @local.menus
       @comentarios = @local.comments
+      @images = @local.images
+      @empty_images = @images.count == 0
+      @one_image = @images.count == 1
     end
   end
 
@@ -99,14 +102,57 @@ class LocalsController < ApplicationController
     @local = Local.find(params[:id])
     @menus = @local.menus
     unless user_signed_in? and current_user.id == Local.find(params[:id]).user_id
-      redirect_to local_path, notice: 'No puedes acceder a esta página'
+      redirect_to local_path(@local.id), notice: 'No puedes acceder a esta página'
     else
       unless @local.aceptado
         redirect_to local_index_path, notice: 'No puedes editar tu local si no ha sido aceptado'
       else
-        @local = Local.find(params[:id])
+        render
       end
     end
+  end
+
+  def images
+    @local = Local.find(params[:local_id])
+    unless user_signed_in? and current_user.id == @local.user_id
+        redirect_to local_path(@local.id), notice: 'No puedes acceder a esta página'
+    else
+      unless @local.aceptado
+          redirect_to local_index_path, notice: "No puedes editar tu local si no ha sido aceptado"
+      else
+        render
+      end
+    end
+  end
+
+  def update_images
+    local_params = params.require(:local).permit(images: [])
+    n_imagenes_nuevas = local_params[:images].count
+    @local = Local.find(params[:local_id])
+    if n_imagenes_nuevas > 5
+      redirect_to local_images_path(@local.id), notice: "Solo puedes subir un máximo de 5 imágenes"
+      return
+    end
+    
+    n_imagenes = @local.images.count
+    if n_imagenes + n_imagenes_nuevas > 5
+      redirect_to local_images_path(@local.id), notice: "Tu local ya tiene #{n_imagenes} imágenes, solo puedes cargar #{5-n_imagenes_nuevas} imágenes nuevas"
+      return
+    end
+
+    @local.images.attach(local_params[:images])
+    if @local.images.attached?
+      redirect_to local_images_path(@local.id), notice: "Las imágenes han sido agregadas con éxito"
+    else
+      redirect_to local_images_path(@local.id), notice: "Ha ocurrido un error al agregar las imágenes"
+    end
+  end
+
+  def delete_images
+    @image = ActiveStorage::Blob.find_signed(params[:image_id])
+    @image.attachments.first.purge
+    @local = Local.find(params[:local_id])
+    redirect_to local_images_path(@local.id), notice: "La imagen ha sido eliminada con éxito"
   end
 
   def update

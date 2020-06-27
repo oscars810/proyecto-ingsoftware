@@ -42,6 +42,20 @@ class MenusController < ApplicationController
     end
   end
 
+  def show
+    @local = Local.find(params[:local_id])
+    unless user_signed_in? and current_user.id == @local.user_id
+      redirect_to local_path(@local.id), notice: 'No puedes acceder a esta página'
+    else
+      unless @local.aceptado
+        redirect_to local_index_path, notice: 'No puedes editar tu local si no ha sido aceptado'
+      else
+        @menus = @local.menus
+        render
+      end
+    end
+  end
+
   def destroy
     @menu = Menu.find(params[:id])
     @local_id = params[:local_id]

@@ -109,6 +109,24 @@ class PerfilController < ApplicationController
     redirect_to perfil_path(@user.id), notice: 'El interés ha sido eliminado de forma exitosa'
   end
 
+  # Avatar
+  def update_avatar
+    user_params = params.require(:user).permit(:avatar)
+    @user = User.find(params[:user_id])
+    @user.avatar.attach(user_params[:avatar])
+    if @user.avatar.attached?
+      redirect_to perfil_path(@user.id), notice: 'Tu imagen de perfil ha sido añadida exitosamente'
+    else
+      redirect_to perfil_path(@user.id), notice: 'Ocurrió un error al subir la imagen. Inténtalo nuevamente'
+    end
+  end
+
+  def delete_avatar
+    @user = User.find(params[:user_id])
+    @user.avatar.purge
+      redirect_to perfil_path(@user.id), notice: 'Tu imagen de perfil ha sido eliminada exitosamente'
+  end
+
   #Delete
   def destroy
     @user = User.find(params[:id])

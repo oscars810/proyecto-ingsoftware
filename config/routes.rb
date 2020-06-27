@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'valuations/new'
-  get 'valuation/new'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'welcome#index'
 
@@ -31,6 +29,14 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { sessions: 'users/sessions',
                                     registrations: 'users/registrations' }
 
+  # Ver menus 
+  get 'locales/:local_id/edit/menus', to: 'menus#show', as: :local_menues
+
+  # Imagenes del local
+  get 'locales/:local_id/edit/imagenes', to: 'locals#images', as: :local_images
+  patch 'locales/:local_id/edit/imagenes', to: 'locals#update_images', as: :local_add_images
+  delete 'locales/:local_id/edit/imagenes/:image_id', to: 'locals#delete_images', as: :local_delete_images
+
   # Ver comentarios
   get 'perfil/:user_id/comentarios', to: 'comments#show', as: :perfil_comentarios
   # Ver valoraciones pendientes
@@ -47,6 +53,10 @@ Rails.application.routes.draw do
   # Update interes
   patch 'perfil_interest/:id', to: 'perfil#update_interest', as: :perfil_edit_interest
   get 'perfil/:id/:idinterest', to: 'perfil#delete_interest', as: :perfil_delete_interest
+
+  # Update Profile Avatar
+  patch 'perfil_avatar/:user_id', to: 'perfil#update_avatar', as: :perfil_update_avatar
+  delete 'perfil_avatar/:user_id', to: 'perfil#delete_avatar', as: :perfil_delete_avatar
 
   # Delete perfil
   delete 'perfil/:id', to: 'perfil#destroy'

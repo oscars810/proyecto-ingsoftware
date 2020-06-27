@@ -59,8 +59,8 @@
               </center></p>
 
               <p><center>
-                <strong>Genero:</strong>
-                <%= @user.genero %>
+                <strong>Género:</strong>
+                <%= @user.genero.capitalize %>
               </center></p>
 
               <p><center>
@@ -94,7 +94,11 @@
       <div class="box">
         <h1 class="title has-text-centered">Imágen de perfil</h1>
         <center>
-        <img src="https://bulma.io/images/placeholders/320x480.png" width="320" height="480">
+          <% unless @user.avatar.attached? %>
+            <img src="https://bulma.io/images/placeholders/320x480.png" width="320" height="480">
+          <% else %>
+            <%= image_tag(@user.avatar) %>
+          <% end %>
         </center>
 
       </div>
