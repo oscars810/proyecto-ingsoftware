@@ -54,6 +54,9 @@ class LocalsController < ApplicationController
     else 
       @menus = @local.menus
       @comentarios = @local.comments
+      @images = @local.images
+      @empty_images = @images.count == 0
+      @one_image = @images.count == 1
     end
   end
 
