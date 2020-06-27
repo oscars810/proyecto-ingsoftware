@@ -257,6 +257,34 @@ user.interests << Interest.find(4)
 user.interests << Interest.find(2)
 user.interests << Interest.find(1)
 
+user = User.new(email: "rorro@uc.cl",
+    password: "rorro1234",
+    password_confirmation: "rorro1234",
+    admin: false,
+    nombre: "Rorro",
+    commune_id: 162,
+    edad: 23,
+    descripcion: descripcion)
+user.save!
+user.interests << Interest.find(5)
+user.interests << Interest.find(4)
+user.interests << Interest.find(2)
+user.interests << Interest.find(7)
+
+user = User.new(email: "camilo@uc.cl",
+    password: "camilo1234",
+    password_confirmation: "camilo1234",
+    admin: false,
+    nombre: "Camilo",
+    commune_id: 290,
+    edad: 25,
+    descripcion: descripcion)
+user.save!
+user.interests << Interest.find(8)
+user.interests << Interest.find(9)
+user.interests << Interest.find(11)
+user.interests << Interest.find(10)
+
 local = Local.new(nombre: 'Juan y Medio',
                   descripcion: 'Restaurante de comida tipica chilena', 
                   aceptado: true, 
