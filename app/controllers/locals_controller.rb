@@ -122,6 +122,36 @@ class LocalsController < ApplicationController
     end
   end
 
+  def update_images
+    local_params = params.require(:local).permit(images: [])
+    n_imagenes_nuevas = local_params[:images].count
+    @local = Local.find(params[:local_id])
+    if n_imagenes_nuevas > 5
+      redirect_to local_images_path(@local.id), notice: "Solo puedes subir un máximo de 5 imágenes"
+      return
+    end
+    
+    n_imagenes = @local.images.count
+    if n_imagenes + n_imagenes_nuevas > 5
+      redirect_to local_images_path(@local.id), notice: "Tu local ya tiene #{n_imagenes} imágenes, solo puedes cargar #{5-n_imagenes_nuevas} imágenes nuevas"
+      return
+    end
+
+    @local.images.attach(local_params[:images])
+    if @local.images.attached?
+      redirect_to local_images_path(@local.id), notice: "Las imágenes han sido agregadas con éxito"
+    else
+      redirect_to local_images_path(@local.id), notice: "Ha ocurrido un error al agregar las imágenes"
+    end
+  end
+
+  def delete_images
+    @image = ActiveStorage::Blob.find_signed(params[:image_id])
+    @image.attachments.first.purge
+    @local = Local.find(params[:local_id])
+    redirect_to local_images_path(@local.id), notice: "La imagen ha sido eliminada con éxito"
+  end
+
   def update
     local_params = params.require(:local).permit(:descripcion, :telefono)
     @local = Local.find(params[:id])

@@ -34,6 +34,8 @@ Rails.application.routes.draw do
 
   # Imagenes del local
   get 'locales/:local_id/edit/imagenes', to: 'locals#images', as: :local_images
+  patch 'locales/:local_id/edit/imagenes', to: 'locals#update_images', as: :local_add_images
+  delete 'locales/:local_id/edit/imagenes/:image_id', to: 'locals#delete_images', as: :local_delete_images
 
   # Ver comentarios
   get 'perfil/:user_id/comentarios', to: 'comments#show', as: :perfil_comentarios
