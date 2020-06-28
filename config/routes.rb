@@ -27,13 +27,14 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { sessions: 'users/sessions',
                                     registrations: 'users/registrations' }
 
-  # Ver menus 
+  # Ver menus
   get 'locales/:local_id/edit/menus', to: 'menus#show', as: :local_menues
 
   # Imagenes del local
   get 'locales/:local_id/edit/imagenes', to: 'locals#images', as: :local_images
   patch 'locales/:local_id/edit/imagenes', to: 'locals#update_images', as: :local_add_images
-  delete 'locales/:local_id/edit/imagenes/:image_id', to: 'locals#delete_images', as: :local_delete_images
+  delete 'locales/:local_id/edit/imagenes/:image_id', to: 'locals#delete_images',
+                                                      as: :local_delete_images
 
   # Ver comentarios
   get 'perfil/:user_id/comentarios', to: 'comments#show', as: :perfil_comentarios
@@ -62,7 +63,7 @@ Rails.application.routes.draw do
   # Match
   # Mostrar perfiles
   get 'match/:id', to: 'matches#index', as: :match
-  # Mostrar informacion de los matches del usuario 
+  # Mostrar informacion de los matches del usuario
   get 'match/:id/info', to: 'matches#show', as: :match_info
 
   # Create match

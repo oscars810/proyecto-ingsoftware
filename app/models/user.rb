@@ -7,29 +7,25 @@ class User < ApplicationRecord
   has_one_attached :avatar
 
   def comment_avatar
-    begin
-      if self.avatar.variable?
-        return self.avatar.variant(resize: '128x128!').processed
-      else
-        return self.avatar
-      end
-    rescue => exception
-      # La imagen ha sido eliminada
-      return "https://bulma.io/images/placeholders/128x128.png"
+    if avatar.variable?
+      avatar.variant(resize: '128x128!').processed
+    else
+      avatar
     end
+  rescue StandardError
+    # La imagen ha sido eliminada
+    'https://bulma.io/images/placeholders/128x128.png'
   end
 
   def match_avatar
-    begin
-      if self.avatar.variable?
-        return self.avatar.variant(resize: '480x600!').processed
-      else
-        return self.avatar
-      end
-    rescue => exception
-      # La imagen ha sido eliminada
-      return "https://bulma.io/images/placeholders/480x600.png"
+    if avatar.variable?
+      avatar.variant(resize: '480x600!').processed
+    else
+      avatar
     end
+  rescue StandardError
+    # La imagen ha sido eliminada
+    'https://bulma.io/images/placeholders/480x600.png'
   end
 
   belongs_to :commune
