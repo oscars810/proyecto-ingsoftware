@@ -1,3 +1,15 @@
+<style>
+.bm--card-equal-height {
+   display: flex;
+   flex-direction: column;
+   height: 100%;
+}
+.bm--card-equal-height .card-footer {
+   margin-top: auto;
+}
+</style>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,7 +50,7 @@
 <div class="columns">
   <%@users.each do |user|%>
   <div class="column">
-    <div class="card">
+    <div class="card bm--card-equal-height">
       <div class="card-image">
         <figure class="image is-4by3">
           <% unless user.avatar.attached? %>
@@ -100,11 +112,16 @@
     </div>
   </div>
   <%end%>
+  <% if @users.length % 3 == 1%>
+    <div class="column"></div>
+    <div class="column"></div>
+  <% elsif @users.length % 3 == 2%>
+    <div class="column"></div>
+  <% end %>
 </div>
-<div style='width: 350px; margin-left: 405px; background-color: white;'>
-  <%= will_paginate @users, :page_links => false, renderer: BulmaPagination::Rails, class: 'pagination is-rounded' %>
-</div>
-
 </section>
+<div style="width:200px; margin:0 auto;">
+  <%= will_paginate @users, :page_links => false, renderer: BulmaPagination::Rails, class: 'pagination is-rounded', :previous_label => 'Anterior', :next_label => 'Siguiente' %>
+</div>
 </body>
 </html>
