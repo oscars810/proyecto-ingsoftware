@@ -103,14 +103,14 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsShmfQR57ZbpPbdBYV0yUiG9
         <div class="carousel-inner">
           <div class="item active">
             <figure class="image is-5by3">
-              <%= image_tag(@images[0]) %>
+              <%= image_tag(@local.carousel_photo(0)) %>
             </figure>
           </div>
           <% unless @one_image %>
             <% (1...@images.count).each do |index_image|%>
               <div class="item">
                 <figure class="image is-5by3">
-                  <%= image_tag(@images[index_image]) %>
+                  <%= image_tag(@local.carousel_photo(index_image)) %>
                 </figure>
               </div>
             <% end %>

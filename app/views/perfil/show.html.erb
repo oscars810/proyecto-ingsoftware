@@ -160,7 +160,7 @@
         <%= form_with(model: @user, url: perfil_update_avatar_path(@user.id), method: :patch) do |form| %>
           <div id="file-js-example" class="file is-centered">
             <label class="file-label">
-              <%= form.file_field :avatar, accept: 'image/png,image/jpeg', class: "file-input"%>
+              <%= form.file_field :avatar, accept: 'image/jpeg', class: "file-input"%>
               <span class="file-cta">
                 <span class="file-icon">
                   <i class="fas fa-upload"></i>
