@@ -6,6 +6,14 @@ class User < ApplicationRecord
 
   has_one_attached :avatar
 
+  def comment_avatar
+    return self.avatar.variant(resize: '128x128!').processed
+  end
+
+  def match_avatar
+    return self.avatar.variant(resize: '480x600!').processed
+  end
+
   belongs_to :commune
   has_and_belongs_to_many :interests
   has_one :local, dependent: :destroy

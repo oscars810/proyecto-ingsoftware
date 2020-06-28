@@ -22,8 +22,6 @@ Rails.application.routes.draw do
     resources :comentarios, controller: 'comments', only: %i[new create destroy]
     resources :valoraciones, controller: 'valuations', only: %i[edit update destroy]
   end
-
-  patch 'locales', to: 'locals#index_search', as: :index_search
   # Perfil
   # Create
   devise_for :users, controllers: { sessions: 'users/sessions',

@@ -94,11 +94,13 @@
       <div class="box">
         <h1 class="title has-text-centered">Imágen de perfil</h1>
         <center>
-          <% unless @user.avatar.attached? %>
-            <img src="https://bulma.io/images/placeholders/320x480.png" width="320" height="480">
-          <% else %>
-            <%= image_tag(@user.avatar) %>
-          <% end %>
+          <figure class="image is-4by5">
+            <% unless @user.avatar.attached? %>
+              <img src="https://bulma.io/images/placeholders/480x600.png" width="480" height="600">
+            <% else %>
+              <%= image_tag(@user.match_avatar) %>
+            <% end %>
+          </figure>
         </center>
 
       </div>
