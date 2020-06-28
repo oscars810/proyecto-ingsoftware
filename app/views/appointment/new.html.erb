@@ -23,8 +23,12 @@
             </div>
           </div>
 
-          <div class="button is-medium is-info is-fullwidth" value="Ingresar">
-            <%= f.submit "Proponer Cita", class: "button is-medium is-info is-fullwidth" %>
+          <div class="button is-medium is-primary is-fullwidth" value="Ingresar">
+            <%= f.submit "Proponer Cita", class: "button is-medium is-primary is-fullwidth" %>
+          </div>
+          <br>
+          <div class="button is-medium is-link is-fullwidth">
+            <%= link_to "Volver", match_info_path(@user_id), class: "button is-link is-fullwidth is-medium"%>
           </div>
         <% end %>
       </div>
