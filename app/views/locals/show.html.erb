@@ -103,14 +103,14 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsShmfQR57ZbpPbdBYV0yUiG9
         <div class="carousel-inner">
           <div class="item active">
             <figure class="image is-5by3">
-              <%= image_tag(@images[0]) %>
+              <%= image_tag(@local.carousel_photo(0)) %>
             </figure>
           </div>
           <% unless @one_image %>
             <% (1...@images.count).each do |index_image|%>
               <div class="item">
                 <figure class="image is-5by3">
-                  <%= image_tag(@images[index_image]) %>
+                  <%= image_tag(@local.carousel_photo(index_image)) %>
                 </figure>
               </div>
             <% end %>
@@ -130,7 +130,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsShmfQR57ZbpPbdBYV0yUiG9
     </div>
   </div>
   <div class="column"></div>
-      <div id="map" style="width:40%;height:400px;display:block;margin:30px;"></div>
+      <div id="map" style="width:45%;display:block;margin:30px;"></div>
   </div>
 
 <div class="columns">
@@ -184,9 +184,9 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsShmfQR57ZbpPbdBYV0yUiG9
         <div class="media-left">
           <figure class="image is-128x128">
             <% unless comentario.user.avatar.attached? %>
-              <img src="https://bulma.io/images/placeholders/128x128.png" alt="Imagen de perfil">
+              <img src="https://bulma.io/images/placeholders/128x128.png" alt="Imagen de perfil" class="is-rounded">
             <% else %>
-              <%= image_tag comentario.user.avatar, class: "is-rounded" %>
+              <%= image_tag comentario.user.comment_avatar, class: "is-rounded" %>
             <% end %>
           </figure>
         </div>
