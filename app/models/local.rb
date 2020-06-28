@@ -4,10 +4,14 @@ class Local < ApplicationRecord
   has_many_attached :images
 
   def carousel_photo input
-    if self.images[input].variable?
-      return self.images[input].variant(resize: '800x480!').processed
-    else
-      return self.images[input]
+    begin
+      if self.images[input].variable?
+        return self.images[input].variant(resize: '800x480!').processed
+      else
+        return self.images[input]
+      end
+    rescue => exception
+      return "https://bulma.io/images/placeholders/800x480.png"
     end
   end
 
