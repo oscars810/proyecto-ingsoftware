@@ -57,7 +57,7 @@
               <% end %>
             <tr>
               <% unless match.cita_realizada %>
-              <td> <%= @persona.nombre %> </td>
+              <td> <%= link_to @persona.nombre, perfil_path(@persona.id), target: :_blank%> </td>
               <td> <%= @persona.telefono %></td>
               <td> <%= @persona.email %> </td>
               <td> <%= link_to 'Proponer cita', new_appointment_path(@user.id, match_id: match.id, cita: @persona.nombre), method: :get, class: "button is-primary"%> </td>
@@ -94,8 +94,8 @@
                 <% @lugar = Local.find(appointment.local_id) %>
               <tr>
                 <% unless match.cita_realizada %>
-                <td> <%= @persona.nombre %> </td>
-                <td> <%= @lugar.nombre %></td>
+                <td> <%= link_to @persona.nombre, perfil_path(@persona.id), target: :_blank %> </td>
+                <td> <%= link_to @lugar.nombre, local_path(@lugar.id), target: :_blank %></td>
                 <td> <%= appointment.fecha.strftime("%d-%m-%Y") %> </td>
                 <td> <%= link_to 'Aceptar', accept_appointment_path(@user.id, appointment.id, accept: true), method: :put, class: "button is-success"%> /
                   <%= link_to 'Rechazar', accept_appointment_path(@user.id, appointment.id, accept: false), method: :put , class: "button is-danger"%></td>
