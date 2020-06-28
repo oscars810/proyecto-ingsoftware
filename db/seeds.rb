@@ -56,6 +56,7 @@ user = User.new(email: 'hackerman@uc.cl',
                 password_confirmation: 'hackerman',
                 admin: true,
                 nombre: 'Admin',
+                genero: 'Otro',
                 commune_id: 7)
 user.save!
 

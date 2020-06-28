@@ -8,17 +8,26 @@ class User < ApplicationRecord
 
   def comment_avatar
     begin
-      return self.avatar.variant(resize: '128x128!').processed
+      if self.avatar.variable?
+        return self.avatar.variant(resize: '128x128!').processed
+      else
+        return self.avatar
+      end
     rescue => exception
       # La imagen ha sido eliminada
-      return "https://bulma.io/images/placeholders/480x600.png"
+      return "https://bulma.io/images/placeholders/128x128.png"
     end
   end
 
   def match_avatar
     begin
-      return self.avatar.variant(resize: '480x600!').processed
+      if self.avatar.variable?
+        return self.avatar.variant(resize: '480x600!').processed
+      else
+        return self.avatar
+      end
     rescue => exception
+      # La imagen ha sido eliminada
       return "https://bulma.io/images/placeholders/480x600.png"
     end
   end

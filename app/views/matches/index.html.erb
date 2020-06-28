@@ -87,7 +87,7 @@
           <% unless user.avatar.attached? %>
             <img src="https://bulma.io/images/placeholders/480x600.png" alt="Placeholder image">
           <% else %>
-            <%= image_tag(user.avatar) %>
+            <%= image_tag(user.match_avatar) %>
           <% end %>
         </figure>
       </div>
@@ -110,7 +110,7 @@
             <%= user.descripcion %> 
             <br>
             <strong>Genero: </strong>
-            <%= user.genero.capitalize%>
+            <%= user.genero%>
           </p>
           <div class="control">
             <div class="tab">
