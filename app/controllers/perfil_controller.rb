@@ -1,6 +1,7 @@
+require 'date'
+
 class PerfilController < ApplicationController
 
-  
   # Read
   def index
     @users = User.where("admin = false")
@@ -31,8 +32,6 @@ class PerfilController < ApplicationController
         end
       end
 
-      @pending_valuations = current_user.valuations.where("realizada = false")
-
       #Cada vez que entra a su perfil busca posibles match que se hayan hecho mutuamente por casualidad
       @match_nuevos = MatchRequest.where('solicitado_id = ?', @user.id)
       @match_nuevos.each do |m|
@@ -50,8 +49,22 @@ class PerfilController < ApplicationController
       end
       @match_nuevos = MatchRequest.where('solicitado_id = ?', @user.id)
       @match_todos = Match.where('user1_id = ? or user2_id = ?', @user.id, @user.id)
+    elsif user_signed_in?
+      @user = User.find(params[:user_id])
+      @interests_user = @user.interests
+      @commune = @user.commune
+      render "show_incomplete"
     else
       redirect_to root_path, notice: 'No puedes acceder a esta página'
+    end
+  end
+
+  def valuations
+    if user_signed_in? and current_user.id == params[:user_id].to_i
+      @pending_valuations = current_user.valuations.where("realizada = false").sort_by(&:fecha)
+      @current_date = DateTime.now.to_date
+    else
+      redirect_to root_path, notice: "No puedes acceder a esta página"
     end
   end
 
@@ -65,13 +78,12 @@ class PerfilController < ApplicationController
   end
 
   def update
-    user_params = params.require(:user).permit(:nombre, :email, :descripcion, :edad, :telefono, :commune_id)
+    user_params = params.require(:user).permit(:nombre, :email, :descripcion, :edad, :telefono, :commune_id, :genero)
 
     @user = User.find(params[:id])
 
     unless user_params[:nombre].empty?
       if @user.update(user_params)
-        #@user.commune_id = @commune
         redirect_to perfil_path(@user.id), notice: 'Datos de usuario actualizados con éxito'
 
       else
@@ -95,6 +107,24 @@ class PerfilController < ApplicationController
     @user = User.find(params[:id])
     @user.interests.delete(@interest)
     redirect_to perfil_path(@user.id), notice: 'El interés ha sido eliminado de forma exitosa'
+  end
+
+  # Avatar
+  def update_avatar
+    user_params = params.require(:user).permit(:avatar)
+    @user = User.find(params[:user_id])
+    @user.avatar.attach(user_params[:avatar])
+    if @user.avatar.attached?
+      redirect_to perfil_path(@user.id), notice: 'Tu imagen de perfil ha sido añadida exitosamente'
+    else
+      redirect_to perfil_path(@user.id), notice: 'Ocurrió un error al subir la imagen. Inténtalo nuevamente'
+    end
+  end
+
+  def delete_avatar
+    @user = User.find(params[:user_id])
+    @user.avatar.purge
+      redirect_to perfil_path(@user.id), notice: 'Tu imagen de perfil ha sido eliminada exitosamente'
   end
 
   #Delete

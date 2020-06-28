@@ -7,13 +7,7 @@ class CommentsController < ApplicationController
       if current_user.id == @local.user_id
         redirect_to local_path(@local.id), notice: 'No puedes comentar en tu propio local'
       else
-        valoraciones_pendientes = current_user.valuations.where("realizada = false AND local_id = #{params[:local_id]}")
-        @valuation_id = params[:valuation_id]
-        if not valoraciones_pendientes.empty? and @valuation_id
-          render
-        else
-          redirect_to root_path, notice: 'No puedes acceder a esta página'
-        end
+        render
       end
     else
       redirect_to root_path, notice: 'Debes iniciar sesión para comentar'
@@ -21,28 +15,14 @@ class CommentsController < ApplicationController
   end
 
   def create
-    puntuacion = params.require(:comment).permit(:valuation)[:valuation]
-    valuation_id = params[:valuation_id]
     comentario_params = params.require(:comment).permit(:contenido)
-    contenido = comentario_params[:contenido]
-    id_usuario = current_user.id
-    if not puntuacion
-      redirect_to perfil_path(id_usuario), notice: 'La puntuación del local es obligatoria'
+    comentario_params[:user_id] = current_user.id
+    comentario_params[:local_id] = params[:local_id]
+    @comentario = Comment.create(comentario_params)
+    if @comentario.save
+      redirect_to local_path(params[:local_id]), notice: 'El comentario ha sido agregado con éxito'
     else
-      valuation = Valuation.find(valuation_id)
-      valuation.update(:realizada => true, :puntuacion => puntuacion)
-      if contenido.empty?
-        redirect_to local_path(params[:local_id]), notice: 'La puntuación ha sido agregada con éxito'
-      else
-        comentario_params[:user_id] = id_usuario
-        comentario_params[:local_id] = params[:local_id]
-        @comentario = Comment.create(comentario_params)
-        if @comentario.save
-          redirect_to local_path(params[:local_id]), notice: 'El comentario y la puntuación han sido agregados con éxito'
-        else
-          redirect_to local_path(params[:local_id]), notice: 'Ocurrió un error al crear el Comentario'
-        end
-      end
+      redirect_to local_path(params[:local_id]), notice: 'Ocurrió un error al crear el Comentario'
     end
   end
 
@@ -52,9 +32,22 @@ class CommentsController < ApplicationController
     render :layout => 'admin'
   end
 
+  def show
+    if user_signed_in? and current_user.id == params[:user_id].to_i
+      @user = User.find(params[:user_id])
+      @comentarios = Comment.where("user_id = #{@user.id}")
+    else
+      redirect_to root_path, notice: "No puedes acceder a esta página"
+    end
+  end
+
   def destroy
     @comentario = Comment.find(params[:id])
     @comentario.destroy
+    if params[:perfil]
+      redirect_to perfil_comentarios_path(current_user.id), notice: "El comentario ha sido eliminado con éxito"
+      return
+    end
     unless params[:admin]
       redirect_to local_path(params[:local_id]), notice: 'El comentario ha sido eliminado con éxito'
     else

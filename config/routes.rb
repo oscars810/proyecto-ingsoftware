@@ -20,14 +20,27 @@ Rails.application.routes.draw do
   resources :locales, controller: 'locals', as: 'local' do
     resources :menus, only: %i[new create edit update destroy]
     resources :comentarios, controller: 'comments', only: %i[new create destroy]
+    resources :valoraciones, controller: 'valuations', only: %i[edit update destroy]
   end
-
   # Perfil
   # Create
   devise_for :users, controllers: { sessions: 'users/sessions',
                                     registrations: 'users/registrations' }
 
-  # Read Usuarios
+  # Ver menus 
+  get 'locales/:local_id/edit/menus', to: 'menus#show', as: :local_menues
+
+  # Imagenes del local
+  get 'locales/:local_id/edit/imagenes', to: 'locals#images', as: :local_images
+  patch 'locales/:local_id/edit/imagenes', to: 'locals#update_images', as: :local_add_images
+  delete 'locales/:local_id/edit/imagenes/:image_id', to: 'locals#delete_images', as: :local_delete_images
+
+  # Ver comentarios
+  get 'perfil/:user_id/comentarios', to: 'comments#show', as: :perfil_comentarios
+  # Ver valoraciones pendientes
+  get 'perfil/:user_id/valoraciones', to: 'perfil#valuations', as: :perfil_valuations
+
+  # Read perfil
   get 'perfil/:user_id', to: 'perfil#show', as: :perfil
 
   # Update perfil
@@ -39,12 +52,18 @@ Rails.application.routes.draw do
   patch 'perfil_interest/:id', to: 'perfil#update_interest', as: :perfil_edit_interest
   get 'perfil/:id/:idinterest', to: 'perfil#delete_interest', as: :perfil_delete_interest
 
+  # Update Profile Avatar
+  patch 'perfil_avatar/:user_id', to: 'perfil#update_avatar', as: :perfil_update_avatar
+  delete 'perfil_avatar/:user_id', to: 'perfil#delete_avatar', as: :perfil_delete_avatar
+
   # Delete perfil
   delete 'perfil/:id', to: 'perfil#destroy'
 
   # Match
   # Mostrar perfiles
   get 'match/:id', to: 'matches#index', as: :match
+  # Mostrar informacion de los matches del usuario 
+  get 'match/:id/info', to: 'matches#show', as: :match_info
 
   # Create match
   get 'match/:id/:idsolicitado', to: 'matches#new', as: :match_new

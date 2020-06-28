@@ -16,8 +16,9 @@
     <tr>
         <td><%= local.nombre %></td>
         <td><%= local.descripcion %></td>
-        <td><%= link_to 'Eliminar local', admin_delete_local_path(local.id),  method: :delete, class: "button is-danger", data: { confirm:
-        "¿Estás seguro?"} %></td>
+        <td><%= link_to 'Eliminar local', admin_delete_local_path(local.id, aceptado: "si"),  method: :delete, class: "button is-danger", data: { confirm:
+        "¿Estás seguro?"} %>
+        <%= link_to 'Ver local', local_path(local.id), class: "button is-primary", target: :_blank%></td>
     </tr>
     <% end %>
 </tbody>
