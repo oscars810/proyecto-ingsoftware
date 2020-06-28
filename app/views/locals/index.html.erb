@@ -215,10 +215,10 @@
       <% end %>
     <% end %>
   </div>
-  <%if @locales.length == 4%>
+  <%if @locales.length % 6 == 4%>
     <div class="column"></div>
     <div class="column"></div>
-  <% elsif @locales.length == 5%>
+  <% elsif @locales.length % 6 == 5%>
     <div class="column"></div>
   <% end %>
 </section>
