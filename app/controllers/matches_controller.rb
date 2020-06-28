@@ -8,8 +8,19 @@ class MatchesController < ApplicationController
     else
       #@users = User.all.paginate(page: params[:page], per_page: 2)
       @user = User.find(params[:id])
-
-      @users_previus = User.where("id != " + @user.id.to_s + " AND admin = false")
+      if params[:genero]
+        if params[:genero] != "Todas" and params[:commune_id] != 'Todas'
+          @users_previus = User.where("id != ? AND admin = false AND genero = ? AND commune_id = ?", @user.id, params[:genero], params[:commune_id])
+        elsif params[:commune_id] != 'Todas'
+          @users_previus = User.where("id != ? AND admin = false AND commune_id = ?", @user.id, params[:commune_id])
+        elsif params[:genero] != 'Todas'
+          @users_previus = User.where("id != ? AND admin = false AND genero = ?", @user.id, params[:genero])
+        else
+          @users_previus = User.where("id != " + @user.id.to_s + " AND admin = false")
+        end
+      else
+        @users_previus = User.where("id != " + @user.id.to_s + " AND admin = false")
+      end
       @matches_request = MatchRequest.where("solicitante_id = " + @user.id.to_s)
       @users = []
       
