@@ -7,6 +7,9 @@
     <tr>
     <th>Nombre</th>
     <th>Descripción</th>
+    <th>Dirección</th>
+    <th>Comuna</th>
+    <th>Teléfono</th>
     <th>Acciones</th>
     </tr>
 </thead>
@@ -16,6 +19,9 @@
     <tr>
         <td><%= local.nombre %></td>
         <td><%= local.descripcion %></td>
+        <td><%= local.direccion %></td>
+        <td><%= local.commune.nombre%></td>
+        <td><%= local.telefono %></td>
         <td><%= link_to 'Aceptar local', admin_aceptar_local_path(local.id), method: :patch, class: "button is-primary"%>
             <%= link_to 'Rechazar local', admin_delete_local_path(local.id, aceptado: "no"), method: :delete, class: "button is-danger",
             data: { confirm: "¿Estás seguro?"}%></td>
