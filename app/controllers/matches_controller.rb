@@ -21,6 +21,7 @@ class MatchesController < ApplicationController
       else
         @users_previus = User.where("id != " + @user.id.to_s + " AND admin = false")
       end
+      @matches_listos = Match.all
       @matches_request = MatchRequest.where("solicitante_id = " + @user.id.to_s)
       @users = []
       
@@ -28,6 +29,15 @@ class MatchesController < ApplicationController
         repetido = false
         @matches_request.each do |match_request|
           if match_request.solicitado_id == user.id
+            repetido = true
+            break
+          end
+        end
+        @matches_listos.each do |match|
+          if match.user1_id == @user.id and match.user2_id == user.id
+            repetido = true
+            break
+          elsif match.user2_id == @user.id and match.user1_id == user.id
             repetido = true
             break
           end
