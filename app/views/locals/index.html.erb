@@ -216,13 +216,13 @@
       </div>
       <% end %>
     <% end %>
+    <%if @locales.length % 6 == 4%>
+      <div class="column"></div>
+      <div class="column"></div>
+    <% elsif @locales.length % 6 == 5%>
+      <div class="column"></div>
+    <% end %>
   </div>
-  <%if @locales.length % 6 == 4%>
-    <div class="column"></div>
-    <div class="column"></div>
-  <% elsif @locales.length % 6 == 5%>
-    <div class="column"></div>
-  <% end %>
 </section>
 
 <div style="width:200px; margin:0 auto;">
