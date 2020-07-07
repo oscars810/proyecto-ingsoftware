@@ -294,6 +294,28 @@ user.interests << Interest.find(9)
 user.interests << Interest.find(11)
 user.interests << Interest.find(10)
 
+local = Local.new(nombre: "Katako",
+                descripcion: "Tenemos preparaciones típicas de la gastronomía internacional, todo vegano. Además de sandwiches, pizza, chorrillana y pastelería en un ambiente amigable",
+                aceptado: true,
+                telefono: "09 7312 9836",
+                direccion: "José Manuel Infante 618, Providencia, Región Metropolitana",
+                commune_id: Commune.where("nombre = 'Providencia'")[0].id,
+                user_id: 6,
+                lat: -33.436837,
+                long: -70.621958)
+local.save!
+
+local = Local.new(nombre: "Zanzibar",
+descripcion: "Premiado por su excelencia, el Restaurant Zanzíbar te ofrece una selección de sus mejores platos para que los puedas disfrutar coḿodamente",
+aceptado: true,
+telefono: "2 2218 0118",
+direccion: "Av San Josemaría Escrivá de Balaguer 6400, Santiago, Vitacura, Región Metropolitana",
+commune_id: Commune.where("nombre = 'Las Condes'")[0].id,
+user_id: 5,
+lat: -33.381529,
+long: -70.5817855)
+local.save!
+
 local = Local.new(nombre: 'Juan y Medio',
                   descripcion: 'Restaurante de comida tipica chilena. Sabores locales inigualables, o quizás igualables por nuestras abuelas', 
                   aceptado: true, 
@@ -327,50 +349,6 @@ local = Local.new(nombre: 'Taiko',
                   long:-70.618347)
 local.save!
 
-local = Local.new(nombre: 'Pollos Hermanos',
-                  descripcion: 'Totalmente un local de pollo. No es un lavado de dinero.',
-                  aceptado: true,
-                  telefono: '2 295 294 43',
-                  direccion: 'Los Zapadores 1130, Recoleta, Región Metropolitana',
-                  commune_id: 63,
-                  user_id: 5,
-                  lat:-33.387296,
-                  long:-70.651944)
-local.save!
-
-local = Local.new(nombre: 'SubGuay',
-                descripcion: 'Sandwiches con todo lo que puedas comer.',
-                aceptado: true,
-                telefono: '2 340 847 05',
-                direccion: "Av Libertador Bernardo O'Higgins 1031-1047, Santiago, Región Metropolitana",
-                commune_id: 307,
-                user_id: 9,
-                lat:-33.443948, 
-                long:-70.650323)
-local.save!
-
-local = Local.new(nombre: "Pizza Planet",
-                  descripcion: "La mejor pizza chilena que incluso parece salida de otro mundo. Ven y disfruta de un gran saber y variedades en nuestro local",
-                  aceptado: true,
-                  telefono: "2 420 420 13",
-                  direccion: "Area 51 Alien Center, U.S. 95, Amargosa Valley, Nevada, EE. UU",
-                  commune_id: 160,
-                  user_id: 6,
-                  lat: 36.643864,
-                  long: -116.396185)
-local.save!
-
-local = Local.new(nombre: "Bar de Moe",
-                  descripcion: "Ven a disfrutar las mejores cervezas Duff de nuestro pais. Además, disfruta de nuestro trago de edición limitada 'Llamarada Moe'. Apúrate, o será demasiado tarde",
-                  aceptado: true,
-                  telefono: "2 124 411 444",
-                  direccion: "Bar de Moe's, General Martín Rodríguez, Ituzaingó, Provincia de Buenos Aires, Argentina",
-                  commune_id: 135,
-                  user_id: 1,
-                  lat: -34.6626606,
-                  long: -58.6847304)
-local.save!
-
 local = Local.new(nombre: 'Chicken Brother',
                 descripcion: 'Totalmente una copia de un local de pollos.',
                 aceptado: false,
@@ -382,6 +360,17 @@ local = Local.new(nombre: 'Chicken Brother',
                 long:-70.651794)
 local.save!
 
+local = Local.new(nombre: "Fuente Alemana Alameda",
+descripcion: "Fuente de soda familiar, fundada en el año 1970. Local de atención rápida, que todas las familias puedes visitar, con precios accesibles y un grato ambiente",
+aceptado: true,
+telefono: "2 2639 3231",
+direccion: "Av Libertador Bernardo O'Higgins 58, Santiago, Región Metropolitana",
+commune_id: Commune.where("nombre = 'Santiago'")[0].id,
+user_id: 13,
+lat: -33.4376484,
+long: -70.6381351)
+local.save!
+
 local = Local.new(nombre: 'El Fito',
                 descripcion: 'Grandes cantidades de cerveza por bajas cantidades de dinero. Te vas caminando o te vas en ambulancia.',
                 aceptado: true,
@@ -391,6 +380,18 @@ local = Local.new(nombre: 'El Fito',
                 user_id: 7,
                 lat: -33.498188,
                 long: -70.616262)
+local.save!
+
+
+local = Local.new(nombre: 'SubGuay',
+    descripcion: 'Sandwiches con todo lo que puedas comer.',
+    aceptado: true,
+    telefono: '2 340 847 05',
+    direccion: "Av Libertador Bernardo O'Higgins 1031-1047, Santiago, Región Metropolitana",
+    commune_id: 307,
+    user_id: 12,
+    lat:-33.443948, 
+    long:-70.650323)
 local.save!
 
 comentario = Comment.new(contenido: 'Un local bastante variado y con muy buena atención', 
@@ -438,86 +439,114 @@ comentario = Comment.new(contenido: 'Excelentes precios!!!!!!!',
     local_id: 7)
 comentario.save!
 
-menu = Menu.new(local_id: 1,
+menu = Menu.new(local_id: 1, nombre: "Sandwich Kinugo", descripcion: "Sandwich de mechada, porotos verdes, rucula, ají verde, tomate y papas al hilo", precio: 4000)
+menu.save!
+
+menu = Menu.new(local_id: 1, nombre: "Chorrillana Poñi", descripcion: "Chorrillana con papas fritas, queso fundido, cebolla morada, espárragos, tomate cherry y mechada",
+precio: 5500)
+menu.save!
+
+menu = Menu.new(local_id: 1, nombre: "Pie de Limón", descripcion: "El mejor pie de limón", precio: 3000)
+menu.save!
+
+menu = Menu.new(local_id: 2, nombre: "Satay de Ave", descripcion: "Filetitos de pollo marinados en soya, curcuma y especies", precio: 8000)
+menu.save!
+
+menu = Menu.new(local_id: 2, nombre: "Tagine de Osso Buco", descripcion: "Mix de especies marroquíes, pimentones asados y aceitunas", precio: 12500)
+menu.save!
+
+menu = Menu.new(local_id: 2, nombre: "Brownie Zanzibar", descripcion: "Lo mas goloso de todos nuestros postres", precio: 3500)
+menu.save!
+
+menu = Menu.new(local_id: 3,
                 nombre: 'Cazuela',
                 descripcion: 'Sopa de verduras con carne de vacuno o de ave',
                 precio: 3000)
 menu.save!
 
-menu = Menu.new(local_id: 1,
+menu = Menu.new(local_id: 3,
                 nombre: 'Empanada de pino',
                 descripcion: 'Carne molida con cebolla, aceitunas y huevo cocido, envuelto en masa',
                 precio: 1500)
 menu.save!    
 
-menu = Menu.new(local_id: 1,
+menu = Menu.new(local_id: 3,
                 nombre: 'Porotos',
                 descripcion: 'Porotos con tallarines cocidos',
                 precio: 3000)
 menu.save!
 
-menu = Menu.new(local_id: 2,
+menu = Menu.new(local_id: 4,
                 nombre: 'Italiano',
                 descripcion: 'Sandwich que posee carne de churrasco/ lomo, palta, tomate y mayonesa',
                 precio: 2000)
 menu.save!
 
-menu = Menu.new(local_id: 2,
+menu = Menu.new(local_id: 4,
                 nombre: 'Barros Luco',
                 descripcion: 'Sandwich que posee carne de churrasco/ lomo y queso',
                 precio: 1500)
 menu.save!
 
-menu = Menu.new(local_id: 2,
+menu = Menu.new(local_id: 4,
                 nombre: 'Mega Submarino',
                 descripcion: 'Sandwich que posee jamón, tomate, queso, lechuga, pepino, pepinillo y aceitunas',
                 precio: 1000)
 menu.save!
 
-
-menu = Menu.new(local_id: 4,
-                nombre: 'Metanfetamina',
-                descripcion: 'No hay descripcion',
-                precio: 50000)
+menu = Menu.new(local_id: 7, nombre: "Churrasco pobre",
+descripcion: "El clásico sandwich a lo pobre, clásico de la fuente alemana",
+precio: 2000)
 menu.save!
 
-menu = Menu.new(local_id: 7,
+menu = Menu.new(local_id: 7, nombre: "Barros luco patrón",
+descripcion: "Churrasco, queso, tomate, choclo y mayonesa",
+precio: 3000)
+menu.save!
+
+menu = Menu.new(local_id: 7, nombre: "Sandwich Pernil",
+descripcion: "Pernil de cerdo ahumado y deshuesado a la plancha",
+precio: 3500)
+menu.save!
+
+menu = Menu.new(local_id: 8,
                 nombre: 'Cerveza Baltica 1.5L',
                 descripcion: 'Mejor conocida como la Baltiloca.',
                 precio: 500)
 menu.save!
 
-menu = Menu.new(local_id: 7,
+menu = Menu.new(local_id: 8,
                 nombre: 'Papas fritas',
                 descripcion: 'Gran porcion de papas para pasar el bajon.',
                 precio: 50000)
 menu.save!
 
-menu = Menu.new(local_id: 5,
-                nombre: 'Baratisisisimo 15cm',
-                descripcion: 'Incluye cualquier ingrediente de la vitrina.',
-                precio: 1700)
-menu.save!
-
-menu = Menu.new(local_id: 5,
-                nombre: 'Submarino 30cm',
-                descripcion: 'Incluye cualquier ingrediente de la vitrina.',
-                precio: 3000)
-menu.save!
-
-menu = Menu.new(local_id: 7,
+menu = Menu.new(local_id: 8,
                 nombre: 'Becker 1.5L',
                 descripcion: 'Para aquellos con gusto más refinado.',
                 precio: 1300)
 menu.save!
 
-menu = Menu.new(local_id: 5,
+
+menu = Menu.new(local_id: 9,
+    nombre: 'Baratisisisimo 15cm',
+    descripcion: 'Incluye cualquier ingrediente de la vitrina.',
+    precio: 1700)
+menu.save!
+
+menu = Menu.new(local_id: 9,
+    nombre: 'Submarino 30cm',
+    descripcion: 'Incluye cualquier ingrediente de la vitrina.',
+    precio: 3000)
+menu.save!
+
+menu = Menu.new(local_id: 9,
                 nombre: 'Bebida',
                 descripcion: 'Vaso grande de bebida a eleccion',
                 precio: 1000)
 menu.save!
 
-menu = Menu.new(local_id: 5,
+menu = Menu.new(local_id: 9,
                 nombre: 'Combo Clientes Match&Meat',
                 descripcion: '2 Submarino + 2 Bebidas + 2 Galletas. Promocion disponible solo para clientes Match&Meat',
                 precio: 6500)
