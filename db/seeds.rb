@@ -290,7 +290,7 @@ user.interests << Interest.find(11)
 user.interests << Interest.find(10)
 
 local = Local.new(nombre: 'Juan y Medio',
-                  descripcion: 'Restaurante de comida tipica chilena', 
+                  descripcion: 'Restaurante de comida tipica chilena. Sabores locales inigualables, o quizás igualables por nuestras abuelas', 
                   aceptado: true, 
                   telefono:  '2 242 131 46',
                   direccion: "Rosario, Rengo, O'Higgins",
@@ -301,7 +301,7 @@ local = Local.new(nombre: 'Juan y Medio',
 local.save!
 
 local = Local.new(nombre: 'Pamplona',
-                  descripcion: 'Sandwicheria española',
+                  descripcion: 'Sandwicheria española. Ven a disfrutar los mejores sabores del país ibérico, en territorio chileno, junto a nosotros',
                   aceptado: true,
                   telefono: '2 345 672 49',
                   direccion: 'Exequiel Fernandez 6030, Macul, Región Metropolitana', 
@@ -312,7 +312,7 @@ local = Local.new(nombre: 'Pamplona',
 local.save!
 
 local = Local.new(nombre: 'Taiko',
-                  descripcion: 'Tenedor libre de sushi',
+                  descripcion: 'Tenedor libre de sushi, come todo lo que puedas (o hasta que nosotros te tengamos que parar)',
                   aceptado: false,
                   telefono: '2 634 019 21',
                   direccion: 'Av. Departamental 119, Santiago, San Joaquín, Región Metropolitana', 
@@ -323,7 +323,7 @@ local = Local.new(nombre: 'Taiko',
 local.save!
 
 local = Local.new(nombre: 'Pollos Hermanos',
-                  descripcion: 'Totalmente un local de pollo',
+                  descripcion: 'Totalmente un local de pollo. No es un lavado de dinero.',
                   aceptado: true,
                   telefono: '2 295 294 43',
                   direccion: 'Los Zapadores 1130, Recoleta, Región Metropolitana',
@@ -344,6 +344,28 @@ local = Local.new(nombre: 'SubGuay',
                 long:-70.650323)
 local.save!
 
+local = Local.new(nombre: "Pizza Planet",
+                  descripcion: "La mejor pizza chilena que incluso parece salida de otro mundo. Ven y disfruta de un gran saber y variedades en nuestro local",
+                  aceptado: true,
+                  telefono: "2 420 420 13",
+                  direccion: "Area 51 Alien Center, U.S. 95, Amargosa Valley, Nevada, EE. UU",
+                  commune_id: 160,
+                  user_id: 6,
+                  lat: 36.643864,
+                  long: -116.396185)
+local.save!
+
+local = Local.new(nombre: "Bar de Moe",
+                  descripcion: "Ven a disfrutar las mejores cervezas Duff de nuestro pais. Además, disfruta de nuestro trago de edición limitada 'Llamarada Moe'. Apúrate, o será demasiado tarde",
+                  aceptado: true,
+                  telefono: "2 124 411 444",
+                  direccion: "Bar de Moe's, General Martín Rodríguez, Ituzaingó, Provincia de Buenos Aires, Argentina",
+                  commune_id: 135,
+                  user_id: 1,
+                  lat: -34.6626606,
+                  long: -58.6847304)
+local.save!
+
 local = Local.new(nombre: 'Chicken Brother',
                 descripcion: 'Totalmente una copia de un local de pollos.',
                 aceptado: false,
@@ -356,7 +378,7 @@ local = Local.new(nombre: 'Chicken Brother',
 local.save!
 
 local = Local.new(nombre: 'El Fito',
-                descripcion: 'Grandes cantidades de cerveza por bajas cantidades de dinero.',
+                descripcion: 'Grandes cantidades de cerveza por bajas cantidades de dinero. Te vas caminando o te vas en ambulancia.',
                 aceptado: true,
                 telefono: "2 328 340 12",
                 direccion: "Vicuña Mackenna 4779, Macul, San Joaquín, Región Metropolitana",
