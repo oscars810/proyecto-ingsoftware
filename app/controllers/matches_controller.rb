@@ -59,21 +59,21 @@ class MatchesController < ApplicationController
 
     @current_date = DateTime.now.to_date
 
-    #Cada vez que entra a su perfil busca posibles match que se hayan hecho mutuamente por casualidad
-    @match_nuevos = MatchRequest.where('solicitado_id = ?', @user.id)
-    @match_nuevos.each do |m|
-      @match_coincidentes = MatchRequest.where('solicitado_id = ? and solicitante_id = ?', m.solicitante_id, @user.id)
-      if @match_coincidentes
-        @match_coincidentes.each do |m2|
-          match = Match.new(user1_id: m2.solicitante_id,
-            user2_id: m2.solicitado_id,
-            cita_realizada: false)
-          match.save!
-          m2.destroy
-          m.destroy
-        end
-      end
-    end
+    # #Cada vez que entra a su perfil busca posibles match que se hayan hecho mutuamente por casualidad
+    # @match_nuevos = MatchRequest.where('solicitado_id = ?', @user.id)
+    # @match_nuevos.each do |m|
+    #   @match_coincidentes = MatchRequest.where('solicitado_id = ? and solicitante_id = ?', m.solicitante_id, @user.id)
+    #   if @match_coincidentes
+    #     @match_coincidentes.each do |m2|
+    #       match = Match.new(user1_id: m2.solicitante_id,
+    #         user2_id: m2.solicitado_id,
+    #         cita_realizada: false)
+    #       match.save!
+    #       m2.destroy
+    #       m.destroy
+    #     end
+    #   end
+    # end
     # Match que le han llegado como solicitud
     @match_nuevos = MatchRequest.where('solicitado_id = ?', @user.id)
     # Match que ya a concretado 
@@ -88,9 +88,31 @@ class MatchesController < ApplicationController
       solicitado_id: @user_solicitud.id
     )
     @match_request.save!
-    
-
-    redirect_to match_path(@user.id)
+    notificacion = false
+    @match_nuevos = MatchRequest.where('solicitado_id = ?', @user.id)
+    @match_nuevos.each do |m|
+      @match_coincidentes = MatchRequest.where('solicitado_id = ? and solicitante_id = ?', m.solicitante_id, @user.id)
+      if @match_coincidentes
+        @match_coincidentes.each do |m2|
+          match = Match.new(user1_id: m2.solicitante_id,
+            user2_id: m2.solicitado_id,
+            cita_realizada: false)
+          notificacion = true
+          match.save!
+          m2.destroy
+          m.destroy
+        end
+      end
+    end
+    # Match que le han llegado como solicitud
+    @match_nuevos = MatchRequest.where('solicitado_id = ?', @user.id)
+    # Match que ya a concretado 
+    @match_todos = Match.where('user1_id = ? or user2_id = ?', @user.id, @user.id)
+    if notificacion
+      redirect_to match_path(@user.id), notice: "Acabas de hacer MATCH, revisa la seccion de match para más informacion"
+    else
+      redirect_to match_path(@user.id)
+    end
   end
 
   def accept_match
