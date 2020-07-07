@@ -191,6 +191,11 @@ user = User.new(email: 'esteban@uc.cl',
                 descripcion: descripcion)
 user.save!
 user.interests << Interest.find(9)
+user.interests << Interest.find(5)
+user.interests << Interest.find(2)
+user.interests << Interest.find(1)
+user.interests << Interest.find(3)
+user.interests << Interest.find(7)
 
 user = User.new(email: "cristina@uc.cl",
                 password: 'cristina1234',
@@ -651,3 +656,39 @@ match_request = MatchRequest.new(
     solicitante_id: 3,
     solicitado_id: 14)
 match_request.save!
+
+match = Match.new(
+    user1_id: 11,
+    user2_id: 2,
+    cita_realizada: false)
+match.save!
+
+match = Match.new(
+    user1_id: 11,
+    user2_id: 3,
+    cita_realizada: false)
+match.save!
+
+match = Match.new(
+    user1_id: 11,
+    user2_id: 4,
+    cita_realizada: false)
+match.save!
+
+match = Match.new(
+    user1_id: 11,
+    user2_id: 5,
+    cita_realizada: false)
+match.save!
+
+match = Match.new(
+    user1_id: 11,
+    user2_id: 6,
+    cita_realizada: false)
+match.save!
+
+match = Match.new(
+    user1_id: 11,
+    user2_id: 7,
+    cita_realizada: false)
+match.save!
