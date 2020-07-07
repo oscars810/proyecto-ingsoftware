@@ -56,6 +56,7 @@ user = User.new(email: 'hackerman@uc.cl',
                 password_confirmation: 'hackerman',
                 admin: true,
                 nombre: 'Admin',
+                genero: 'Otro',
                 commune_id: 7)
 user.save!
 
@@ -451,6 +452,48 @@ menu = Menu.new(local_id: 4,
                 nombre: 'Metanfetamina',
                 descripcion: 'No hay descripcion',
                 precio: 50000)
+menu.save!
+
+menu = Menu.new(local_id: 7,
+                nombre: 'Cerveza Baltica 1.5L',
+                descripcion: 'Mejor conocida como la Baltiloca.',
+                precio: 500)
+menu.save!
+
+menu = Menu.new(local_id: 7,
+                nombre: 'Papas fritas',
+                descripcion: 'Gran porcion de papas para pasar el bajon.',
+                precio: 50000)
+menu.save!
+
+menu = Menu.new(local_id: 5,
+                nombre: 'Baratisisisimo 15cm',
+                descripcion: 'Incluye cualquier ingrediente de la vitrina.',
+                precio: 1700)
+menu.save!
+
+menu = Menu.new(local_id: 5,
+                nombre: 'Submarino 30cm',
+                descripcion: 'Incluye cualquier ingrediente de la vitrina.',
+                precio: 3000)
+menu.save!
+
+menu = Menu.new(local_id: 7,
+                nombre: 'Becker 1.5L',
+                descripcion: 'Para aquellos con gusto más refinado.',
+                precio: 1300)
+menu.save!
+
+menu = Menu.new(local_id: 5,
+                nombre: 'Bebida',
+                descripcion: 'Vaso grande de bebida a eleccion',
+                precio: 1000)
+menu.save!
+
+menu = Menu.new(local_id: 5,
+                nombre: 'Combo Clientes Match&Meat',
+                descripcion: '2 Submarino + 2 Bebidas + 2 Galletas. Promocion disponible solo para clientes Match&Meat',
+                precio: 6500)
 menu.save!
 
 valuation = Valuation.new(local_id: 4,
