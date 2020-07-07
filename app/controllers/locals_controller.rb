@@ -96,6 +96,7 @@ class LocalsController < ApplicationController
     else
       @locales = Local.where("aceptado = true")
     end
+    @locales = @locales.paginate(page: params[:page], per_page: 6)
   end
 
   def edit
